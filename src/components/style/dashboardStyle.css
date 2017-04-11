@@ -10,10 +10,10 @@
     text-align: center;
   }
 
-  .panel-group{
-    height: 70vh;
-    border: .5px solid #ececec;
-  }
+.panel-group {
+  height: 70vh;
+  border: .5px solid #ececec;
+}
 
 .recentActivity {
     padding: 0px;
