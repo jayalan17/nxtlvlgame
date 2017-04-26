@@ -2,7 +2,6 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Well } from 'react-bootstrap';
 import './style/dashboardStyle.css';
-import Trophy from './Trophy';
 
 
 class Dashboard extends React.Component {
@@ -26,18 +25,6 @@ class Dashboard extends React.Component {
     });
   }
 
-  createTrophyCase(){
-    if(this.props.userStore.loggedInUser){
-      let displayTrophy = [
-        <Trophy key="states" collectionName={"states"}/>,
-        <Trophy key="parks" collectionName={"parks"}/>,
-        <Trophy key="elevations" collectionName={"elevations"}/>,
-        <Trophy key="mlbstadiums" collectionName={"mlbstadiums"}/>,
-        <Trophy key="nflstadiums" collectionName={"nflstadiums"}/>,
-        <Trophy key="airports" collectionName={"airports"}/>,];
-      return displayTrophy;
-    }
-  }
 
   render() {
     return (
@@ -47,7 +34,7 @@ class Dashboard extends React.Component {
             <Well style={{
               border: "1px solid #bcbcbc",
               backgroundColor: "rgba(193, 193, 192, .5)"}}>
-            <h4 className="head">Welcome</h4>
+            <h4 className="head">Shall we play a game...</h4>
             </Well>
           </div>
         </div>

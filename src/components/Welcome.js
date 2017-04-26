@@ -65,7 +65,7 @@ class Welcome extends React.Component {
     return (
       <div>
         <div>
-          <img style={logoStyle} src={require('../img/barlogo1.png')}
+          <img style={logoStyle} src={require('../img/rp1.png')}
             width="275px" height="150px"/>
         </div>
         <div style={parentStyle}>

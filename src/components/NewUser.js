@@ -29,29 +29,49 @@ class NewUser extends React.Component {
   handleEmailChange(e) {
     this.setState({email: e.target.value});
   }
+  // handleNewUser(event) {
+  //   const self = this;
+  //   fetch('facebook/usercheck', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(this.state)
+  //   }).then(function(result){
+  //     return result.json();
+  //   }).then(function(result) {
+  //     if(result.userfound) {
+  //       self.props.userStore.userAlreadyExists = true;
+  //     }else{
+  //       self.NewUser(self.state);
+  //     }
+  //   });
+  //   browserHistory.push('/Welcome');
+  // }
+  //
+  // NewUser(usr) {
+  //   fetch('/api/user', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       name: usr.name,
+  //       password: usr.password,
+  //     })
+  //   });
+  //   browserHistory.push('/Welcome');
+  // }
+
   handleNewUser(event) {
-    const self = this;
-    fetch('facebook/usercheck', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    }).then(function(result){
-      return result.json();
-    }).then(function(result) {
-      if(result.userfound) {
-        self.props.userStore.userAlreadyExists = true;
-      }else{
-        self.NewUser(self.state);
-      }
-    });
-    browserHistory.push('/Welcome');
+    event.preventDefault();
+    this.NewUser(this.state);
   }
 
   NewUser(usr) {
-    this.props.userStore.newUserCreated = true;
+    // this.props.userStore.newUserCreated = true;
     fetch('/api/user', {
       method: 'POST',
       headers: {
@@ -61,10 +81,14 @@ class NewUser extends React.Component {
       body: JSON.stringify({
         name: usr.name,
         password: usr.password,
-        email: usr.email
       })
+    })
+    .then(function(){
+      browserHistory.push('/Welcome');
     });
   }
+
+
 
   render() {
     this.props.userStore.failedLogin = false;
@@ -81,7 +105,7 @@ class NewUser extends React.Component {
         <div>
         <img
           style={logoStyle}
-          src={require('../img/barlogo1.png')} width="275" height="150"/>
+          src={require('../img/rp1.png')} width="275" height="150"/>
         </div>
         <div style={parentStyle}>
           <Well style={wellStyle} bsSize="large">
@@ -102,19 +126,11 @@ class NewUser extends React.Component {
                     type="password" placeholder="password" />
                 </FormGroup>
 
-                <FormGroup controlId="formInlineEmail">
-                  <ControlLabel>Email</ControlLabel>
-                  <FormControl
-                    onChange={this.handleEmailChange}
-                    type="text" placeholder="email" />
-                </FormGroup>
-
                 <div style={loginLinkStyle}>
                   <Link to="/Welcome" style={{color: "#4eb14d"}}>Login</Link>
                 </div>
                 <Button
                   onClick={this.handleNewUser}
-                  onTouchTap={this.handleLoginUser}
                   type="submit" className="btn btn-success">Submit</Button>
             </Form>
           </Well>
