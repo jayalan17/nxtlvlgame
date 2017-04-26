@@ -110,7 +110,7 @@ class NewUser extends React.Component {
                 </FormGroup>
 
                 <div style={loginLinkStyle}>
-                  <Link to ="/Welcome" style={{color: "#4eb14d"}}>Login</Link>
+                  <Link to="/Welcome" style={{color: "#4eb14d"}}>Login</Link>
                 </div>
                 <Button
                   onClick={this.handleNewUser}

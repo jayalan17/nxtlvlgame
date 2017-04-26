@@ -1,4 +1,4 @@
-let mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 let UserSchema = new mongoose.Schema({
   name: {
@@ -7,29 +7,27 @@ let UserSchema = new mongoose.Schema({
   password: {
     type: String
   },
-  email: {
-    type: String
+  luigiCompleted: {
+    type: Boolean,
+    default: false
   },
-  admin: {
-    type: Boolean
+  tankCompleted: {
+    type: Boolean,
+    default: false
   },
-  states: {
-    type: Array
+  flappyCompleted: {
+    type: Boolean,
+    default: false
   },
-  parks: {
-    type: Array
+  breakoutCompleted: {
+    type: Boolean,
+    default: false
   },
-  elevations: {
-    type: Array
+  flappyHighScore: {
+    type: Number
   },
-  mlbstadiums: {
-    type: Array
-  },
-  nflstadiums: {
-    type: Array
-  },
-  airports: {
-    type: Array
+  breakoutHighScore: {
+    type: Number
   }
 });
 

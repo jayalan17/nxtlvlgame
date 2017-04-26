@@ -13,7 +13,7 @@ import mongoose from 'mongoose';
 let router = express.Router();
 
 mongoose.Promise = global.Promise;
-let mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost/traveltracker';
+let mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost/nxtlvl';
 let mongooseUri = uriUtil.formatMongoose(mongodbUri);
 let options = {
   server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
@@ -26,26 +26,11 @@ const app = express();
 const PROD = process.env.NODE_ENV === 'production';
 
 let userRoutes = require('../src/routes/userRoutes');
-let parkRoutes = require('../src/routes/parkRoutes');
-let elevationRoutes = require('../src/routes/elevationRoutes');
-let stateRoutes = require('../src/routes/stateRoutes');
-let mlbstadiumRoutes = require('../src/routes/mlbstadiumRoutes');
-let nflstadiumRoutes = require('../src/routes/nflstadiumRoutes');
-let airportRoutes = require('../src/routes/airportRoutes');
-let facebookRoutes = require('../src/routes/facebookRoutes');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/api', userRoutes);
-app.use('/parks', parkRoutes);
-app.use('/elevations', elevationRoutes);
-app.use('/states', stateRoutes);
-app.use('/mlbstadiums', mlbstadiumRoutes);
-app.use('/nflstadiums', nflstadiumRoutes);
-app.use('/airports', airportRoutes);
-app.use('/facebook', facebookRoutes);
-
-
+app.use('/assets', express.static('assets'));
 
 if (PROD) {
   app.use('/', express.static('dist'));
@@ -58,8 +43,6 @@ if (PROD) {
   }));
   app.use(require('webpack-hot-middleware')(compiler));
 }
-
-
 
 app.get('/', function(req, res) {
   res.sendFile(path.join( __dirname, '../src/index.html'));

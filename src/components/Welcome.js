@@ -3,9 +3,6 @@ import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router';
 import { Well, Button, Form, FormGroup,
   ControlLabel, FormControl } from 'react-bootstrap';
-import FacebookLogin from 'react-facebook-login';
-import GoogleLogin from 'react-google-login';
-import FontAwesome from 'react-fontawesome';
 import './style/welcome.css';
 
 class Welcome extends React.Component {
@@ -24,8 +21,6 @@ class Welcome extends React.Component {
     this.handleLoginUser = this.handleLoginUser.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.loginNotice = this.loginNotice.bind(this);
-    this.responseFacebook = this.responseFacebook.bind(this);
-    this.responseGoogle = this.responseGoogle.bind(this);
   }
 
   handleNameChange(e) {
@@ -52,14 +47,6 @@ class Welcome extends React.Component {
     else if(this.props.userStore.userAlreadyExists){
       return (<h5 style={{color: "red"}}>
       Username taken... Please sign up with a different name</h5>);}
-  }
-
-  responseFacebook(response){
-    this.props.userStore.facebookLoginUser(response);
-  }
-
-  responseGoogle(response){
-    this.props.userStore.googleLoginUser(response);
   }
 
   render() {
@@ -116,32 +103,11 @@ class Welcome extends React.Component {
                   to="/Welcome">
                 <Button
                   onClick={this.handleLoginUser}
-                  onTouchTap={this.handleLoginUser}
                   type="submit"
                   className="btn btn-success"
                 >Submit</Button></Link>
             </Form>
             <br/>
-            <div style={{textAlign: "center"}}>
-            <FacebookLogin
-              appId="1676339145713512"
-              fields="name,email,picture"
-              callback={this.responseFacebook}
-              icon="fa-facebook"
-              cssClass="facebookbtn"
-              textButton = " Login with Facebook"
-            />
-            <GoogleLogin
-              clientId="862765406840-becil6hhhlsoi01tokb673lpol5odret.apps.googleusercontent.com"
-              className="googlebtn"
-              redirect_uri="https://mysterious-stream-55753.herokuapp.com/Dashboard"
-              onSuccess={this.responseGoogle}
-              onFailure={this.responseGoogle}
-            >
-              <FontAwesome name="google"/>
-              <span> Login with Google</span>
-            </GoogleLogin>
-            </div>
           </Well>
        </div>
       </div>

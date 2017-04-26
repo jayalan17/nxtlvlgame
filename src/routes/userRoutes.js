@@ -54,24 +54,27 @@ router.route('/remove')
     });
   });
 
-router.route('/user')
-  .post(function(req, res){
+  router.route('/user')
+    .post(function (req, res) {
+      let user = new User();
 
-    let user = new User();
+      user.name = req.body.name.toLowerCase();
+      user.password = hash.generate(req.body.password);
+      user.luigiCompleted = false;
+      user.tankCompleted = false;
+      user.flappyCompleted = false;
+      user.breakoutCompleted = false;
+      user.flappyHighScore = false;
+      user.breakoutHighScore = false;
 
-    user.name = req.body.name.toLowerCase();
-    user.password = hash.generate(req.body.password);
-    user.email = req.body.email;
-    user.admin = false;
-
-    user.save(function(err, user, next){
-      if(err){
-        next(err);
-      } else {
-        res.json(user);
-      }
+      user.save(function (err, user, next) {
+        if (err) {
+          next(err);
+        } else {
+          res.json(user);
+        }
+      });
     });
-  });
 
 router.post('/authenticate', function(req, res, next) {
   User.findOne({

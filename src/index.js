@@ -11,7 +11,6 @@ import CollectionStore from './stores/CollectionStore';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'mobx-react';
 
-
 const userStore = new UserStore();
 const collectionStore = new CollectionStore();
 
