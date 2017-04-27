@@ -2,7 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { inject, observer } from 'mobx-react';
-import { Navbar } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Navbar, NavItem, Nav, Glyphicon, } from 'react-bootstrap';
 import './style/navBarStyle.css';
 import injectTapEventPlugin from "react-tap-event-plugin";
 
@@ -25,7 +26,7 @@ class ControlBar extends React.Component {
   }
 
   createNavBar(){
-
+    if(this.props.userStore.loggedInUser){
 
       return (
         <div>
@@ -46,9 +47,22 @@ class ControlBar extends React.Component {
               </Navbar .Brand>
             <Navbar .Toggle />
             </Navbar .Header>
+            <Navbar .Collapse>
+              <Nav pullRight>
+                <LinkContainer to={{pathname: '/Dashboard'}}>
+                  <NavItem>
+                    <Glyphicon glyph="user"/> {this.props.userStore.name}
+                  </NavItem>
+                </LinkContainer>
+                <NavItem
+                  onClick={() => {this.logOutHandler();}}>log out
+                </NavItem>
+              </Nav>
+            </Navbar .Collapse>
           </Navbar>
         </div>
       );
+    }
   }
 
 

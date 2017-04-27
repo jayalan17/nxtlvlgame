@@ -29,41 +29,6 @@ class NewUser extends React.Component {
   handleEmailChange(e) {
     this.setState({email: e.target.value});
   }
-  // handleNewUser(event) {
-  //   const self = this;
-  //   fetch('facebook/usercheck', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(this.state)
-  //   }).then(function(result){
-  //     return result.json();
-  //   }).then(function(result) {
-  //     if(result.userfound) {
-  //       self.props.userStore.userAlreadyExists = true;
-  //     }else{
-  //       self.NewUser(self.state);
-  //     }
-  //   });
-  //   browserHistory.push('/Welcome');
-  // }
-  //
-  // NewUser(usr) {
-  //   fetch('/api/user', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       name: usr.name,
-  //       password: usr.password,
-  //     })
-  //   });
-  //   browserHistory.push('/Welcome');
-  // }
 
   handleNewUser(event) {
     event.preventDefault();
@@ -71,7 +36,7 @@ class NewUser extends React.Component {
   }
 
   NewUser(usr) {
-    // this.props.userStore.newUserCreated = true;
+    this.props.userStore.newUserCreated = true;
     fetch('/api/user', {
       method: 'POST',
       headers: {

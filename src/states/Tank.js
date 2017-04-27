@@ -12,7 +12,7 @@ export default class Tank extends Phaser.State {
 
   init () {
     this.game.renderer.renderSession.roundPixels = true;
-    this.game.world.setBounds(0, 0, 992, 480);
+    this.game.world.setBounds(0, 0, 992, 600);
     this.physics.startSystem(Phaser.Physics.ARCADE);
     this.physics.arcade.gravity.y = 200;
   }
@@ -22,12 +22,12 @@ export default class Tank extends Phaser.State {
     //  Remove the next 2 lines if running locally
     // this.load.baseURL = 'http://files.phaser.io.s3.amazonaws.com/codingtips/issue001/';
     // this.load.crossOrigin = 'anonymous';
-    this.load.image('tank', 'assets/tank.png');
-    this.load.image('turret', 'assets/turret.png');
-    this.load.image('bullet', 'assets/bullet.png');
-    this.load.image('background1', 'assets/background.png');
-    this.load.image('flame', 'assets/flame.png');
-    this.load.image('target', 'assets/target.png');
+    this.load.image('tank', 'assets/tank/tank.png');
+    this.load.image('turret', 'assets/tank/turret.png');
+    this.load.image('bullet', 'assets/tank/bullet.png');
+    this.load.image('background1', 'assets/tank/background.png');
+    this.load.image('flame', 'assets/tank/flame.png');
+    this.load.image('target', 'assets/tank/target.png');
     this.load.audio('hit', 'assets/audio/nes-05-03.wav');
   //  Note: Graphics from Amiga Tanx Copyright 1991 Gary Roberts
   }
@@ -45,6 +45,8 @@ export default class Tank extends Phaser.State {
 
     //  The body of the tank
     this.tank = this.add.sprite(24, 383, 'tank');
+    // this.tank.allowGravity = false;
+
 
     //  The turret which we rotate (offset 30x14 from the tank)
     this.turret = this.add.sprite(this.tank.x + 30, this.tank.y + 14, 'turret');
@@ -112,7 +114,7 @@ export default class Tank extends Phaser.State {
   }
 
   goHome () {
-    this.state.start('TankMenu');
+    this.state.start('TankGameOver');
     this.resetGame();
   }
 

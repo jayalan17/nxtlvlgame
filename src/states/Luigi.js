@@ -29,6 +29,7 @@ export default class Luigi extends Phaser.State {
     this.platforms.enableBody = true;
 
     // Here we create the ground.
+    console.log(this.world.height);
     this.ground = this.platforms.create(0, this.world.height - 64, 'ground');
 
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
@@ -140,15 +141,15 @@ export default class Luigi extends Phaser.State {
   }
 
   goHome () {
-    this.state.start('LuigiMenu');
+    this.state.start('LuigiGameOver');
     this.resetGame();
   }
 
   resetGame () {
     this.stars.removeAll(true);
     this.score = 0;
-    this.stars.enableBody = true;
-    for (var i = 0; i < 12; i++) {
+
+    for (let i = 0; i < 12; i++) {
       this.star = this.stars.create(i * 70, 0, 'star');
       this.star.body.gravity.y = 200;
       this.star.body.bounce.y = 0.2 + Math.random() * 0.2;

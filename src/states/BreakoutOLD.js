@@ -1,3 +1,5 @@
+import 'pixi';
+import 'p2';
 import Phaser from 'phaser';
 
 export default class Breakout extends Phaser.State {
@@ -70,7 +72,7 @@ export default class Breakout extends Phaser.State {
     this.physics.arcade.collide(this.ball, this.bricks, this.hit, null, this);
     // Restart the game if the ball is below the paddle
     if (this.ball.y > this.paddle.y) {
-      this.state.start('BreakoutGameOver');
+      this.state.start('BreakOut');
       this.music.stop();
       this.score = 0;
     }
@@ -83,7 +85,7 @@ export default class Breakout extends Phaser.State {
     this.scoreText.text = 'Score: ' + this.score;
   }
   goHome () {
-    this.state.start('BreakoutGameOver');
+    this.state.start('Splash');
     // this.resetGame();
   }
-}
+};
