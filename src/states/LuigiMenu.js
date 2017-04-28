@@ -26,10 +26,11 @@ export default class LuigiMenu extends Phaser.State {
   }
 
   preload () {
-    this.load.image('startButton', 'assets/Menu/power.png');
-    this.load.image('stopButton', 'assets/Menu/cancel.png');
+    this.load.image('luigi', 'assets/Menu/mushroom.png');
+    this.load.image('map', 'assets/Menu/map.png');
     this.load.image('background', 'assets/Menu/paperBG.jpg');
     this.load.audio('music', 'assets/audio/QuantumLeap.mp3');
+    this.load.image('dude', 'assets/splash/sprite.png');
   }
 
   create () {
@@ -42,8 +43,15 @@ export default class LuigiMenu extends Phaser.State {
     this.music = this.add.audio('music');
     this.music.play();
 
-    this.startButton = this.add.button(100, 400, 'startButton', this.goToTank, this, 2, 1, 0);
-    this.stopButton = this.add.button(300, 400, 'stopButton', this.goHome, this, 2, 1, 0);
+    this.luigi = this.add.sprite(100, 400, 'luigi');
+    this.physics.arcade.enable(this.luigi);
+    this.luigi.body.immovable = true;
+    this.luigi.body.collideWorldBounds = true;
+
+    this.map = this.add.sprite(650, 400, 'map');
+    this.physics.arcade.enable(this.map);
+    this.map.body.immovable = true;
+    this.map.body.collideWorldBounds = true;
 
     this.player = this.add.sprite(350, 250, 'dude');
     this.physics.arcade.enable(this.player);
@@ -55,40 +63,39 @@ export default class LuigiMenu extends Phaser.State {
 
   update () {
     if (this.escape.isDown) {
-      this.goHome();
+      this.goToHome();
     }
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
-    // this.physics.arcade.collide(this.button, this.dude);
     if (this.cursors.left.isDown) {
-      //  Move to the left
       this.player.body.velocity.x = -150;
       this.player.animations.play('left');
     } else if (this.cursors.right.isDown) {
-      //  Move to the right
       this.player.body.velocity.x = 150;
       this.player.animations.play('right');
     } else if (this.cursors.up.isDown) {
-      //  Move to the right
       this.player.body.velocity.y = -150;
       this.player.animations.play('up');
     } else if (this.cursors.down.isDown) {
-      //  Move to the right
       this.player.body.velocity.y = 150;
       this.player.animations.play('down');
     } else {
-      //  Stand still
       this.player.animations.stop();
       this.player.frame = 4;
     }
+    if (this.physics.arcade.collide(this.player, this.luigi)) {
+      this.goToGame();
+    }
+    if (this.physics.arcade.collide(this.player, this.map)) {
+      this.goToHome();
+    }
   }
 
-  goToTank () {
+  goToGame () {
     this.state.start('Luigi');
     this.music.stop();
   }
-
-  goHome () {
+  goToHome () {
     this.state.start('Splash');
     // this.resetGame();
   }

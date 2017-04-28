@@ -79,7 +79,7 @@ export default class Flappy extends Phaser.State {
 // Restart the game
   restartGame () {
     // Start the 'main' state, which restarts the game
-    this.state.start('FlappyGameOver');
+    this.goHome();
     this.music.stop();
     this.dieSound.play();
   }
@@ -133,6 +133,10 @@ export default class Flappy extends Phaser.State {
   }
   goHome () {
     this.state.start('FlappyMenu');
+    window.game.flappyCompleted();
     // this.resetGame();
+  }
+  playerUpdate () {
+    window.game.flappyCompleted();
   }
 }

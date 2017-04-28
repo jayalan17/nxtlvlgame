@@ -98,8 +98,8 @@ export default class Luigi extends Phaser.State {
     }
 
     if (this.escape.isDown) {
-      this.goHome();
-    } else if (this.score < 120) {
+      this.goToHome();
+    } else if (this.score < 10) {
        //  Collide the player and the stars with the platforms
       this.hitPlatform = this.physics.arcade.collide(this.player, this.platforms);
        //  Reset the players velocity (movement)
@@ -123,10 +123,13 @@ export default class Luigi extends Phaser.State {
       if (this.cursors.up.isDown && this.player.body.touching.down && this.hitPlatform) {
         this.player.body.velocity.y = -300;
       }
+      if (this.cursors.down.isDown) {
+        this.player.body.velocity.y = 500;
+      }
       this.physics.arcade.collide(this.stars, this.platforms);
       this.physics.arcade.overlap(this.player, this.stars, collectStar, null, this);
     } else {
-      this.goHome();
+      this.goToHome();
       this.playerUpdate();
     }
     function collectStar (player, star) {
@@ -139,12 +142,10 @@ export default class Luigi extends Phaser.State {
   playerUpdate () {
     window.game.luigiCompleted();
   }
-
-  goHome () {
+  goToHome () {
     this.state.start('LuigiGameOver');
     this.resetGame();
   }
-
   resetGame () {
     this.stars.removeAll(true);
     this.score = 0;

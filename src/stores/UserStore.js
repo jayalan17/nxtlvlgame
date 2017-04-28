@@ -101,6 +101,20 @@ export default class UserStore {
     browserHistory.push('/Welcome');
   }
 
+  UpdateUser (name, luigiCompleted){
+    fetch('/api/changeLuigi', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        luigiCompleted: luigiCompleted
+      })
+    });
+  }
+
   LoginUser(name, password) {
     fetch('/api/authenticate', {
       method: 'POST',

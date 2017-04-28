@@ -14,6 +14,8 @@ import FlappyGameOver from './states/FlappyGameOver';
 import BreakoutGameOver from './states/breakoutGameOver';
 import TankGameOver from './states/TankGameOver';
 import LuigiGameOver from './states/LuigiGameOver';
+import UserStore from './stores/UserStore';
+import { inject, observer } from 'mobx-react';
 
 import config from './gameConfig';
 
@@ -26,7 +28,9 @@ class Game extends Phaser.Game {
 
     super(width, height, Phaser.CANVAS, 'content', null);
 
-    this.luigiComplete = true;
+    // this.user = this.props.userStore.name;
+    // console.log(this.user);
+    this.luigiComplete = false;
     this.tankComplete = false;
     this.flappyComplete = false;
     this.breakoutComplete = false;
@@ -50,6 +54,7 @@ class Game extends Phaser.Game {
   luigiCompleted () {
     this.luigiComplete = true;
     console.log('Luigi: ' + this.luigiComplete);
+    // this.handleLuigiCompleted();
   }
   tankCompleted () {
     this.tankComplete = true;
@@ -63,5 +68,11 @@ class Game extends Phaser.Game {
     this.breakoutComplete = true;
     console.log('Breakout: ' + this.breakoutComplete);
   }
+  handleLuigiCompleted () {
+    console.log(this.UserStore.name)
+    this.props.userStore.UpdateUser(this.state.user._id, true);
+  }
 }
+
+
 export default Game;

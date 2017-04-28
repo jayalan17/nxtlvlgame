@@ -1,5 +1,5 @@
 import express from 'express';
-import User from '../models/user';
+import User from '../models/User';
 import hash from 'password-hash';
 import jwt from 'jsonwebtoken';
 
@@ -16,19 +16,19 @@ router.use(function(req, res, next){
   next();
 });
 
-router.route('/add')
+router.route('/changeLuigi')
   .put(function(req, res, next){
     let user = new User();
     User.findOne({
-      name: req.body.username
+      name: req.body.name
     }, function(err, user) {
       if (err) next(err);
-      user[req.body.collectionname].push(req.body.collectable);
+      user.luigiCompleted = true;
       user.save(function(err){
         if(err){
           next(err);
         } else {
-          res.json({success: "content has been toggled"});
+          res.json({success: "Luigi mini-game has been completed"});
         }
       });
     });
