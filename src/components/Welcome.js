@@ -3,7 +3,6 @@ import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router';
 import { Well, Button, Form, FormGroup,
   ControlLabel, FormControl } from 'react-bootstrap';
-import './style/welcome.css';
 
 class Welcome extends React.Component {
 

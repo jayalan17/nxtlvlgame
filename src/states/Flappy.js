@@ -104,12 +104,17 @@ export default class Flappy extends Phaser.State {
     this.hole = Math.floor(Math.random() * 5) + 1;
     // Add the 6 pipes
     // With one big hole at position 'hole' and 'hole + 1'
-    for (var i = 0; i < 20; i++) {
+    for (let i = 0; i < 20; i++) {
       if (i !== this.hole && i !== this.hole + 1) {
         this.addOnePipe(800, i * 60 + 10);
       }
-      if (this.score > 5) {
+      if (this.score === 5) {
         this.time.events.remove(this.timer);
+        this.pipes.forEach(function (p) {
+          p.body.velocity.x = 0;
+          p.kill();
+        }, this);
+        this.bird.kill()
       }
     }
   }
