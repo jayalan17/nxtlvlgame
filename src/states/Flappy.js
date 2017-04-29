@@ -96,6 +96,9 @@ export default class Flappy extends Phaser.State {
     this.pipe.checkWorldBounds = true;
     this.pipe.outOfBoundsKill = true;
   }
+  gameWin () {
+    this.state.start('FlappyWin');
+  }
   addRowOfPipes () {
     this.score += 1;
     this.labelScore.text = this.score;
@@ -109,12 +112,7 @@ export default class Flappy extends Phaser.State {
         this.addOnePipe(800, i * 60 + 10);
       }
       if (this.score === 5) {
-        this.time.events.remove(this.timer);
-        this.pipes.forEach(function (p) {
-          p.body.velocity.x = 0;
-          p.kill();
-        }, this);
-        this.bird.kill()
+        this.gameWin();
       }
     }
   }
@@ -138,6 +136,11 @@ export default class Flappy extends Phaser.State {
   }
   goHome () {
     this.state.start('FlappyMenu');
+    window.game.flappyCompleted();
     // this.resetGame();
   }
+  playerUpdate () {
+    window.game.flappyCompleted();
+  }
+
 }

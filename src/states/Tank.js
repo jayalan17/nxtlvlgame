@@ -19,13 +19,13 @@ export default class Tank extends Phaser.State {
 
   preload () {
     //  We need this because the assets are on Amazon S3
-    //  Remove the next 2 lines if running locally
+    //  Remove the next 2 lines ifDashboard running locally
     // this.load.baseURL = 'http://files.phaser.io.s3.amazonaws.com/codingtips/issue001/';
     // this.load.crossOrigin = 'anonymous';
     this.load.image('tank', 'assets/tank/tank.png');
     this.load.image('turret', 'assets/tank/turret.png');
     this.load.image('bullet', 'assets/tank/bullet.png');
-    this.load.image('background1', 'assets/tank/background.png');
+    this.load.image('background1', 'assets/tank/background2.jpg');
     this.load.image('flame', 'assets/tank/flame.png');
     this.load.image('target', 'assets/tank/target.png');
     this.load.audio('hit', 'assets/audio/nes-05-03.wav');
@@ -44,7 +44,7 @@ export default class Tank extends Phaser.State {
     this.physics.arcade.enable(this.bullet);
 
     //  The body of the tank
-    this.tank = this.add.sprite(24, 383, 'tank');
+    this.tank = this.add.sprite(24, 483, 'tank');
     // this.tank.allowGravity = false;
 
 
@@ -125,10 +125,10 @@ export default class Tank extends Phaser.State {
   resetGame () {
     this.targets.removeAll(true);
     this.targetCount = 4;
-    this.targets.create(300, 390, 'target');
-    this.targets.create(500, 390, 'target');
-    this.targets.create(700, 390, 'target');
-    this.targets.create(900, 390, 'target');
+    this.targets.create(300, 490, 'target');
+    this.targets.create(500, 490, 'target');
+    this.targets.create(700, 490, 'target');
+    this.targets.create(900, 490, 'target');
 
     //  Stop gravity from pulling them away
     this.targets.setAll('body.allowGravity', false);
@@ -145,7 +145,7 @@ export default class Tank extends Phaser.State {
       this.goHome();
     } else if (this.targetCount > 0) {
       if (this.bullet.exists) {
-        if (this.bullet.y > 420) {
+        if (this.bullet.y > 540) {
           //  Simple check to see if it's fallen too low
           this.removeBullet();
         } else {
@@ -170,9 +170,9 @@ export default class Tank extends Phaser.State {
         this.powerText.text = 'Power: ' + this.power;
       }
     } else {
-      this.goHome();
+      this.state.start('TankWin');
       this.playerUpdate();
       console.log(this.tankScore);
     }
   }
-};
+}

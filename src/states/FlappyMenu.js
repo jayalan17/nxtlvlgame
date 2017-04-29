@@ -10,24 +10,21 @@ export default class FlappyMenu extends Phaser.State {
   }
 
   init () {
-    this.titleText = this.make.text(this.world.centerX, 100, 'Flappy the Bird\nPress <esc> to exit', {
+    this.titleText = this.make.text(this.world.centerX, 100, "FLAPPIN'", {
       font: 'bold 60pt TheMinion',
       fill: '#FDFFB5',
       align: 'center'
     });
-    this.titleText2 = this.make.text(this.world.centerX, 500, 'Testing...', {
-      font: 'bold 60pt TheMinion',
-      fill: 'red',
-      align: 'center'
-    });
+
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     this.titleText.anchor.set(0.5);
     this.optionCount = 1;
   }
 
   preload () {
-    this.load.image('startButton', 'assets/Menu/power.png');
-    this.load.image('stopButton', 'assets/Menu/cancel.png');
+    this.load.image('bird', 'assets/splash/bird.png');
+    this.load.image('map', 'assets/Menu/map.png');
+    this.load.image('dude', 'assets/splash/sprite.png');
     this.load.image('background', 'assets/Menu/paperBG.jpg');
     this.load.audio('music', 'assets/audio/QuantumLeap.mp3');
   }
@@ -37,13 +34,23 @@ export default class FlappyMenu extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
-    this.add.existing(this.titleText2);
+
+    this.add.text(75, 200, 'INSTRUCTIONS: \nFLY Through 20 Groups Of Frogs\nTo Receive Your Third Key',
+    { fontSize: '16px', fill: 'black' });
+    this.add.text(500, 200, 'CONTROLS:\nTap SPACEBAR - Fly\n<esc> - Return To Map',
+    { fontSize: '16px', fill: 'black' });
+
 
     this.music = this.add.audio('music');
     this.music.play();
 
-    this.startButton = this.add.button(100, 400, 'startButton', this.goToFlappy, this, 2, 1, 0);
-    this.stopButton = this.add.button(300, 400, 'stopButton', this.goHome, this, 2, 1, 0);
+    this.bird = this.add.sprite(200, 400, 'bird');
+    this.physics.arcade.enable(this.bird);
+    this.bird.body.immovable = true;
+
+    this.map = this.add.sprite(500, 400, 'map');
+    this.physics.arcade.enable(this.map);
+    this.map.body.immovable = true;
 
     this.player = this.add.sprite(350, 250, 'dude');
     this.physics.arcade.enable(this.player);
@@ -55,41 +62,41 @@ export default class FlappyMenu extends Phaser.State {
 
   update () {
     if (this.escape.isDown) {
-      this.goHome();
+      this.goToHome();
     }
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
-    // this.physics.arcade.collide(this.button, this.dude);
     if (this.cursors.left.isDown) {
-      //  Move to the left
       this.player.body.velocity.x = -150;
       this.player.animations.play('left');
     } else if (this.cursors.right.isDown) {
-      //  Move to the right
       this.player.body.velocity.x = 150;
       this.player.animations.play('right');
     } else if (this.cursors.up.isDown) {
-      //  Move to the right
       this.player.body.velocity.y = -150;
       this.player.animations.play('up');
     } else if (this.cursors.down.isDown) {
-      //  Move to the right
       this.player.body.velocity.y = 150;
       this.player.animations.play('down');
     } else {
-      //  Stand still
       this.player.animations.stop();
       this.player.frame = 4;
     }
+    if (this.physics.arcade.collide(this.player, this.bird)) {
+      this.goToGame();
+    }
+    if (this.physics.arcade.collide(this.player, this.map)) {
+      this.goToHome();
+    }
   }
 
-  goToFlappy () {
+  goToGame () {
     this.state.start('Flappy');
     this.music.stop();
   }
-
-  goHome () {
+  goToHome () {
     this.state.start('Splash');
+    this.music.stop();
     // this.resetGame();
   }
 }

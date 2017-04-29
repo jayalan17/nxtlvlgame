@@ -34,10 +34,10 @@ export default class Breakout extends Phaser.State {
     this.paddle.body.collideWorldBounds = true;
 
     this.bricks = this.add.group();
-    for (var i = 0; i < 12; i++) {
-      for (var j = 0; j < 6; j++) {
+    for (var i = 0; i < 10; i++) {
+      for (var j = 0; j < 3; j++) {
           // Create the brick at the correct position
-        var brick = this.add.sprite(55 + i * 60, 55 + j * 35, 'brick');
+        var brick = this.add.sprite(100 + i * 60, 55 + j * 35, 'brick');
 
           // Make sure the brick won't move when the ball hits it
         brick.body.immovable = true;
@@ -73,6 +73,9 @@ export default class Breakout extends Phaser.State {
       this.state.start('BreakoutGameOver');
       this.music.stop();
       this.score = 0;
+    }
+    if (this.score === 300) {
+      this.state.start('BreakoutWin');
     }
   }
   // New function that removes a brick from the game

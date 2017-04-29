@@ -10,26 +10,23 @@ export default class LuigiMenu extends Phaser.State {
   }
 
   init () {
-    this.titleText = this.make.text(this.world.centerX, 100, 'Luigi is a cheap Mario\nPress <esc> to exit', {
+    this.titleText = this.make.text(this.world.centerX, 100, 'LUIGI \n(its a cheap Mario)', {
       font: 'bold 60pt TheMinion',
-      fill: '#FDFFB5',
+      fill: 'darkgreen',
       align: 'center'
     });
-    this.titleText2 = this.make.text(this.world.centerX, 500, 'Testing...', {
-      font: 'bold 60pt TheMinion',
-      fill: 'red',
-      align: 'center'
-    });
+
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     this.titleText.anchor.set(0.5);
     this.optionCount = 1;
   }
 
   preload () {
-    this.load.image('startButton', 'assets/Menu/power.png');
-    this.load.image('stopButton', 'assets/Menu/cancel.png');
+    this.load.image('luigi', 'assets/Menu/mushroom.png');
+    this.load.image('map', 'assets/Menu/map.png');
     this.load.image('background', 'assets/Menu/paperBG.jpg');
     this.load.audio('music', 'assets/audio/QuantumLeap.mp3');
+    this.load.image('dude', 'assets/splash/sprite.png');
   }
 
   create () {
@@ -37,13 +34,26 @@ export default class LuigiMenu extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
-    this.add.existing(this.titleText2);
+
+    this.add.text(75, 200, 'INSTRUCTIONS: \nCollect All Of The Stars \nTo Receive Your First Key',
+    { fontSize: '16px', fill: 'black' });
+    this.add.text(500, 200, 'CONTROLS:\nUse arrow keys for movement.\nLEFT and RIGHT to move player \nUP to Jump\n<esc> to Return To Map',
+    { fontSize: '16px', fill: 'black' });
 
     this.music = this.add.audio('music');
     this.music.play();
 
-    this.startButton = this.add.button(100, 400, 'startButton', this.goToTank, this, 2, 1, 0);
-    this.stopButton = this.add.button(300, 400, 'stopButton', this.goHome, this, 2, 1, 0);
+    this.luigi = this.add.sprite(200, 400, 'luigi');
+    this.physics.arcade.enable(this.luigi);
+    this.luigi.body.immovable = true;
+    this.luigi.body.collideWorldBounds = true;
+
+    this.map = this.add.sprite(500, 400, 'map');
+    this.physics.arcade.enable(this.map);
+    this.map.body.immovable = true;
+    this.map.body.collideWorldBounds = true;
+
+
 
     this.player = this.add.sprite(350, 250, 'dude');
     this.physics.arcade.enable(this.player);
@@ -55,41 +65,41 @@ export default class LuigiMenu extends Phaser.State {
 
   update () {
     if (this.escape.isDown) {
-      this.goHome();
+      this.goToHome();
     }
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
-    // this.physics.arcade.collide(this.button, this.dude);
     if (this.cursors.left.isDown) {
-      //  Move to the left
       this.player.body.velocity.x = -150;
       this.player.animations.play('left');
     } else if (this.cursors.right.isDown) {
-      //  Move to the right
       this.player.body.velocity.x = 150;
       this.player.animations.play('right');
     } else if (this.cursors.up.isDown) {
-      //  Move to the right
       this.player.body.velocity.y = -150;
       this.player.animations.play('up');
     } else if (this.cursors.down.isDown) {
-      //  Move to the right
       this.player.body.velocity.y = 150;
       this.player.animations.play('down');
     } else {
-      //  Stand still
       this.player.animations.stop();
       this.player.frame = 4;
     }
+    if (this.physics.arcade.collide(this.player, this.luigi)) {
+      this.goToGame();
+    }
+    if (this.physics.arcade.collide(this.player, this.map)) {
+      this.goToHome();
+    }
   }
 
-  goToTank () {
+  goToGame () {
     this.state.start('Luigi');
     this.music.stop();
   }
-
-  goHome () {
+  goToHome () {
     this.state.start('Splash');
+    this.music.stop();
     // this.resetGame();
   }
 }

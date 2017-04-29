@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 import { Well, Button, Form, FormGroup,
   ControlLabel, FormControl } from 'react-bootstrap';
 
+import './style/Welcome.css';
+
 class Welcome extends React.Component {
 
   constructor() {
@@ -53,12 +55,12 @@ class Welcome extends React.Component {
     const parentStyle = {height:"100vh", width:"100vw",
       background: "url("+bg+") no-repeat center fixed",
       backgroundSize: "cover"};
-    const wellStyle = {position: "fixed", top: "0px",
+    const wellStyle = {float: "right", top: "0px",
       bottom: "0px", left: "0px", right: "0px", margin: "auto",
       opacity: ".95", backgroundBlendMode: "overlay",
-      height: "400px", width: "350px"};
-    const logoStyle = {position: "fixed" , top: "0px",
-      left: "10px", zIndex: "100"};
+      height: "300px", width: "200px"};
+    const logoStyle = {float: "left", top: "0px",
+      left: "525px", zIndex: "100", height: "200px", width: "300px"};
     const newUserLinkStyle = {float: "right"};
 
     return (
@@ -72,7 +74,7 @@ class Welcome extends React.Component {
 
             <Form>
 
-                <legend>Log In to Travel Tracker</legend>
+                <legend>Advance to NxtLvl</legend>
                 {this.loginNotice()}
                 <FormGroup controlId="formInlineName">
                   <ControlLabel>Name</ControlLabel>
@@ -95,7 +97,7 @@ class Welcome extends React.Component {
                 <div style={newUserLinkStyle}>
                   <Link
                     to ="/NewUser"
-                    style={{color: "#4eb14d"}}
+                    style={{color: "red"}}
                   >New User</Link>
                 </div>
                 <Link
@@ -103,8 +105,8 @@ class Welcome extends React.Component {
                 <Button
                   onClick={this.handleLoginUser}
                   type="submit"
-                  className="btn btn-success"
-                >Submit</Button></Link>
+                  className="btn btn-danger"
+                >Begin</Button></Link>
             </Form>
             <br/>
           </Well>

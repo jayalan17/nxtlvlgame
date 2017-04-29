@@ -14,6 +14,12 @@ import FlappyGameOver from './states/FlappyGameOver';
 import BreakoutGameOver from './states/breakoutGameOver';
 import TankGameOver from './states/TankGameOver';
 import LuigiGameOver from './states/LuigiGameOver';
+import FlappyWin from './states/FlappyWin';
+import TankWin from './states/TankWin';
+import BreakoutWin from './states/BreakoutWin';
+import LuigiWin from './states/LuigiWin';
+import UserStore from './stores/UserStore';
+import { inject, observer } from 'mobx-react';
 
 import config from './gameConfig';
 
@@ -26,10 +32,12 @@ class Game extends Phaser.Game {
 
     super(width, height, Phaser.CANVAS, 'content', null);
 
+    // this.user = this.props.userStore.name;
+    // console.log(this.user);
     this.luigiComplete = true;
-    this.tankComplete = false;
-    this.flappyComplete = false;
-    this.breakoutComplete = false;
+    this.tankComplete = true;
+    this.flappyComplete = true;
+    this.breakoutComplete = true;
 
     this.state.add('Splash', Splash, false);
     this.state.add('Tank', Tank, false);
@@ -44,12 +52,18 @@ class Game extends Phaser.Game {
     this.state.add('BreakoutGameOver', BreakoutGameOver, false);
     this.state.add('TankGameOver', TankGameOver, false);
     this.state.add('LuigiGameOver', LuigiGameOver, false);
+    this.state.add('FlappyWin', FlappyWin, false);
+    this.state.add('TankWin', TankWin, false);
+    this.state.add('BreakoutWin', BreakoutWin, false);
+    this.state.add('LuigiWin', LuigiWin, false);
+
 
     this.state.start('Splash');
   }
   luigiCompleted () {
     this.luigiComplete = true;
     console.log('Luigi: ' + this.luigiComplete);
+    // this.handleLuigiCompleted();
   }
   tankCompleted () {
     this.tankComplete = true;
@@ -63,5 +77,11 @@ class Game extends Phaser.Game {
     this.breakoutComplete = true;
     console.log('Breakout: ' + this.breakoutComplete);
   }
+  handleLuigiCompleted () {
+    console.log(this.UserStore.name)
+    this.props.userStore.UpdateUser(this.state.user._id, true);
+  }
 }
+
+
 export default Game;

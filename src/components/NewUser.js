@@ -61,8 +61,8 @@ class NewUser extends React.Component {
     this.props.userStore.userAlreadyExists = false;
     const bg = require('../img/frontBackground-min.jpg');
     const parentStyle = {height:"100vh", width:"100vw", background: "url("+bg+") no-repeat center fixed", backgroundSize: "cover"};
-    const wellStyle = {position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px", margin: "auto", opacity: ".95", backgroundBlendMode: "overlay", height: "350px", width: "350px"};
-    const logoStyle = {position: "absolute", top: "0px", left: "10px", zIndex: "100"};
+    const wellStyle = {float: "right", top: "0px", bottom: "0px", left: "0px", right: "0px", margin: "auto", opacity: ".95", backgroundBlendMode: "overlay", height: "300px", width: "200px"};
+    const logoStyle = {float: "left", top: "0px", left: "0px", zIndex: "100", height: "200px", width: "300px"};
     const loginLinkStyle = {float: "right"};
 
     return (
@@ -75,7 +75,7 @@ class NewUser extends React.Component {
         <div style={parentStyle}>
           <Well style={wellStyle} bsSize="large">
             <Form>
-                <legend>Sign Up For Travel Tracker</legend>
+                <legend>Create Player1</legend>
 
                 <FormGroup controlId="formInlineName">
                   <ControlLabel>Name</ControlLabel>
@@ -92,11 +92,11 @@ class NewUser extends React.Component {
                 </FormGroup>
 
                 <div style={loginLinkStyle}>
-                  <Link to="/Welcome" style={{color: "#4eb14d"}}>Login</Link>
+                  <Link to="/Welcome" style={{color: "red"}}>Login</Link>
                 </div>
                 <Button
                   onClick={this.handleNewUser}
-                  type="submit" className="btn btn-success">Submit</Button>
+                  type="submit" className="btn btn-danger">Enter</Button>
             </Form>
           </Well>
        </div>
