@@ -20,7 +20,7 @@ export default class extends Phaser.State {
       align: 'center'
     });
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-    this.titleText.anchor.set(0.5);
+    this.titleText.anchor.set(0.7);
     this.optionCount = 1;
   }
 
@@ -29,7 +29,7 @@ export default class extends Phaser.State {
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.image('key', 'assets/Menu/key.png');
-    this.load.image('background', 'assets/luigi/sky.png');
+    this.load.image('background', 'assets/luigi/kqmACO.jpg');
     this.load.audio('getKey', 'assets/Menu/getKey.wav')
   }
 
