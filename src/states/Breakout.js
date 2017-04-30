@@ -12,6 +12,7 @@ export default class Breakout extends Phaser.State {
     this.load.image('ball', 'assets/breakout/ball.png');
     this.load.audio('hit', 'assets/audio/nes-05-03.wav');
     this.load.audio('music', 'assets/audio/StElmo.mp3');
+    this.load.audio('boom', 'assets/Menu/explosion.wav');
   }
 
   create () {
@@ -19,6 +20,7 @@ export default class Breakout extends Phaser.State {
     this.add.sprite(0, 0, 'sky');
     this.hitSound = this.add.audio('hit');
     this.music = this.add.audio('music');
+    this.dieSound = this.add.audio('boom');
     this.music.play();
     this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#999' });
     // Start the Arcade physics system (for movements and collisions)
@@ -48,8 +50,8 @@ export default class Breakout extends Phaser.State {
     }
     this.ball = this.add.sprite(200, 500, 'ball');
     // Give the ball some initial speed
-    this.ball.body.velocity.x = 200;
-    this.ball.body.velocity.y = 200;
+    this.ball.body.velocity.x = 250;
+    this.ball.body.velocity.y = 250;
     // Make sure the ball will bounce when hitting something
     this.ball.body.bounce.setTo(1);
     this.ball.body.collideWorldBounds = true;
@@ -72,9 +74,10 @@ export default class Breakout extends Phaser.State {
     if (this.ball.y > this.paddle.y) {
       this.state.start('BreakoutGameOver');
       this.music.stop();
+      this.dieSound.play();
       this.score = 0;
     }
-    if (this.score === 300) {
+    if (this.score === 10) {
       this.state.start('BreakoutWin');
     }
   }
@@ -87,6 +90,7 @@ export default class Breakout extends Phaser.State {
   }
   goHome () {
     this.state.start('BreakoutGameOver');
+
     // this.resetGame();
   }
 }

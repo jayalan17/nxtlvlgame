@@ -30,11 +30,14 @@ export default class extends Phaser.State {
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.image('key', 'assets/Menu/key.png');
     this.load.image('background', 'assets/luigi/sky.png');
+    this.load.audio('getKey', 'assets/Menu/getKey.wav')
   }
 
   create () {
     this.physics.startSystem(Phaser.Physics.ARCADE);
     this.add.sprite(0, 0, 'background');
+
+    this.getKeySound = this.add.audio('getKey');
 
     this.add.existing(this.titleText);
     this.add.text();
@@ -45,14 +48,6 @@ export default class extends Phaser.State {
     this.key = this.add.sprite(325, 400, 'key');
     this.physics.arcade.enable(this.key);
     this.key.body.immovable = true;
-
-    this.luigi = this.add.sprite(100, 400, 'luigi');
-    this.physics.arcade.enable(this.luigi);
-    this.luigi.body.immovable = true;
-
-    this.map = this.add.sprite(650, 400, 'map');
-    this.physics.arcade.enable(this.map);
-    this.map.body.immovable = true;
 
     this.player = this.add.sprite(350, 250, 'dude');
     this.physics.arcade.enable(this.player);
@@ -90,10 +85,10 @@ export default class extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.luigi)) {
       this.goToGame();
     }
-    if (this.physics.arcade.collide(this.player, this.map)) {
+    if (this.physics.arcade.collide(this.player, this.key)) {
       this.goToHome();
+      this.getKeySound.play();
     }
-    this.physics.arcade.collide(this.player, this.key);
   }
 
   goToGame () {

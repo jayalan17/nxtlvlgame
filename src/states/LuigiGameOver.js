@@ -47,15 +47,11 @@ export default class extends Phaser.State {
     this.music = this.add.audio('mainTitle');
     this.music.play();
 
-    this.key = this.add.sprite(325, 400, 'key');
-    this.physics.arcade.enable(this.key);
-    this.key.body.immovable = true;
-
-    this.luigi = this.add.sprite(100, 400, 'luigi');
+    this.luigi = this.add.sprite(200, 400, 'luigi');
     this.physics.arcade.enable(this.luigi);
     this.luigi.body.immovable = true;
 
-    this.map = this.add.sprite(650, 400, 'map');
+    this.map = this.add.sprite(500, 400, 'map');
     this.physics.arcade.enable(this.map);
     this.map.body.immovable = true;
 
@@ -98,7 +94,6 @@ export default class extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.map)) {
       this.goToHome();
     }
-    this.physics.arcade.collide(this.player, this.key);
   }
 
   goToGame () {

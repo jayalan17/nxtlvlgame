@@ -14,19 +14,16 @@ export default class extends Phaser.State {
   }
 
   init () {
-    this.titleText = this.make.text(this.world.centerX, 200, 'Game Over. \n Play Again?', {
+    this.titleText = this.make.text(this.world.centerX, 200, 'Game Over.\nPlay Again?', {
       font: 'bold 72pt TheMinion',
       fill: 'red',
       align: 'center'
     });
-    this.titleText2 = this.make.text(this.world.centerX, 150, 'You need a minimum of 20 points to proceed!', {
-      font: 'bold 20pt TheMinion',
-      fill: 'black',
-      align: 'left'
-    });
+
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     this.titleText.anchor.set(0.5);
     this.optionCount = 1;
+
   }
 
   preload () {
@@ -42,20 +39,17 @@ export default class extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
-    this.add.existing(this.titleText2);
-
+    this.add.text(275, 325, 'You need 20 points to earn the key!',
+    { fontSize: '16px', fill: 'black' });
     this.music = this.add.audio('mainTitle');
     this.music.play();
 
-    this.key = this.add.sprite(325, 400, 'key');
-    this.physics.arcade.enable(this.key);
-    this.key.body.immovable = true;
 
-    this.bird = this.add.sprite(100, 400, 'bird');
+    this.bird = this.add.sprite(200, 400, 'bird');
     this.physics.arcade.enable(this.bird);
     this.bird.body.immovable = true;
 
-    this.map = this.add.sprite(650, 400, 'map');
+    this.map = this.add.sprite(500, 400, 'map');
     this.physics.arcade.enable(this.map);
     this.map.body.immovable = true;
 
@@ -107,6 +101,7 @@ export default class extends Phaser.State {
   }
   goToHome () {
     this.state.start('Splash');
+    this.music.stop();
     // this.resetGame();
   }
 }

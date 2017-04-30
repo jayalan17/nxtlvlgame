@@ -14,12 +14,12 @@ export default class extends Phaser.State {
   }
 
   init () {
-    this.titleText = this.make.text(this.world.centerX, 'YOU DID IT!', {
+    this.titleText = this.make.text(this.world.centerX, 200, 'YOU DID IT!', {
       font: 'bold 72pt TheMinion', fill: 'red', align: 'center'
     });
 
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-    this.titleText.anchor.set(0.5);
+    this.titleText.anchor.set(0.7);
     this.optionCount = 1;
   }
 
@@ -29,6 +29,8 @@ export default class extends Phaser.State {
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.image('key', 'assets/Menu/key.png');
     this.load.image('background', 'assets/tank/background2.jpg');
+    this.load.audio('getKey', 'assets/Menu/getKey.wav')
+
   }
 
   create () {
@@ -37,23 +39,15 @@ export default class extends Phaser.State {
 
     this.add.existing(this.titleText);
 
-
+    this.getKeySound = this.add.audio('getKey');
     this.music = this.add.audio('mainTitle');
     this.music.play();
 
-    this.key = this.add.sprite(325, 400, 'key');
+    this.key = this.add.sprite(320, 400, 'key');
     this.physics.arcade.enable(this.key);
     this.key.body.immovable = true;
 
-    this.tank = this.add.sprite(100, 400, 'tank');
-    this.physics.arcade.enable(this.tank);
-    this.tank.body.immovable = true;
-
-    this.map = this.add.sprite(650, 400, 'map');
-    this.physics.arcade.enable(this.map);
-    this.map.body.immovable = true;
-
-    this.player = this.add.sprite(350, 250, 'dude');
+    this.player = this.add.sprite(150, 500, 'dude');
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
 
@@ -86,13 +80,12 @@ export default class extends Phaser.State {
       this.player.animations.stop();
       this.player.frame = 4;
     }
-    if (this.physics.arcade.collide(this.player, this.tank)) {
-      this.goToGame();
-    }
-    if (this.physics.arcade.collide(this.player, this.map)) {
+
+    if (this.physics.arcade.collide(this.player, this.key)) {
       this.goToHome();
+      this.getKeySound.play();
     }
-    this.physics.arcade.collide(this.player, this.key);
+
   }
 
   goToGame () {

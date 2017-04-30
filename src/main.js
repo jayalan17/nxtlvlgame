@@ -34,10 +34,10 @@ class Game extends Phaser.Game {
 
     // this.user = this.props.userStore.name;
     // console.log(this.user);
-    this.luigiComplete = true;
-    this.tankComplete = true;
-    this.flappyComplete = true;
-    this.breakoutComplete = true;
+    this.luigiComplete = false;
+    this.tankComplete = false;
+    this.flappyComplete = false;
+    this.breakoutComplete = false;
 
     this.state.add('Splash', Splash, false);
     this.state.add('Tank', Tank, false);

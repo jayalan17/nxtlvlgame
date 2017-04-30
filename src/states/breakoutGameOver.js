@@ -17,11 +17,7 @@ export default class Splash extends Phaser.State {
       fill: '#FDFFB5',
       align: 'center'
     });
-    this.titleText2 = this.make.text(this.world.centerX, 500, 'Testing...', {
-      font: 'bold 60pt TheMinion',
-      fill: 'red',
-      align: 'center'
-    });
+
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     this.titleText.anchor.set(0.5);
     this.optionCount = 1;
@@ -32,7 +28,7 @@ export default class Splash extends Phaser.State {
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.image('key', 'assets/Menu/key.png');
-    this.load.image('background', 'assets/options-bg.jpg');
+    this.load.image('background', 'assets/Menu/gameoverwall.jpg');
   }
 
   create () {
@@ -40,20 +36,19 @@ export default class Splash extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
-    this.add.existing(this.titleText2);
 
     this.music = this.add.audio('mainTitle');
     this.music.play();
 
-    this.key = this.add.sprite(325, 400, 'key');
-    this.physics.arcade.enable(this.key);
-    this.key.body.immovable = true;
+    // this.key = this.add.sprite(325, 400, 'key');
+    // this.physics.arcade.enable(this.key);
+    // this.key.body.immovable = false;
 
-    this.brick = this.add.sprite(100, 400, 'brick');
+    this.brick = this.add.sprite(200, 400, 'brick');
     this.physics.arcade.enable(this.brick);
     this.brick.body.immovable = true;
 
-    this.map = this.add.sprite(650, 400, 'map');
+    this.map = this.add.sprite(500, 400, 'map');
     this.physics.arcade.enable(this.map);
     this.map.body.immovable = true;
 

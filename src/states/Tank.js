@@ -116,6 +116,7 @@ export default class Tank extends Phaser.State {
   goHome () {
     this.state.start('TankGameOver');
     this.resetGame();
+    this.music.stop();
   }
 
   playerUpdate () {

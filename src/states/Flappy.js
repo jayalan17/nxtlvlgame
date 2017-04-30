@@ -6,10 +6,12 @@ export default class Flappy extends Phaser.State {
   preload () {
     this.load.image('bird', 'assets/flappy/frenz.jpg');
     this.load.image('pipe', 'assets/flappy/frog.png');
-    this.load.image('sky', 'assets/flappy/sky.png');
+    this.load.image('sky', 'assets/flappy/sky2.png');
     this.load.audio('jump', 'assets/audio/jump_07.wav');
     this.load.audio('hit', 'assets/audio/nes-05-03.wav');
     this.load.audio('music', 'assets/audio/SouthPark.mp3');
+    this.load.audio('boom', 'assets/Menu/explosion.wav');
+
   }
 
   create () {
@@ -21,7 +23,7 @@ export default class Flappy extends Phaser.State {
 
     this.jumpSound = this.add.audio('jump');
     this.hitSound = this.add.audio('hit');
-    this.dieSound = this.add.audio('hit');
+    this.dieSound = this.add.audio('boom');
     this.music = this.add.audio('music');
     this.music.play();
     // Set the physics system
@@ -52,7 +54,7 @@ export default class Flappy extends Phaser.State {
       this.goHome();
       // If the bird is out of the screen (too high or too low)
       // Call the 'restartGame' function
-    } else if (this.bird.y < 0 || this.bird.y > 800) {
+    } else if (this.bird.y < 5 || this.bird.y > 800) {
       this.restartGame();
     }
     this.physics.arcade.overlap(
@@ -98,6 +100,7 @@ export default class Flappy extends Phaser.State {
   }
   gameWin () {
     this.state.start('FlappyWin');
+    this.music.stop();
   }
   addRowOfPipes () {
     this.score += 1;
@@ -111,7 +114,7 @@ export default class Flappy extends Phaser.State {
       if (i !== this.hole && i !== this.hole + 1) {
         this.addOnePipe(800, i * 60 + 10);
       }
-      if (this.score === 5) {
+      if (this.score > 5) {
         this.gameWin();
       }
     }

@@ -25,7 +25,7 @@ export default class LuigiMenu extends Phaser.State {
     this.load.image('luigi', 'assets/Menu/mushroom.png');
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('background', 'assets/Menu/paperBG.jpg');
-    this.load.audio('music', 'assets/audio/QuantumLeap.mp3');
+    this.load.audio('music', 'assets/Menu/AG-HG.mp3');
     this.load.image('dude', 'assets/splash/sprite.png');
   }
 
@@ -39,6 +39,7 @@ export default class LuigiMenu extends Phaser.State {
     { fontSize: '16px', fill: 'black' });
     this.add.text(500, 200, 'CONTROLS:\nUse arrow keys for movement.\nLEFT and RIGHT to move player \nUP to Jump\n<esc> to Return To Map',
     { fontSize: '16px', fill: 'black' });
+
 
     this.music = this.add.audio('music');
     this.music.play();

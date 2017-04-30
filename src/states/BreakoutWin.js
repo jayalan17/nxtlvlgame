@@ -19,7 +19,7 @@ export default class Splash extends Phaser.State {
     });
 
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-    this.titleText.anchor.set(0.5);
+    this.titleText.anchor.set(0.7);
     this.optionCount = 1;
   }
 
@@ -29,6 +29,7 @@ export default class Splash extends Phaser.State {
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.image('key', 'assets/Menu/key.png');
     this.load.image('background', 'assets/breakout/starsBG.png');
+    this.load.audio('getKey', 'assets/Menu/getKey.wav')
   }
 
   create () {
@@ -37,20 +38,13 @@ export default class Splash extends Phaser.State {
 
     this.add.existing(this.titleText);
 
+    this.getKeySound = this.add.audio('getKey');
     this.music = this.add.audio('mainTitle');
     this.music.play();
 
     this.key = this.add.sprite(375, 200, 'key');
     this.physics.arcade.enable(this.key);
     this.key.body.immovable = true;
-
-    this.brick = this.add.sprite(200, 400, 'brick');
-    this.physics.arcade.enable(this.brick);
-    this.brick.body.immovable = true;
-
-    this.map = this.add.sprite(500, 400, 'map');
-    this.physics.arcade.enable(this.map);
-    this.map.body.immovable = true;
 
     this.player = this.add.sprite(250, 200, 'dude');
     this.physics.arcade.enable(this.player);
@@ -85,13 +79,11 @@ export default class Splash extends Phaser.State {
       this.player.animations.stop();
       this.player.frame = 4;
     }
-    if (this.physics.arcade.collide(this.player, this.brick)) {
-      this.goToGame();
-    }
-    if (this.physics.arcade.collide(this.player, this.map)) {
+
+    if (this.physics.arcade.collide(this.player, this.key)) {
       this.goToHome();
+      this.getKeySound.play();
     }
-    this.physics.arcade.collide(this.player, this.key);
   }
 
   goToGame () {
@@ -100,7 +92,7 @@ export default class Splash extends Phaser.State {
   }
   goToHome () {
     this.state.start('Splash');
-    this.music.stop;
+    this.music.stop();
     // this.resetGame();
   }
 }
