@@ -18,12 +18,11 @@ router.use(function(req, res, next){
 
 router.route('/changeLuigi')
   .put(function(req, res, next){
-    let user = new User();
     User.findOne({
       name: req.body.name
     }, function(err, user) {
       if (err) next(err);
-      user.luigiCompleted = true;
+      user.luigiCompleted = req.body.luigiCompleted;
       user.save(function(err){
         if(err){
           next(err);
@@ -31,6 +30,19 @@ router.route('/changeLuigi')
           res.json({success: "Luigi mini-game has been completed"});
         }
       });
+    });
+  });
+
+router.route ('/getLuigiStatus/:userName')
+  .get(function(req, res){
+    User.findOne({
+      name: req.params.userName
+    }, function(err, user, next){
+      if(err){
+        return next(err);
+      } else {
+        res.json(user);
+      }
     });
   });
 
@@ -96,12 +108,7 @@ router.post('/authenticate', function(req, res, next) {
           token: token,
           admin: user.admin,
           id: user._id,
-          states: user.states,
-          parks: user.parks,
-          elevations: user.elevations,
-          mlbstadiums: user.mlbstadiums,
-          nflstadiums: user.nflstadiums,
-          airports: user.airports
+          luigiCompleted: user.luigiCompleted,
         });
       }
     }

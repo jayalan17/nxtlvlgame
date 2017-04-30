@@ -10,6 +10,9 @@ export default class Splash extends Phaser.State {
   }
 
   preload () {
+    this.load.image('shovel', 'assets/luigi/star.png');
+    this.load.image('dude1', 'assets/luigi/dude.png');
+
     this.load.image('tank', 'assets/splash/tank.png');
     this.load.image('bird', 'assets/splash/bird.png');
     this.load.image('brick', 'assets/splash/brick.png');
@@ -19,13 +22,18 @@ export default class Splash extends Phaser.State {
     this.load.image('map', 'assets/splash/grass.png');
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.audio('music', 'assets/audio/QuantumLeap.mp3');
+    console.log(window.game.luigiComplete);
+    console.log(window.game.tankComplete);
+    console.log(window.game.flappyComplete);
+    console.log(window.game.breakoutComplete);
   }
 
   create () {
     this.physics.startSystem(Phaser.Physics.ARCADE);
+    this.scale.pageAlignHorizontally = true;
     this.background = this.add.sprite(0, 0, 'map');
 
-    this.rock1 = this.add.sprite(20, 200, 'rock');
+    this.rock1 = this.add.sprite(20, 200, 'shovel');
     this.physics.arcade.enable(this.rock1);
     this.rock1.body.immovable = true;
 

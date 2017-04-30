@@ -15,12 +15,11 @@ import BreakoutGameOver from './states/breakoutGameOver';
 import TankGameOver from './states/TankGameOver';
 import LuigiGameOver from './states/LuigiGameOver';
 import UserStore from './stores/UserStore';
-import { inject, observer } from 'mobx-react';
 
 import config from './gameConfig';
 
 class Game extends Phaser.Game {
-  constructor () {
+  constructor (user) {
     console.log("Constructing game");
     const docElement = document.documentElement;
     const width = docElement.clientWidth > config.gameWidth ? config.gameWidth : docElement.clientWidth;
@@ -28,8 +27,10 @@ class Game extends Phaser.Game {
 
     super(width, height, Phaser.CANVAS, 'content', null);
 
-    // this.user = this.props.userStore.name;
-    // console.log(this.user);
+    this.user = user;
+    console.log(this.user + " help");
+    console.log(this.GetStatus());
+
     this.luigiComplete = false;
     this.tankComplete = false;
     this.flappyComplete = false;
@@ -51,10 +52,11 @@ class Game extends Phaser.Game {
 
     this.state.start('Splash');
   }
+
   luigiCompleted () {
     this.luigiComplete = true;
     console.log('Luigi: ' + this.luigiComplete);
-    // this.handleLuigiCompleted();
+    this.handleLuigiCompleted();
   }
   tankCompleted () {
     this.tankComplete = true;
@@ -69,10 +71,59 @@ class Game extends Phaser.Game {
     console.log('Breakout: ' + this.breakoutComplete);
   }
   handleLuigiCompleted () {
-    console.log(this.UserStore.name)
-    this.props.userStore.UpdateUser(this.state.user._id, true);
+    console.log(this.user + " is going crazy!!");
+    this.UpdateUser(this.user, true);
+  }
+  handleLuigiStatus () {
+    this.luigiComplete = this.GetStatus();
+    console.log("hoping this is boolean :" + this.luigiComplete);
+
+  }
+
+  UpdateUser (name, luigiCompleted){
+    fetch('/api/changeLuigi', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        luigiCompleted: luigiCompleted
+      })
+    });
+  }
+
+  GetStatus(){
+    fetch('/api/getLuigiStatus/' + this.user, {
+      method:"GET",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+    })
+   .then(result => result.json())
+   .then(data => this.status = {user: data.name, lc: data.luigiCompleted});
+   console.log(this.status + "?????");
   }
 }
+
+// .then(data => this.weather = {conditions: data.weather[0].description, temp: data.main.temp, windSpeed: data.wind.speed, windDir: data.wind.deg });
+
+// .then(function(result) {return result.json();})
+
+// getUserFromDb() {
+ //   fetch("/user/userData",{
+ //     method:"GET",
+ //     headers: {
+ //       "Accept": "application/json",
+ //       "Content-Type": "application/json",
+ //       'Authorization': 'Bearer ' + this.getCookie('token')
+ //     },
+ //   })
+ //   .then(result => result.json())
+ //   .then(data => this.pets = data.pets);
+ // }
 
 
 export default Game;

@@ -136,18 +136,12 @@ export default class UserStore {
         this.token = loginCred.token;
         this.loggedInUser = true;
         this.name = name.toLowerCase();
-        this.luigiCompleted = false;
-        this.tankCompleted = false;
-        this.flappyCompleted = false;
-        this.breakoutCompleted = false;
-        this.flappyHighScore = false;
-        this.breakoutHighScore = false;
         this.newUserCreated = false;
         this.userAlreadyExists = false;
         this.failedLogin=false;
         browserHistory.push('/Dashboard');
         console.log("Starting a game");
-        window.game = new Game();
+        window.game = new Game(this.name);
       } else {
         this.loggedInUser=false;
         this.failedLogin=true;
