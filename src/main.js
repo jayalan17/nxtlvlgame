@@ -32,6 +32,7 @@ class Game extends Phaser.Game {
     super(width, height, Phaser.CANVAS, 'content', null);
 
     this.user = user;
+    this.status = null;
     console.log(this.user + " help");
     console.log(this.GetStatus());
 
@@ -117,7 +118,7 @@ class Game extends Phaser.Game {
       },
     })
    .then(result => result.json())
-   .then(data => this.status = {user: data.name, lc: data.luigiCompleted});
+   .then(data => console.log(data));
    console.log(this.status + "?????");
   }
 }

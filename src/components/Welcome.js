@@ -58,7 +58,7 @@ class Welcome extends React.Component {
     const wellStyle = {float: "right", top: "0px",
       bottom: "0px", left: "0px", right: "0px", margin: "auto",
       opacity: ".95", backgroundBlendMode: "overlay",
-      height: "100px", width: "800px"};
+      height: "75px", width: "800px"};
     const logoStyle = {float: "left", top: "0px",
       left: "525px", zIndex: "100", height: "100px", width: "400px"};
     const newUserLinkStyle = {float: "right"};
@@ -70,24 +70,20 @@ class Welcome extends React.Component {
         </div>
         <div style={parentStyle}>
           <Well style={wellStyle} bsSize="large">
-
-            <Form>
-
-                <legend>Advance to NxtLvl</legend>
-                {this.loginNotice()}
-                <FormGroup controlId="formInlineName">
-                  <FormControl
-                    onChange={this.handleNameChange}
-                    type="text"
-                    placeholder="username"
-                  />
-                  <FormControl
-                    onChange={this.handlePasswordChange}
-                    type="password"
-                    placeholder="password"
-                  />
+            <Form inline>
+              {this.loginNotice()}
+              <FormGroup controlId="formInlineName">
+                <FormControl
+                  onChange={this.handleNameChange}
+                  type="text"
+                  placeholder="username"
+                />
+                <FormControl
+                  onChange={this.handlePasswordChange}
+                  type="password"
+                  placeholder="password"
+                />
                 </FormGroup>
-
                 <div style={newUserLinkStyle}>
                   <Link
                     to ="/NewUser"
@@ -102,7 +98,6 @@ class Welcome extends React.Component {
                   className="btn btn-danger"
                 >Begin</Button></Link>
             </Form>
-            <br/>
           </Well>
        </div>
       </div>
