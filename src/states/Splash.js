@@ -289,68 +289,80 @@ export default class Splash extends Phaser.State {
 
   addText1 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'Hmm...looks like I could plant something here.',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    this.story = this.make.text(
+      200, 10, 'Hmm...looks like I could plant something here.',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
   addText2 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'Hmm...looks like the princess has been captured!',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    this.story = this.make.text(
+      200, 10, 'Hmm...looks like the princess has been captured!',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
   addText3 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'Hmm...looks like I need to find a key?!',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    this.story = this.make.text(
+      200, 10, 'Hmm...looks like I need to find a key?!',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
   addText4 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'Hmm...looks like a watering can.',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    this.story = this.make.text(
+      200, 10, 'Hmm...looks like a watering can.',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
   addText5 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'Hmm...is this a magic seed?!',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    this.story = this.make.text(
+      200, 10, 'Hmm...is this a magic seed?!',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
   addText6 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'Hmm...looks like I found a shovel.',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    this.story = this.make.text(
+      200, 10, 'Hmm...looks like I found a shovel.',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
   addText7 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'A simple rock.',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    this.story = this.make.text(
+      200, 10, 'A simple rock.',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
   addText8 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'Hmm...looks like I found a magic seed!',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    this.story = this.make.text(
+      200, 10, 'Hmm...looks like I found a magic seed!',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
   addText9 () {
     this.story.destroy();
     this.story = this.make.text(200, 10, 'Hmm...looks like I found a watering can.',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
   addText10 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'Hmm...looks like the soil is tilled.',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    this.story = this.make.text(
+      200, 10, 'Hmm...looks like the soil is tilled.',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
   addText11 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'Hmm...looks like the sprout could use some water.',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    this.story = this.make.text(
+      200, 10, 'Hmm...looks like the sprout could use some water.',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
   addText12 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'Hmm...looks like my seed has blossomed into an awesome specimen!',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    this.story = this.make.text(
+      200, 10, 'Hmm...looks like my seed has blossomed into an awesome specimen!',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
   addText13 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'Hmm...looks like I saved the day.  Time to dance!',
-    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+    this.story = this.make.text(
+      200, 10, 'Hmm...looks like I saved the day.  Time to dance!',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
 
   goToTank () {

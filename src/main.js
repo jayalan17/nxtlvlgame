@@ -32,9 +32,10 @@ class Game extends Phaser.Game {
     super(width, height, Phaser.CANVAS, 'content', null);
 
     this.user = user;
-    this.status = null;
     console.log(this.user + " help");
-    console.log(this.GetStatus());
+    this.GetStatus(() => {
+      this.state.start('Splash');
+    });
 
     this.luigiComplete = false;
     this.tankComplete = false;
@@ -65,37 +66,47 @@ class Game extends Phaser.Game {
     this.state.add('LuigiWin', LuigiWin, false);
 
 
-    this.state.start('Splash');
+
   }
 
   luigiCompleted () {
     this.luigiComplete = true;
     console.log('Luigi: ' + this.luigiComplete);
-    this.handleLuigiCompleted();
+    this.updateLuigi(this.user, true);
+    // this.handleLuigiCompleted();
   }
   tankCompleted () {
     this.tankComplete = true;
     console.log('Tank: ' + this.tankComplete);
+    this.updateTank(this.user, true);
+    // this.handleTankCompleted();
   }
   flappyCompleted () {
     this.flappyComplete = true;
     console.log('Flappy: ' + this.flappyComplete);
+    this.updateFlappy(this.user, true);
+    // this.handleFlappyCompleted();
   }
   breakoutCompleted () {
     this.breakoutComplete = true;
     console.log('Breakout: ' + this.breakoutComplete);
+    this.updateBreakout(this.user, true);
+    // this.handleBreakoutCompleted();
   }
-  handleLuigiCompleted () {
-    console.log(this.user + " is going crazy!!");
-    this.UpdateUser(this.user, true);
-  }
-  handleLuigiStatus () {
-    this.luigiComplete = this.GetStatus();
-    console.log("hoping this is boolean :" + this.luigiComplete);
+  // handleLuigiCompleted () {
+  //   this.updateLuigi(this.user, true);
+  // }
+  // handleTankCompleted () {
+  //   this.updateTank(this.user, true);
+  // }
+  // handleFlappyCompleted () {
+  //   this.updateFlappy(this.user, true);
+  // }
+  // handleBreakoutCompleted () {
+  //   this.updateBreakout(this.user, true);
+  // }
 
-  }
-
-  UpdateUser (name, luigiCompleted){
+  updateLuigi (name, luigiCompleted){
     fetch('/api/changeLuigi', {
       method: 'PUT',
       headers: {
@@ -108,24 +119,71 @@ class Game extends Phaser.Game {
       })
     });
   }
-
-  GetStatus(){
-    fetch('/api/getLuigiStatus/' + this.user, {
+  updateTank (name, tankCompleted){
+    fetch('/api/changeTank', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        tankCompleted: tankCompleted
+      })
+    });
+  }
+  updateFlappy (name, flappyCompleted){
+    fetch('/api/changeFlappy', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        flappyCompleted: flappyCompleted
+      })
+    });
+  }
+  updateBreakout (name, breakoutCompleted){
+    fetch('/api/changeBreakout', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        breakoutCompleted: breakoutCompleted
+      })
+    });
+  }
+  GetStatus(x){
+    fetch('/api/getUserStatus/' + this.user, {
       method:"GET",
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
     })
-   .then(result => result.json())
-   .then(data => console.log(data));
-   console.log(this.status + "?????");
+    .then(result => result.json())
+    .then(data => {
+      console.log(data);
+      this.luigiComplete = data.luigiCompleted;
+      this.tankComplete = data.tankCompleted;
+      this.flappyComplete = data.flappyCompleted;
+      this.breakoutComplete = data.breakoutCompleted;
+      x();
+    });
   }
 }
 
 // .then(data => this.weather = {conditions: data.weather[0].description, temp: data.main.temp, windSpeed: data.wind.speed, windDir: data.wind.deg });
 
-// .then(function(result) {return result.json();})
+// .then(function(result) {
+    // return result.json();
+    // th
+    // })
 
 // getUserFromDb() {
  //   fetch("/user/userData",{

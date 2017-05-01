@@ -149,7 +149,7 @@ export default class Tank extends Phaser.State {
     }
     if (this.escape.isDown) {
       this.goHome();
-    } else if (this.targetCount > 0) {
+    } else if (this.targetCount > 3) {
       if (this.bullet.exists) {
         if (this.bullet.y > 540) {
           //  Simple check to see if it's fallen too low

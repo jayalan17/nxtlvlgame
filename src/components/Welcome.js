@@ -13,14 +13,10 @@ class Welcome extends React.Component {
     this.state = {
       name: "",
       password: "",
-      admin: false,
-      email: "",
-      loginMsg: ""
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleLoginUser = this.handleLoginUser.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
     this.loginNotice = this.loginNotice.bind(this);
   }
 
@@ -29,9 +25,6 @@ class Welcome extends React.Component {
   }
   handlePasswordChange(e) {
     this.setState({password: e.target.value});
-  }
-  handleEmailChange(e) {
-    this.setState({email: e.target.value});
   }
   handleLoginUser(e) {
     e.preventDefault();
