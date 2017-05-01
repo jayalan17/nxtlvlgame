@@ -60,7 +60,7 @@ export default class Luigi extends Phaser.State {
     this.physics.arcade.enable(this.player);
 
     //  Player physics properties. Give the little guy a slight bounce.
-    this.player.body.bounce.y = 0.2;
+    this.player.body.bounce.y = 0.1;
     this.player.body.gravity.y = 200;
     this.player.body.collideWorldBounds = true;
 
@@ -127,7 +127,7 @@ export default class Luigi extends Phaser.State {
 
          //  Allow the player to jump if they are touching the ground.
       if (this.cursors.up.isDown && this.player.body.touching.down && this.hitPlatform) {
-        this.player.body.velocity.y = -300;
+        this.player.body.velocity.y = -280;
         this.jumpSound.play();
 
       }

@@ -12,7 +12,7 @@ export default class BreakoutMenu extends Phaser.State {
   init () {
     this.titleText = this.make.text(this.world.centerX, 100, "Brickin'", {
       font: 'bold 60pt TheMinion',
-      fill: '#FDFFB5',
+      fill: '#darkblue',
       align: 'center'
     });
 

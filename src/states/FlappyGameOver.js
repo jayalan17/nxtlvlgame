@@ -16,7 +16,7 @@ export default class extends Phaser.State {
   init () {
     this.titleText = this.make.text(this.world.centerX, 200, 'Game Over.\nPlay Again?', {
       font: 'bold 72pt TheMinion',
-      fill: 'red',
+      fill: 'darkred',
       align: 'center'
     });
 
