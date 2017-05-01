@@ -10,16 +10,12 @@ export default class BreakoutMenu extends Phaser.State {
   }
 
   init () {
-    this.titleText = this.make.text(this.world.centerX, 100, 'Break the Bricks\nPress <esc> to exit', {
+    this.titleText = this.make.text(this.world.centerX, 100, "Brickin'", {
       font: 'bold 60pt TheMinion',
       fill: '#FDFFB5',
       align: 'center'
     });
-    this.titleText2 = this.make.text(this.world.centerX, 500, 'Testing...', {
-      font: 'bold 60pt TheMinion',
-      fill: 'red',
-      align: 'center'
-    });
+
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     this.titleText.anchor.set(0.5);
     this.optionCount = 1;
@@ -30,7 +26,7 @@ export default class BreakoutMenu extends Phaser.State {
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.image('background', 'assets/Menu/paperBG.jpg');
-    this.load.audio('music', 'assets/audio/QuantumLeap.mp3');
+    this.load.audio('music', 'assets/Menu/AG-HG.mp3');
   }
 
   create () {
@@ -38,16 +34,19 @@ export default class BreakoutMenu extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
-    this.add.existing(this.titleText2);
+    this.add.text(75, 200, 'INSTRUCTIONS: \nBreak All Of The Bricks\nTo Receive Your Fourth Key',
+    { fontSize: '16px', fill: 'black' });
+    this.add.text(500, 200, 'CONTROLS:\nUse arrow keys.\nLEFT or RIGHT to move the paddle\n<esc> to Return To Map',
+    { fontSize: '16px', fill: 'black' });
 
     this.music = this.add.audio('music');
     this.music.play();
 
-    this.brick = this.add.sprite(100, 400, 'brick');
+    this.brick = this.add.sprite(200, 400, 'brick');
     this.physics.arcade.enable(this.brick);
     this.brick.body.immovable = true;
 
-    this.map = this.add.sprite(650, 400, 'map');
+    this.map = this.add.sprite(500, 400, 'map');
     this.physics.arcade.enable(this.map);
     this.map.body.immovable = true;
 
@@ -95,6 +94,7 @@ export default class BreakoutMenu extends Phaser.State {
   }
   goToHome () {
     this.state.start('Splash');
+    this.music.stop();
     // this.resetGame();
   }
 }

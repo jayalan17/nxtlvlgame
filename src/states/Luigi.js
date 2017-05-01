@@ -9,7 +9,7 @@ export default class Luigi extends Phaser.State {
   }
 
   preload () {
-    this.load.image('sky', 'assets/luigi/sky.png');
+    this.load.image('sky', 'assets/luigi/kqmACO.jpg');
     this.load.image('ground', 'assets/luigi/platform.png');
     this.load.image('star', 'assets/luigi/star.png');
     this.load.spritesheet('dude', 'assets/luigi/dude.png', 32, 48);
@@ -143,7 +143,7 @@ export default class Luigi extends Phaser.State {
     window.game.luigiCompleted();
   }
   goToHome () {
-    this.state.start('LuigiGameOver');
+    this.state.start('LuigiWin');
     this.resetGame();
   }
   resetGame () {

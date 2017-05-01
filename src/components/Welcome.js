@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router';
 import { Well, Button, Form, FormGroup,
   ControlLabel, FormControl } from 'react-bootstrap';
+
 import './style/Welcome.css';
 
 class Welcome extends React.Component {
@@ -57,16 +58,15 @@ class Welcome extends React.Component {
     const wellStyle = {float: "right", top: "0px",
       bottom: "0px", left: "0px", right: "0px", margin: "auto",
       opacity: ".95", backgroundBlendMode: "overlay",
-      height: "300px", width: "200px"};
+      height: "100px", width: "800px"};
     const logoStyle = {float: "left", top: "0px",
-      left: "525px", zIndex: "100", height: "200px", width: "300px"};
+      left: "525px", zIndex: "100", height: "100px", width: "400px"};
     const newUserLinkStyle = {float: "right"};
 
     return (
       <div>
         <div>
-          <img style={logoStyle} src={require('../img/rp1.png')}
-            width="275px" height="150px"/>
+          <img style={logoStyle} src={require('../img/rp1.png')}/>
         </div>
         <div style={parentStyle}>
           <Well style={wellStyle} bsSize="large">
@@ -76,16 +76,11 @@ class Welcome extends React.Component {
                 <legend>Advance to NxtLvl</legend>
                 {this.loginNotice()}
                 <FormGroup controlId="formInlineName">
-                  <ControlLabel>Name</ControlLabel>
                   <FormControl
                     onChange={this.handleNameChange}
                     type="text"
                     placeholder="username"
                   />
-                </FormGroup>
-
-                <FormGroup controlId="formInlinePassword">
-                  <ControlLabel>Password</ControlLabel>
                   <FormControl
                     onChange={this.handlePasswordChange}
                     type="password"

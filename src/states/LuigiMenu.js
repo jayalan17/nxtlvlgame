@@ -10,16 +10,12 @@ export default class LuigiMenu extends Phaser.State {
   }
 
   init () {
-    this.titleText = this.make.text(this.world.centerX, 100, 'Luigi is a cheap Mario\nPress <esc> to exit', {
+    this.titleText = this.make.text(this.world.centerX, 100, 'LUIGI \n(its a cheap Mario)', {
       font: 'bold 60pt TheMinion',
-      fill: '#FDFFB5',
+      fill: 'darkgreen',
       align: 'center'
     });
-    this.titleText2 = this.make.text(this.world.centerX, 500, 'Testing...', {
-      font: 'bold 60pt TheMinion',
-      fill: 'red',
-      align: 'center'
-    });
+
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     this.titleText.anchor.set(0.5);
     this.optionCount = 1;
@@ -29,7 +25,7 @@ export default class LuigiMenu extends Phaser.State {
     this.load.image('luigi', 'assets/Menu/mushroom.png');
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('background', 'assets/Menu/paperBG.jpg');
-    this.load.audio('music', 'assets/audio/QuantumLeap.mp3');
+    this.load.audio('music', 'assets/Menu/AG-HG.mp3');
     this.load.image('dude', 'assets/splash/sprite.png');
   }
 
@@ -38,17 +34,22 @@ export default class LuigiMenu extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
-    this.add.existing(this.titleText2);
+
+    this.add.text(75, 200, 'INSTRUCTIONS: \nCollect All Of The Stars \nTo Receive Your First Key',
+    { fontSize: '16px', fill: 'black' });
+    this.add.text(500, 200, 'CONTROLS:\nUse arrow keys for movement.\nLEFT and RIGHT to move player \nUP to Jump\n<esc> to Return To Map',
+    { fontSize: '16px', fill: 'black' });
+
 
     this.music = this.add.audio('music');
     this.music.play();
 
-    this.luigi = this.add.sprite(100, 400, 'luigi');
+    this.luigi = this.add.sprite(200, 400, 'luigi');
     this.physics.arcade.enable(this.luigi);
     this.luigi.body.immovable = true;
     this.luigi.body.collideWorldBounds = true;
 
-    this.map = this.add.sprite(650, 400, 'map');
+    this.map = this.add.sprite(500, 400, 'map');
     this.physics.arcade.enable(this.map);
     this.map.body.immovable = true;
     this.map.body.collideWorldBounds = true;
@@ -97,6 +98,7 @@ export default class LuigiMenu extends Phaser.State {
   }
   goToHome () {
     this.state.start('Splash');
+    this.music.stop();
     // this.resetGame();
   }
 }

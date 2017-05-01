@@ -43,15 +43,11 @@ export default class extends Phaser.State {
     this.music = this.add.audio('mainTitle');
     this.music.play();
 
-    this.key = this.add.sprite(325, 400, 'key');
-    this.physics.arcade.enable(this.key);
-    this.key.body.immovable = true;
-
-    this.tank = this.add.sprite(100, 400, 'tank');
+    this.tank = this.add.sprite(200, 400, 'tank');
     this.physics.arcade.enable(this.tank);
     this.tank.body.immovable = true;
 
-    this.map = this.add.sprite(650, 400, 'map');
+    this.map = this.add.sprite(500, 400, 'map');
     this.physics.arcade.enable(this.map);
     this.map.body.immovable = true;
 

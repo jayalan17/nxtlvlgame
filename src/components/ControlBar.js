@@ -27,7 +27,6 @@ class ControlBar extends React.Component {
 
   createNavBar(){
     if(this.props.userStore.loggedInUser){
-
       return (
         <div>
           <Navbar staticTop collapseOnSelect fluid>
@@ -36,16 +35,15 @@ class ControlBar extends React.Component {
                 <Link className= "lgo" to={{pathname: '/Dashboard'}}>
                   <img className="hidden-xs"
                     src={require('../img/rp1.png')}
-                    width="209px" height="96px"/>
+                    width="200px" height="50px"/>
                 </Link>
                 <Link className= "lgo" to={{pathname: '/Dashboard'}}>
                   <img className="hidden-md hidden-lg hidden-sm"
                     src={require('../img/rp1.png')}
-                    width="104.5px"
-                    height="48px"/>
+                    width="200px"
+                    height="50px"/>
                 </Link>
               </Navbar .Brand>
-            <Navbar .Toggle />
             </Navbar .Header>
             <Navbar .Collapse>
               <Nav pullRight>

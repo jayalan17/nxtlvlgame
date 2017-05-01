@@ -25,18 +25,13 @@ class Dashboard extends React.Component {
     });
   }
 
-
   render() {
     return (
-      <div>
-        <div>
-          <div style={{textAlign: "center"}}>
-            <Well style={{
-              border: "1px solid #bcbcbc",
-              backgroundColor: "rgba(193, 193, 192, .5)"}}>
-            <h4 className="head">Shall we play a game...</h4>
-            </Well>
-          </div>
+      <div style={{textAlign: "center"}}>
+        <div style={{
+          border: "1px solid #bcbcbc",
+          backgroundColor: "rgba(193, 193, 192, .5)"}}>
+          <h4 className="head">Shall we play a game...</h4>
         </div>
       </div>
     );

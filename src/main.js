@@ -14,6 +14,10 @@ import FlappyGameOver from './states/FlappyGameOver';
 import BreakoutGameOver from './states/breakoutGameOver';
 import TankGameOver from './states/TankGameOver';
 import LuigiGameOver from './states/LuigiGameOver';
+import FlappyWin from './states/FlappyWin';
+import TankWin from './states/TankWin';
+import BreakoutWin from './states/BreakoutWin';
+import LuigiWin from './states/LuigiWin';
 import UserStore from './stores/UserStore';
 
 import config from './gameConfig';
@@ -35,6 +39,11 @@ class Game extends Phaser.Game {
     this.tankComplete = false;
     this.flappyComplete = false;
     this.breakoutComplete = false;
+    this.shovelGot = false;
+    this.seedsGot = false;
+    this.waterGot = false;
+    this.counter = 0;
+    this.farmingComplete = false;
 
     this.state.add('Splash', Splash, false);
     this.state.add('Tank', Tank, false);
@@ -49,6 +58,11 @@ class Game extends Phaser.Game {
     this.state.add('BreakoutGameOver', BreakoutGameOver, false);
     this.state.add('TankGameOver', TankGameOver, false);
     this.state.add('LuigiGameOver', LuigiGameOver, false);
+    this.state.add('FlappyWin', FlappyWin, false);
+    this.state.add('TankWin', TankWin, false);
+    this.state.add('BreakoutWin', BreakoutWin, false);
+    this.state.add('LuigiWin', LuigiWin, false);
+
 
     this.state.start('Splash');
   }

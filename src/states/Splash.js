@@ -5,13 +5,22 @@ import Phaser from 'phaser';
 export default class Splash extends Phaser.State {
   constructor () {
     super();
-    this.x = 32;
-    this.y = 80;
   }
 
   preload () {
-    this.load.image('shovel', 'assets/luigi/star.png');
-    this.load.image('dude1', 'assets/luigi/dude.png');
+    this.load.image('shovel', 'assets/splash/shovel.png');
+    this.load.image('dude2', 'assets/splash/sprite2.png');
+    this.load.image('seeds', 'assets/splash/seeds.png');
+    this.load.image('dude3', 'assets/splash/sprite3.png');
+    this.load.image('water', 'assets/splash/water.png');
+    this.load.image('dude4', 'assets/splash/sprite4.png');
+    this.load.image('tree', 'assets/splash/tree4.png');
+    this.load.image('dirt', 'assets/splash/dirt.png');
+    this.load.image('dirt2', 'assets/splash/dirt2.png');
+    this.load.image('dirt3', 'assets/splash/dirt3.png');
+    this.load.image('prison', 'assets/splash/prison.png');
+    this.load.image('princess', 'assets/splash/princess.png');
+    this.load.image('hearts', 'assets/splash/heart.png');
 
     this.load.image('tank', 'assets/splash/tank.png');
     this.load.image('bird', 'assets/splash/bird.png');
@@ -21,7 +30,8 @@ export default class Splash extends Phaser.State {
     this.load.image('rock', 'assets/splash/rock.png');
     this.load.image('map', 'assets/splash/grass.png');
     this.load.image('dude', 'assets/splash/sprite.png');
-    this.load.audio('music', 'assets/audio/QuantumLeap.mp3');
+    this.load.audio('music', 'assets/audio/HellsSymphony.mp3');
+
     console.log(window.game.luigiComplete);
     console.log(window.game.tankComplete);
     console.log(window.game.flappyComplete);
@@ -31,11 +41,48 @@ export default class Splash extends Phaser.State {
   create () {
     this.physics.startSystem(Phaser.Physics.ARCADE);
     this.scale.pageAlignHorizontally = true;
+    this.scale.pageAlignVertically = true;
     this.background = this.add.sprite(0, 0, 'map');
 
-    this.rock1 = this.add.sprite(20, 200, 'shovel');
-    this.physics.arcade.enable(this.rock1);
-    this.rock1.body.immovable = true;
+    this.story = this.make.text(200, 10, 'What a vibrant valley...so much to explore!',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', textAlign: 'center' });
+
+    this.princess = this.add.sprite(390, 100, 'princess');
+    this.physics.arcade.enable(this.princess);
+    this.princess.body.immovable = true;
+
+    if (window.game.breakoutComplete) {
+      this.hearts = this.add.sprite(387, 70, 'hearts');
+      this.physics.arcade.enable(this.hearts);
+      this.hearts.body.immovable = true;
+    } else {
+      this.prison = this.add.sprite(383, 95, 'prison');
+      this.physics.arcade.enable(this.prison);
+      this.prison.body.immovable = true;
+    }
+
+    this.dirt = this.add.sprite(520, 80, 'dirt');
+    this.physics.arcade.enable(this.dirt);
+    this.dirt.body.immovable = true;
+
+    this.shovel = this.add.sprite(40, 200, 'shovel');
+    this.physics.arcade.enable(this.shovel);
+    this.shovel.body.immovable = true;
+
+    this.seeds = this.add.sprite(170, 430, 'seeds');
+    this.physics.arcade.enable(this.seeds);
+    this.seeds.body.immovable = true;
+
+    this.water = this.add.sprite(520, 380, 'water');
+    this.physics.arcade.enable(this.water);
+    this.water.body.immovable = true;
+
+    // this.rocks = this.add.group();
+    // this.rocks.enableBody = true;
+    // for (let i = 0; i < 10; i++) {
+    //   this.rock = this.rocks.create(0, i * 40, 'rock');
+    //   this.rock.body.immovable = true;
+    // }
 
     this.rock2 = this.add.sprite(100, 240, 'rock');
     this.physics.arcade.enable(this.rock2);
@@ -72,6 +119,15 @@ export default class Splash extends Phaser.State {
       this.padlock2.body.immovable = true;
     }
 
+    // if (window.game.farmingComplete) {
+    //   this.luigi = this.add.sprite(100, 400, 'luigi');
+    //   this.physics.arcade.enable(this.luigi);
+    //   this.luigi.body.immovable = true;
+    // } else {
+    //   this.padlock4 = this.add.sprite(100, 400, 'padlock');
+    //   this.physics.arcade.enable(this.padlock4);
+    //   this.padlock4.body.immovable = true;
+    // }
     this.luigi = this.add.sprite(100, 400, 'luigi');
     this.physics.arcade.enable(this.luigi);
     this.luigi.body.immovable = true;
@@ -87,7 +143,7 @@ export default class Splash extends Phaser.State {
       this.padlock3.body.immovable = true;
     }
 
-    this.player = this.add.sprite(350, 250, 'dude');
+    this.player = this.add.sprite(400, 300, 'dude');
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
 
@@ -95,9 +151,10 @@ export default class Splash extends Phaser.State {
   }
 
   update () {
+    this.add.existing(this.story);
+
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
-
     if (this.cursors.left.isDown) {
       this.player.body.velocity.x = -150;
       this.player.animations.play('left');
@@ -114,6 +171,30 @@ export default class Splash extends Phaser.State {
       this.player.animations.stop();
       this.player.frame = 4;
     }
+    if (this.physics.arcade.collide(this.player, this.tree)) {
+      this.addText12();
+    }
+    if (this.physics.arcade.collide(this.player, this.rock2)) {
+      this.addText7();
+    }
+    if (this.physics.arcade.collide(this.player, this.rock3)) {
+      this.addText7();
+    }
+    if (this.physics.arcade.collide(this.player, this.rock4)) {
+      this.addText7();
+    }
+    if (this.physics.arcade.collide(this.player, this.padlock1)) {
+      this.addText3();
+    }
+    if (this.physics.arcade.collide(this.player, this.padlock2)) {
+      this.addText3();
+    }
+    if (this.physics.arcade.collide(this.player, this.padlock3)) {
+      this.addText3();
+    }
+    if (this.physics.arcade.collide(this.player, this.prison)) {
+      this.addText2();
+    }
     if (this.physics.arcade.collide(this.player, this.tank)) {
       this.goToTank();
     }
@@ -126,13 +207,150 @@ export default class Splash extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.brick)) {
       this.goToBreakout();
     }
-    this.physics.arcade.collide(this.player, this.rock1);
-    this.physics.arcade.collide(this.player, this.rock2);
-    this.physics.arcade.collide(this.player, this.rock3);
-    this.physics.arcade.collide(this.player, this.rock4);
-    this.physics.arcade.collide(this.player, this.padlock1);
-    this.physics.arcade.collide(this.player, this.padlock2);
-    this.physics.arcade.collide(this.player, this.padlock3);
+    if (this.physics.arcade.collide(this.player, this.shovel)) {
+      window.game.shovelGot = true;
+      this.shovel.kill();
+      this.player.kill();
+      this.player = this.add.sprite(20, 200, 'dude2');
+      this.physics.arcade.enable(this.player);
+      this.player.body.collideWorldBounds = true;
+      this.addText6();
+    }
+    if (this.physics.arcade.collide(this.player, this.seeds)) {
+      this.addText5();
+      if (window.game.shovelGot == true && window.game.counter == 1) {
+        window.game.seedsGot = true;
+        this.seeds.kill();
+        this.player.kill();
+        this.player = this.add.sprite(130, 450, 'dude3');
+        this.physics.arcade.enable(this.player);
+        this.player.body.collideWorldBounds = true;
+        this.addText8();
+      }
+    }
+    if (this.physics.arcade.collide(this.player, this.water)) {
+      this.addText4();
+      if (window.game.shovelGot == true && window.game.seedsGot == true && window.game.counter == 2) {
+        window.game.waterGot = true;
+        this.water.kill();
+        this.player.kill();
+        this.player = this.add.sprite(520, 380, 'dude4');
+        this.physics.arcade.enable(this.player);
+        this.player.body.collideWorldBounds = true;
+        this.addText9();
+      }
+    }
+    if (this.physics.arcade.collide(this.player, this.dirt)){
+      this.addText1();
+      if (window.game.shovelGot) {
+        window.game.counter = 1;
+        this.dirt.kill();
+        this.dirt2 = this.add.sprite(520, 80, 'dirt2');
+        this.physics.arcade.enable(this.dirt2);
+        this.dirt2.body.immovable = true;
+        this.player.kill();
+        this.player = this.add.sprite(520, 80, 'dude');
+        this.physics.arcade.enable(this.player);
+        this.player.body.collideWorldBounds = true;
+      }
+    }
+    if (this.physics.arcade.collide(this.player, this.dirt2)) {
+      this.addText10();
+      if (window.game.shovelGot == true && window.game.seedsGot == true) {
+        window.game.counter = 2;
+        this.dirt2.kill();
+        this.dirt3 = this.add.sprite(520, 80, 'dirt3');
+        this.physics.arcade.enable(this.dirt3);
+        this.dirt3.body.immovable = true;
+        this.player.kill();
+        this.player = this.add.sprite(520, 80, 'dude');
+        this.physics.arcade.enable(this.player);
+        this.player.body.collideWorldBounds = true;
+      }
+    }
+    if (this.physics.arcade.collide(this.player, this.dirt3)) {
+      this.addText11();
+      if (window.game.shovelGot == true && window.game.seedsGot == true && window.game.waterGot == true) {
+        window.game.counter = 3;
+        this.dirt3.kill();
+        this.tree = this.add.sprite(430, 20, 'tree');
+        this.physics.arcade.enable(this.tree);
+        this.tree.body.immovable = true;
+        this.player.kill();
+        this.player = this.add.sprite(520, 80, 'dude');
+        this.physics.arcade.enable(this.player);
+        this.player.body.collideWorldBounds = true;
+      }
+    }
+    if (this.physics.arcade.collide(this.player, this.princess)) {
+      this.addText13();
+    }
+  }
+
+  addText1 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'Hmm...looks like I could plant something here.',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+  }
+  addText2 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'Hmm...looks like the princess has been captured!',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+  }
+  addText3 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'Hmm...looks like I need to find a key?!',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+  }
+  addText4 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'Hmm...looks like a watering can.',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+  }
+  addText5 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'Hmm...is this a magic seed?!',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+  }
+  addText6 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'Hmm...looks like I found a shovel.',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+  }
+  addText7 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'A simple rock.',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+  }
+  addText8 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'Hmm...looks like I found a magic seed!',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+  }
+  addText9 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'Hmm...looks like I found a watering can.',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+  }
+  addText10 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'Hmm...looks like the soil is tilled.',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+  }
+  addText11 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'Hmm...looks like the sprout could use some water.',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+  }
+  addText12 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'Hmm...looks like my seed has blossomed into an awesome specimen!',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
+  }
+  addText13 () {
+    this.story.destroy();
+    this.story = this.make.text(200, 10, 'Hmm...looks like I saved the day.  Time to dance!',
+    { fontSize: '16px', fill: 'orange', font: 'herculanum', align: 'center' });
   }
 
   goToTank () {

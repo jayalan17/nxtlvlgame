@@ -10,6 +10,8 @@ export default class Flappy extends Phaser.State {
     this.load.audio('jump', 'assets/audio/jump_07.wav');
     this.load.audio('hit', 'assets/audio/nes-05-03.wav');
     this.load.audio('music', 'assets/audio/SouthPark.mp3');
+    this.load.audio('boom', 'assets/Menu/explosion.wav');
+    this.load.audio('win', 'assets/Menu/ta-da.wav');
   }
 
   create () {
@@ -21,7 +23,9 @@ export default class Flappy extends Phaser.State {
 
     this.jumpSound = this.add.audio('jump');
     this.hitSound = this.add.audio('hit');
-    this.dieSound = this.add.audio('hit');
+    this.dieSound = this.add.audio('boom');
+    this.winSound = this.add.audio('win');
+
     this.music = this.add.audio('music');
     this.music.play();
     // Set the physics system
@@ -52,7 +56,7 @@ export default class Flappy extends Phaser.State {
       this.goHome();
       // If the bird is out of the screen (too high or too low)
       // Call the 'restartGame' function
-    } else if (this.bird.y < 0 || this.bird.y > 800) {
+    } else if (this.bird.y < 5 || this.bird.y > 800) {
       this.restartGame();
     }
     this.physics.arcade.overlap(
@@ -79,7 +83,7 @@ export default class Flappy extends Phaser.State {
 // Restart the game
   restartGame () {
     // Start the 'main' state, which restarts the game
-    this.goHome();
+    this.state.start('FlappyGameOver');
     this.music.stop();
     this.dieSound.play();
   }
@@ -96,6 +100,11 @@ export default class Flappy extends Phaser.State {
     this.pipe.checkWorldBounds = true;
     this.pipe.outOfBoundsKill = true;
   }
+  gameWin () {
+    this.state.start('FlappyWin');
+    this.music.stop();
+    window.game.flappyCompleted();
+  }
   addRowOfPipes () {
     this.score += 1;
     this.labelScore.text = this.score;
@@ -104,12 +113,13 @@ export default class Flappy extends Phaser.State {
     this.hole = Math.floor(Math.random() * 5) + 1;
     // Add the 6 pipes
     // With one big hole at position 'hole' and 'hole + 1'
-    for (var i = 0; i < 20; i++) {
+    for (let i = 0; i < 20; i++) {
       if (i !== this.hole && i !== this.hole + 1) {
         this.addOnePipe(800, i * 60 + 10);
       }
       if (this.score > 5) {
-        this.time.events.remove(this.timer);
+        this.gameWin();
+        this.winSound.play();
       }
     }
   }
@@ -139,4 +149,5 @@ export default class Flappy extends Phaser.State {
   playerUpdate () {
     window.game.flappyCompleted();
   }
+
 }

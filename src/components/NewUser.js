@@ -61,8 +61,8 @@ class NewUser extends React.Component {
     this.props.userStore.userAlreadyExists = false;
     const bg = require('../img/frontBackground-min.jpg');
     const parentStyle = {height:"100vh", width:"100vw", background: "url("+bg+") no-repeat center fixed", backgroundSize: "cover"};
-    const wellStyle = {float: "right", top: "0px", bottom: "0px", left: "0px", right: "0px", margin: "auto", opacity: ".95", backgroundBlendMode: "overlay", height: "300px", width: "200px"};
-    const logoStyle = {float: "left", top: "0px", left: "0px", zIndex: "100", height: "200px", width: "300px"};
+    const wellStyle = {float: "right", top: "0px", bottom: "0px", left: "0px", right: "0px", margin: "auto", opacity: ".95", backgroundBlendMode: "overlay", height: "100px", width: "400px"};
+    const logoStyle = {float: "left", top: "0px", left: "0px", zIndex: "100", height: "100px", width: "400px"};
     const loginLinkStyle = {float: "right"};
 
     return (
@@ -70,7 +70,7 @@ class NewUser extends React.Component {
         <div>
         <img
           style={logoStyle}
-          src={require('../img/rp1.png')} width="275" height="150"/>
+          src={require('../img/rp1.png')}/>
         </div>
         <div style={parentStyle}>
           <Well style={wellStyle} bsSize="large">
@@ -78,14 +78,12 @@ class NewUser extends React.Component {
                 <legend>Create Player1</legend>
 
                 <FormGroup controlId="formInlineName">
-                  <ControlLabel>Name</ControlLabel>
                   <FormControl
                     onChange={this.handleNameChange}
                     type="text" placeholder="username" />
                 </FormGroup>
 
                 <FormGroup controlId="formInlinePassword">
-                  <ControlLabel>Password</ControlLabel>
                   <FormControl
                     onChange={this.handlePasswordChange}
                     type="password" placeholder="password" />
