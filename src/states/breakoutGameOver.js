@@ -12,9 +12,9 @@ export default class Splash extends Phaser.State {
   }
 
   init () {
-    this.titleText = this.make.text(this.world.centerX, 100, 'Game Over\nTry Again?', {
+    this.titleText = this.make.text(this.world.centerX, 200, 'Game Over\nTry Again?', {
       font: 'bold 60pt TheMinion',
-      fill: '#FDFFB5',
+      fill: 'darkred',
       align: 'center'
     });
 

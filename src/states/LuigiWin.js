@@ -20,7 +20,7 @@ export default class extends Phaser.State {
       align: 'center'
     });
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-    this.titleText.anchor.set(0.7);
+    this.titleText.anchor.set(0.5);
     this.optionCount = 1;
   }
 

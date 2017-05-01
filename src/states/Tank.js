@@ -12,7 +12,7 @@ export default class Tank extends Phaser.State {
 
   init () {
     this.game.renderer.renderSession.roundPixels = true;
-    this.game.world.setBounds(0, 0, 992, 600);
+    this.game.world.setBounds(0, 0, 800, 600);
     this.physics.startSystem(Phaser.Physics.ARCADE);
     this.physics.arcade.gravity.y = 200;
   }
@@ -130,10 +130,11 @@ export default class Tank extends Phaser.State {
   resetGame () {
     this.targets.removeAll(true);
     this.targetCount = 4;
-    this.targets.create(300, 490, 'target');
-    this.targets.create(500, 490, 'target');
-    this.targets.create(700, 490, 'target');
-    this.targets.create(900, 490, 'target');
+    this.targets.create(310, 490, 'target');
+    this.targets.create(420, 490, 'target');
+    this.targets.create(530, 490, 'target');
+    this.targets.create(640, 490, 'target');
+    this.targets.create(750, 490, 'target');
 
     //  Stop gravity from pulling them away
     this.targets.setAll('body.allowGravity', false);

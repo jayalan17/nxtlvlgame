@@ -19,7 +19,7 @@ export default class extends Phaser.State {
     });
 
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-    this.titleText.anchor.set(0.7);
+    this.titleText.anchor.set(0.5);
     this.optionCount = 1;
   }
 
@@ -43,7 +43,7 @@ export default class extends Phaser.State {
     this.music = this.add.audio('mainTitle');
     this.music.play();
 
-    this.key = this.add.sprite(320, 500, 'key');
+    this.key = this.add.sprite(320, 450, 'key');
     this.physics.arcade.enable(this.key);
     this.key.body.immovable = true;
 
@@ -94,6 +94,7 @@ export default class extends Phaser.State {
   }
   goToHome () {
     this.state.start('Splash');
+    this.music.stop();
     // this.resetGame();
   }
 }

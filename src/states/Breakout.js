@@ -81,11 +81,12 @@ export default class Breakout extends Phaser.State {
       this.dieSound.play();
       this.score = 0;
     }
-    if (this.score === 10) {
+    if (this.score === 30) {
       this.state.start('BreakoutWin');
       window.game.breakoutCompleted();
       this.winSound.play();
       this.music.stop();
+      this.score = 0;
     }
   }
   // New function that removes a brick from the game
@@ -97,6 +98,7 @@ export default class Breakout extends Phaser.State {
   }
   goHome () {
     this.state.start('BreakoutGameOver');
+    this.score = 0;
 
     // this.resetGame();
   }
