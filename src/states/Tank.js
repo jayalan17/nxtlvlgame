@@ -29,6 +29,8 @@ export default class Tank extends Phaser.State {
     this.load.image('flame', 'assets/tank/flame.png');
     this.load.image('target', 'assets/tank/target.png');
     this.load.audio('hit', 'assets/audio/nes-05-03.wav');
+    this.load.audio('win', 'assets/Menu/ta-da.wav');
+
   //  Note: Graphics from Amiga Tanx Copyright 1991 Gary Roberts
   }
 
@@ -36,6 +38,8 @@ export default class Tank extends Phaser.State {
     //  Simple but pretty background
     this.background = this.add.sprite(0, 0, 'background1');
     this.hitSound = this.add.audio('hit');
+    this.winSound = this.add.audio('win');
+
     //  Something to shoot at :)
     this.targets = this.add.group(this.game.world, 'targets', false, true, Phaser.Physics.ARCADE);
     //  A single bullet that the tank will fire
@@ -173,6 +177,7 @@ export default class Tank extends Phaser.State {
     } else {
       this.state.start('TankWin');
       this.playerUpdate();
+      this.winSound.play();
       console.log(this.tankScore);
     }
   }
