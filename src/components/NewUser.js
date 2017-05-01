@@ -51,8 +51,6 @@ class NewUser extends React.Component {
     });
   }
 
-
-
   render() {
     this.props.userStore.failedLogin = false;
     this.props.userStore.newUserCreated = false;
@@ -74,13 +72,11 @@ class NewUser extends React.Component {
           <Well style={wellStyle} bsSize="large">
             <Form>
                 <legend>Create Player1</legend>
-
                 <FormGroup controlId="formInlineName">
                   <FormControl
                     onChange={this.handleNameChange}
                     type="text" placeholder="username" />
                 </FormGroup>
-
                 <FormGroup controlId="formInlinePassword">
                   <FormControl
                     onChange={this.handlePasswordChange}

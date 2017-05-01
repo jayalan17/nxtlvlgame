@@ -291,7 +291,6 @@ export default class Splash extends Phaser.State {
       this.addText13();
     }
     if (this.physics.arcade.collide(this.player, this.coin)) {
-      this.coin.kill();
       this.addText14();
     }
   }
