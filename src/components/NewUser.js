@@ -11,8 +11,6 @@ class NewUser extends React.Component {
     this.state = {
       name: "",
       password: "",
-      email: "",
-      admin: false
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);

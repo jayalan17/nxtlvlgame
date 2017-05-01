@@ -32,8 +32,56 @@ router.route('/changeLuigi')
       });
     });
   });
+router.route('/changeTank')
+  .put(function(req, res, next){
+    User.findOne({
+      name: req.body.name
+    }, function(err, user) {
+      if (err) next(err);
+      user.tankCompleted = req.body.tankCompleted;
+      user.save(function(err){
+        if(err){
+          next(err);
+        } else {
+          res.json({success: "Tank mini-game has been completed"});
+        }
+      });
+    });
+  });
+router.route('/changeFlappy')
+  .put(function(req, res, next){
+    User.findOne({
+      name: req.body.name
+    }, function(err, user) {
+      if (err) next(err);
+      user.flappyCompleted = req.body.flappyCompleted;
+      user.save(function(err){
+        if(err){
+          next(err);
+        } else {
+          res.json({success: "Flappy mini-game has been completed"});
+        }
+      });
+    });
+  });
+router.route('/changeBreakout')
+  .put(function(req, res, next){
+    User.findOne({
+      name: req.body.name
+    }, function(err, user) {
+      if (err) next(err);
+      user.breakoutCompleted = req.body.breakoutCompleted;
+      user.save(function(err){
+        if(err){
+          next(err);
+        } else {
+          res.json({success: "Breakout mini-game has been completed"});
+        }
+      });
+    });
+  });
 
-router.route ('/getLuigiStatus/:userName')
+router.route ('/getUserStatus/:userName')
   .get(function(req, res){
     User.findOne({
       name: req.params.userName
@@ -109,6 +157,9 @@ router.post('/authenticate', function(req, res, next) {
           admin: user.admin,
           id: user._id,
           luigiCompleted: user.luigiCompleted,
+          tankCompleted: user.tankCompleted,
+          flappyCompleted: user.flappyCompleted,
+          breakoutCompleted: user.breakoutCompleted,
         });
       }
     }
