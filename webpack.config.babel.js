@@ -1,22 +1,37 @@
 import webpack from 'webpack';
 import path from 'path';
 
+let phaserModule = path.join(__dirname, '/node_modules/phaser-ce/');
+let phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
+let pixi = path.join(phaserModule, 'build/custom/pixi.js');
+let p2 = path.join(phaserModule, 'build/custom/p2.js');
+
 export default {
-  entry: [
-    path.resolve(__dirname, 'src/index')
-  ],
+  entry: {
+    bundle: [
+      path.resolve(__dirname, 'src/index')
+    ],
+    app: [
+      'babel-polyfill',
+      path.resolve(__dirname, 'src/main.js')
+    ],
+    vendor: ['pixi', 'p2', 'phaser', 'webfontloader']
+  },
   target: 'web',
   output: {
     path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin()
   ],
   module: {
     rules: [
-      {test: /\.js$/, loader: 'babel-loader'},
+      {test: /\.js$/, loader: 'babel-loader', exclude: [/node_modules/]},
+      { test: /pixi\.js/, use: ['expose-loader?PIXI'] },
+      { test: /phaser-split\.js$/, use: ['expose-loader?Phaser'] },
+      { test: /p2\.js/, use: ['expose-loader?p2'] },
       {test: /(\.css)$/, use:[{loader: 'style-loader'}, {loader: 'css-loader'}]},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
       {test: /\.(woff|woff2)$/, loader: 'url-loader',
@@ -39,5 +54,12 @@ export default {
       },
       {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
     ]
+  },
+  resolve: {
+    alias: {
+      'phaser': phaser,
+      'pixi': pixi,
+      'p2': p2
+    }
   }
 };

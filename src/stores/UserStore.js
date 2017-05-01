@@ -92,6 +92,9 @@ export default class UserStore {
   logUserOut(){
     this.name= "";
     this.password= "";
+    this.loggedInUser= false;
+    this.id= "";
+    this.token= "";
     this.luigiCompleted = false;
     this.tankCompleted = false;
     this.flappyCompleted = false;

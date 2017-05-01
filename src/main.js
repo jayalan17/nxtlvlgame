@@ -64,47 +64,28 @@ class Game extends Phaser.Game {
     this.state.add('TankWin', TankWin, false);
     this.state.add('BreakoutWin', BreakoutWin, false);
     this.state.add('LuigiWin', LuigiWin, false);
-
-
-
   }
 
   luigiCompleted () {
     this.luigiComplete = true;
     console.log('Luigi: ' + this.luigiComplete);
     this.updateLuigi(this.user, true);
-    // this.handleLuigiCompleted();
   }
   tankCompleted () {
     this.tankComplete = true;
     console.log('Tank: ' + this.tankComplete);
     this.updateTank(this.user, true);
-    // this.handleTankCompleted();
   }
   flappyCompleted () {
     this.flappyComplete = true;
     console.log('Flappy: ' + this.flappyComplete);
     this.updateFlappy(this.user, true);
-    // this.handleFlappyCompleted();
   }
   breakoutCompleted () {
     this.breakoutComplete = true;
     console.log('Breakout: ' + this.breakoutComplete);
     this.updateBreakout(this.user, true);
-    // this.handleBreakoutCompleted();
   }
-  // handleLuigiCompleted () {
-  //   this.updateLuigi(this.user, true);
-  // }
-  // handleTankCompleted () {
-  //   this.updateTank(this.user, true);
-  // }
-  // handleFlappyCompleted () {
-  //   this.updateFlappy(this.user, true);
-  // }
-  // handleBreakoutCompleted () {
-  //   this.updateBreakout(this.user, true);
-  // }
 
   updateLuigi (name, luigiCompleted){
     fetch('/api/changeLuigi', {

@@ -8,6 +8,7 @@ export default class Splash extends Phaser.State {
   }
 
   preload () {
+    this.load.image('coin', 'assets/splash/bitcoin.png');
     this.load.image('shovel', 'assets/splash/shovel.png');
     this.load.image('dude2', 'assets/splash/sprite2.png');
     this.load.image('seeds', 'assets/splash/seeds.png');
@@ -88,9 +89,13 @@ export default class Splash extends Phaser.State {
     this.physics.arcade.enable(this.rock2);
     this.rock2.body.immovable = true;
 
-    this.rock3 = this.add.sprite(600, 280, 'rock');
+    this.coin = this.add.sprite(750, 280, 'coin');
+    this.physics.arcade.enable(this.coin);
+    this.coin.body.immovable = true;
+
+    this.rock3 = this.add.sprite(740, 280, 'rock');
     this.physics.arcade.enable(this.rock3);
-    this.rock3.body.immovable = true;
+    this.rock3.enableBody = true;
 
     this.rock4 = this.add.sprite(250, 320, 'rock');
     this.physics.arcade.enable(this.rock4);
@@ -285,6 +290,10 @@ export default class Splash extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.princess)) {
       this.addText13();
     }
+    if (this.physics.arcade.collide(this.player, this.coin)) {
+      this.coin.kill();
+      this.addText14();
+    }
   }
 
   addText1 () {
@@ -362,6 +371,12 @@ export default class Splash extends Phaser.State {
     this.story.destroy();
     this.story = this.make.text(
       200, 10, 'Hmm...looks like I saved the day.  Time to dance!',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
+  }
+  addText14 () {
+    this.story.destroy();
+    this.story = this.make.text(
+      200, 10, 'Hmm...looks like a bitcoin.  Nice.',
       { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
 
