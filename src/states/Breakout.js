@@ -13,6 +13,8 @@ export default class Breakout extends Phaser.State {
     this.load.audio('hit', 'assets/audio/nes-05-03.wav');
     this.load.audio('music', 'assets/audio/StElmo.mp3');
     this.load.audio('boom', 'assets/Menu/explosion.wav');
+    this.load.audio('win', 'assets/Menu/ta-da.wav');
+
   }
 
   create () {
@@ -21,6 +23,8 @@ export default class Breakout extends Phaser.State {
     this.hitSound = this.add.audio('hit');
     this.music = this.add.audio('music');
     this.dieSound = this.add.audio('boom');
+    this.winSound = this.add.audio('win');
+
     this.music.play();
     this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#999' });
     // Start the Arcade physics system (for movements and collisions)
@@ -80,6 +84,8 @@ export default class Breakout extends Phaser.State {
     if (this.score === 10) {
       this.state.start('BreakoutWin');
       window.game.breakoutCompleted();
+      this.winSound.play();
+      this.music.stop();
     }
   }
   // New function that removes a brick from the game

@@ -13,11 +13,17 @@ export default class Luigi extends Phaser.State {
     this.load.image('ground', 'assets/luigi/platform.png');
     this.load.image('star', 'assets/luigi/star.png');
     this.load.spritesheet('dude', 'assets/luigi/dude.png', 32, 48);
+    this.load.audio('win', 'assets/Menu/ta-da.wav');
+    this.load.audio('jump', 'assets/audio/jump_07.wav');
+
   }
 
   create () {
     //  We're going to be using physics, so enable the Arcade Physics system
     this.physics.startSystem(Phaser.Physics.ARCADE);
+    this.winSound = this.add.audio('win');
+    this.jumpSound = this.add.audio('jump');
+
 
     //  A simple background for our game
     this.add.sprite(0, 0, 'sky');
@@ -122,14 +128,17 @@ export default class Luigi extends Phaser.State {
          //  Allow the player to jump if they are touching the ground.
       if (this.cursors.up.isDown && this.player.body.touching.down && this.hitPlatform) {
         this.player.body.velocity.y = -300;
+        this.jumpSound.play();
+
       }
       if (this.cursors.down.isDown) {
-        this.player.body.velocity.y = 500;
+        this.player.body.velocity.y = 400;
       }
       this.physics.arcade.collide(this.stars, this.platforms);
       this.physics.arcade.overlap(this.player, this.stars, collectStar, null, this);
     } else {
       this.goToHome();
+      this.winSound.play();
       this.playerUpdate();
     }
     function collectStar (player, star) {
