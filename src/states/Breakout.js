@@ -75,7 +75,7 @@ export default class Breakout extends Phaser.State {
       this.dieSound.play();
       this.score = 0;
     }
-    if (this.score === 100) {
+    if (this.score === 300) {
       window.game.breakoutHighScore = this.score;
       this.state.start('BreakoutWin');
       window.game.breakoutScoreUpdate();
