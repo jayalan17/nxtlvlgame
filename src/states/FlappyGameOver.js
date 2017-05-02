@@ -39,7 +39,7 @@ export default class extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
-    this.add.text(275, 325, 'You need 20 points to earn the key!',
+    this.add.text(275, 350, 'You need 20 points to earn the key!',
     { fontSize: '16px', fill: 'black' });
     this.music = this.add.audio('mainTitle');
     this.music.play();
@@ -59,6 +59,19 @@ export default class extends Phaser.State {
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
+
+    if (window.game.flappyCounter == 1) {
+      this.fs = this.add.text(this.world.centerX, 325, 'New High Score: ' + window.game.flappyHighScore + "!",
+      { fontSize: '20px', fill: 'black', align: 'center' });
+      this.fs.anchor.set(0.5);
+      window.game.flappyCounter = 0;
+    }
+    else {
+      this.fs = this.add.text(this.world.centerX, 325, 'You did not set a High Score.  Your Best Score: ' + window.game.flappyHighScore + ".",
+      { fontSize: '20px', fill: 'black', align: 'center' });
+      this.fs.anchor.set(0.5);
+      window.game.flappyCounter = 0;
+    }
   }
 
   update () {

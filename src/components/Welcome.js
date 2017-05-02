@@ -65,7 +65,7 @@ class Welcome extends React.Component {
             <Form inline>
               {this.loginNotice()}
               <FormGroup controlId="formInlineName">
-                <ControlLabel>Advance to NxtLvl...</ControlLabel>
+                <ControlLabel>Advance to NxtLvl...&nbsp;&nbsp;</ControlLabel>
                 <FormControl
                   onChange={this.handleNameChange}
                   type="text"

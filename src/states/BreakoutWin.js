@@ -38,7 +38,7 @@ export default class Splash extends Phaser.State {
 
     this.add.existing(this.titleText);
     this.bs = this.add.text(this.world.centerX, 150, 'You Rocked Brickin.  High Score: ' + window.game.breakoutHighScore,
-    { fontSize: '20px', fill: 'black', align: 'center' });
+    { fontSize: '20px', fill: 'gold', align: 'center' });
     this.bs.anchor.set(0.5);
 
 

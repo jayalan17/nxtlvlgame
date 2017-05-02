@@ -73,7 +73,7 @@ class NewUser extends React.Component {
         <div style={parentStyle}>
           <Well style={wellStyle} bsSize="large">
             <Form inline>
-              <ControlLabel>Create new Player...</ControlLabel>
+              <ControlLabel>Create new Player...&nbsp;&nbsp;</ControlLabel>
               <FormGroup controlId="formInlineName">
                 <FormControl
                   onChange={this.handleNameChange}

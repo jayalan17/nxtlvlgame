@@ -57,6 +57,11 @@ export default class Flappy extends Phaser.State {
       // If the bird is out of the screen (too high or too low)
       // Call the 'restartGame' function
     } else if (this.bird.y < 5 || this.bird.y > 800) {
+      if (this.score > window.game.flappyHighScore){
+        window.game.flappyHighScore = this.score;
+        window.game.flappyCounter = 1;
+        window.game.flappyScoreUpdate();
+      }
       this.restartGame();
     }
     this.physics.arcade.overlap(
@@ -101,6 +106,8 @@ export default class Flappy extends Phaser.State {
     this.pipe.outOfBoundsKill = true;
   }
   gameWin () {
+    window.game.flappyHighScore = this.score;
+    window.game.flappyScoreUpdate();
     this.state.start('FlappyWin');
     this.music.stop();
     window.game.flappyCompleted();
