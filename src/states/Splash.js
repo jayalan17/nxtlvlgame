@@ -9,6 +9,7 @@ export default class Splash extends Phaser.State {
 
   preload () {
     this.load.image('coin', 'assets/splash/bitcoin.png');
+    this.load.image('deer', 'assets/splash/deer.png');
     this.load.image('shovel', 'assets/splash/shovel.png');
     this.load.image('dude2', 'assets/splash/sprite2.png');
     this.load.image('seeds', 'assets/splash/seeds.png');
@@ -91,6 +92,10 @@ export default class Splash extends Phaser.State {
     this.coin = this.add.sprite(740, 280, 'coin');
     this.physics.arcade.enable(this.coin);
     this.coin.body.immovable = true;
+
+    this.deer = this.add.sprite(540, 200, 'deer');
+    this.physics.arcade.enable(this.deer);
+    this.deer.body.immovable = true;
 
     this.log = this.add.sprite(540, 220, 'log');
     this.physics.arcade.enable(this.log);
