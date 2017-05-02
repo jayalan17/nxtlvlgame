@@ -34,6 +34,8 @@ export default class Splash extends Phaser.State {
     this.load.image('map', 'assets/splash/grass.png');
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.audio('music', 'assets/audio/HellsSymphony.mp3');
+    this.load.audio('helpMe', 'assets/splash/Help-Me.wav');
+    this.load.audio('shallwe', 'assets/audio/playgames.wav');
 
     console.log(window.game.luigiComplete);
     console.log(window.game.tankComplete);
@@ -46,6 +48,7 @@ export default class Splash extends Phaser.State {
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true;
     this.background = this.add.sprite(0, 0, 'map');
+
 
     this.story = this.make.text(200, 10, 'What a vibrant valley...so much to explore!',
     { fontSize: '16px', fill: 'orange', font: 'herculanum', textAlign: 'center' });
@@ -108,6 +111,8 @@ export default class Splash extends Phaser.State {
 
     this.music = this.add.audio('music');
     this.music.play();
+    this.princessSound = this.add.audio('helpMe');
+    this.playSound = this.add.audio('shallwe');
 
     if (window.game.tankComplete) {
       this.bird = this.add.sprite(650, 100, 'bird');
@@ -185,6 +190,7 @@ export default class Splash extends Phaser.State {
     }
     if (this.physics.arcade.collide(this.player, this.prison)) {
       this.addText2();
+      this.princessSound.play();
     }
     if (this.physics.arcade.collide(this.player, this.tank)) {
       this.goToTank();
@@ -194,6 +200,7 @@ export default class Splash extends Phaser.State {
     }
     if (this.physics.arcade.collide(this.player, this.luigi)) {
       this.goToLuigi();
+      this.playSound.play();
     }
     if (this.physics.arcade.collide(this.player, this.brick)) {
       this.goToBreakout();
