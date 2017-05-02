@@ -11,10 +11,11 @@ export default class Luigi extends Phaser.State {
   preload () {
     this.load.image('sky', 'assets/luigi/kqmACO.jpg');
     this.load.image('ground', 'assets/luigi/platform.png');
-    this.load.image('star', 'assets/luigi/star.png');
+    this.load.image('star', 'assets/splash/bitcoin.png');
     this.load.spritesheet('dude', 'assets/luigi/dude.png', 32, 48);
     this.load.audio('win', 'assets/Menu/ta-da.wav');
     this.load.audio('jump', 'assets/audio/jump_07.wav');
+    this.load.audio('money', 'assets/luigi/cha-ching.wav');
 
   }
 
@@ -23,6 +24,7 @@ export default class Luigi extends Phaser.State {
     this.physics.startSystem(Phaser.Physics.ARCADE);
     this.winSound = this.add.audio('win');
     this.jumpSound = this.add.audio('jump');
+    this. moneySound = this.add.audio('money');
 
 
     //  A simple background for our game
@@ -143,6 +145,7 @@ export default class Luigi extends Phaser.State {
     }
     function collectStar (player, star) {
       star.kill();
+      this.moneySound.play();
       this.score += 10;
       this.scoreText.text = 'Score: ' + this.score;
     }
