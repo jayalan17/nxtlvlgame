@@ -31,7 +31,7 @@ export default class Flappy extends Phaser.State {
     // Set the physics system
     this.physics.startSystem(Phaser.Physics.ARCADE);
     // Display the bird at the position x=100 and y=245
-    this.bird = this.add.sprite(100, 245, 'bird');
+    this.bird = this.add.sprite(100, 50, 'bird');
     // Add physics to the bird
     // Needed for: movements, gravity, collisions, etc.
     this.physics.arcade.enable(this.bird);

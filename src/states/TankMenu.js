@@ -12,7 +12,7 @@ export default class TankMenu extends Phaser.State {
   init () {
     this.titleText = this.make.text(this.world.centerX, 100, "TANKIN'", {
       font: 'bold 60pt TheMinion',
-      fill: '#FDFFB5',
+      fill: '#04701a',
       align: 'center'
     });
 
@@ -34,10 +34,10 @@ export default class TankMenu extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
-    this.add.text(75, 200, 'INSTRUCTIONS: \nShoot All The Targets\nTo Receive Your First Key',
-    { fontSize: '16px', fill: 'black' });
-    this.add.text(500, 200, 'CONTROLS:\nUse arrow keys.\nUP or DOWN to adjust turret\nLEFT or RIGHT to adjust power level\nSPACEBAR to fire\n<esc> to Return To Map',
-    { fontSize: '16px', fill: 'black' });
+    this.add.text(75, 200, 'INSTRUCTIONS: \nShoot All The Targets\nTo Advance.',
+    { fontSize: '20px', fill: 'black' });
+    this.add.text(475, 200, 'CONTROLS:\nUse arrow keys.\nUP or DOWN to adjust turret\nLEFT or RIGHT to adjust power level\nSPACEBAR to fire\n<esc> to Return To Map',
+    { fontSize: '20px', fill: 'black' });
 
     this.music = this.add.audio('music');
     this.music.play();
