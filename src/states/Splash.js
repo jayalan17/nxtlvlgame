@@ -36,6 +36,8 @@ export default class Splash extends Phaser.State {
     this.load.audio('music', 'assets/audio/HellsSymphony.mp3');
     this.load.audio('helpMe', 'assets/splash/Help-Me.wav');
     this.load.audio('shallwe', 'assets/audio/playgames.wav');
+    this.load.audio('pickup', 'assets/audio/powerup.wav');
+    this.load.audio('farmend', 'assets/Menu/ta-da.wav');
 
     console.log(window.game.luigiComplete);
     console.log(window.game.tankComplete);
@@ -113,6 +115,8 @@ export default class Splash extends Phaser.State {
     this.music.play();
     this.princessSound = this.add.audio('helpMe');
     this.playSound = this.add.audio('shallwe');
+    this.pickUpSound = this.add.audio('pickup');
+    this.farmEnd = this.add.audio('farmend');
 
     if (window.game.tankComplete) {
       this.bird = this.add.sprite(650, 100, 'bird');
@@ -275,7 +279,6 @@ export default class Splash extends Phaser.State {
       }
     }
     if (this.physics.arcade.collide(this.player, this.dirt3)) {
-      this.addText11();
       if (window.game.shovelGot == true && window.game.seedsGot == true && window.game.waterGot == true) {
         window.game.counter = 3;
         window.game.farmingCompleted();
@@ -287,6 +290,7 @@ export default class Splash extends Phaser.State {
         this.player = this.add.sprite(520, 80, 'dude');
         this.physics.arcade.enable(this.player);
         this.player.body.collideWorldBounds = true;
+        this.farmEnd.play();
       }
     }
     if (this.physics.arcade.collide(this.player, this.princess)) {
@@ -332,6 +336,8 @@ export default class Splash extends Phaser.State {
     this.story = this.make.text(
       200, 10, 'Hmm...looks like I found a shovel.',
       { fontSize: '16px', fill: 'orange', font: 'herculanum' });
+    this.pickUpSound.play();
+
   }
   addText7 () {
     this.story.destroy();
@@ -344,11 +350,13 @@ export default class Splash extends Phaser.State {
     this.story = this.make.text(
       200, 10, 'Hmm...looks like I found a magic seed!',
       { fontSize: '16px', fill: 'orange', font: 'herculanum' });
+    this.pickUpSound.play();
   }
   addText9 () {
     this.story.destroy();
     this.story = this.make.text(200, 10, 'Hmm...looks like I found a watering can.',
     { fontSize: '16px', fill: 'orange', font: 'herculanum' });
+    this.pickUpSound.play();
   }
   addText10 () {
     this.story.destroy();

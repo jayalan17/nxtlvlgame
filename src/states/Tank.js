@@ -6,7 +6,7 @@ export default class Tank extends Phaser.State {
   constructor () {
     super();
     this.power = 300;
-    this.targetCount = 4;
+    this.targetCount = 5;
     this.tankScore = 0;
   }
 
@@ -134,7 +134,7 @@ export default class Tank extends Phaser.State {
 
   resetGame () {
     this.targets.removeAll(true);
-    this.targetCount = 4;
+    this.targetCount = 5;
     this.targets.create(310, 490, 'target');
     this.targets.create(420, 490, 'target');
     this.targets.create(530, 490, 'target');

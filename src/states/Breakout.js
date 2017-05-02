@@ -7,7 +7,7 @@ export default class Breakout extends Phaser.State {
   }
   preload () {
     this.load.image('paddle', 'assets/breakout/paddle.png');
-    this.load.image('brick', 'assets/breakout/brick.png');
+    this.load.image('brick', 'assets/luigi/star.png');
     this.load.image('sky', 'assets/breakout/starsBG.png');
     this.load.image('ball', 'assets/breakout/ball.png');
     this.load.audio('hit', 'assets/audio/nes-05-03.wav');
