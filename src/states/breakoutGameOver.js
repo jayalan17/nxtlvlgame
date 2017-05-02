@@ -58,6 +58,19 @@ export default class Splash extends Phaser.State {
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
+
+    if (window.game.breakoutCounter == 1) {
+      this.bs = this.add.text(this.world.centerX, 325, 'New High Score: ' + window.game.breakoutHighScore + "!",
+      { fontSize: '20px', fill: 'black', align: 'center' });
+      this.bs.anchor.set(0.5);
+      window.game.breakoutCounter = 0;
+    }
+    else {
+      this.bs = this.add.text(this.world.centerX, 325, 'Did not beat High Score.  Your Best Score: ' + window.game.breakoutHighScore + ".",
+      { fontSize: '20px', fill: 'black', align: 'center' });
+      this.bs.anchor.set(0.5);
+      window.game.breakoutCounter = 0;
+    }
   }
 
   update () {

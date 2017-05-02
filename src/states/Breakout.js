@@ -76,12 +76,17 @@ export default class Breakout extends Phaser.State {
     this.physics.arcade.collide(this.ball, this.bricks, this.hit, null, this);
     // Restart the game if the ball is below the paddle
     if (this.ball.y > this.paddle.y) {
+      if (this.score > window.game.breakoutHighScore){
+        window.game.breakoutHighScore = this.score;
+        window.game.breakoutCounter = 1;
+        window.game.breakoutScoreUpdate();
+      }
       this.state.start('BreakoutGameOver');
       this.music.stop();
       this.dieSound.play();
       this.score = 0;
     }
-    if (this.score === 30) {
+    if (this.score === 300) {
       this.state.start('BreakoutWin');
       window.game.breakoutCompleted();
       this.winSound.play();

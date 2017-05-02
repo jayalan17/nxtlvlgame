@@ -117,7 +117,7 @@ export default class Flappy extends Phaser.State {
       if (i !== this.hole && i !== this.hole + 1) {
         this.addOnePipe(800, i * 60 + 10);
       }
-      if (this.score > 5) {
+      if (this.score > 20) {
         this.gameWin();
         this.winSound.play();
       }

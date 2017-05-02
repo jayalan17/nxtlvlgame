@@ -160,6 +160,22 @@ router.route('/changeCounter')
       });
     });
   });
+router.route('/changeBreakoutScore')
+  .put(function(req, res, next){
+    User.findOne({
+      name: req.body.name
+    }, function(err, user) {
+      if (err) next(err);
+      user.breakoutHighScore = req.body.breakoutHighScore;
+      user.save(function(err){
+        if(err){
+          next(err);
+        } else {
+          res.json({success: "breakoutHighScore has been updated"});
+        }
+      });
+    });
+  });
 
 router.route ('/getUserStatus/:userName')
   .get(function(req, res){

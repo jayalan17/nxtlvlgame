@@ -34,6 +34,10 @@ export default class BreakoutMenu extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
+    this.bs = this.add.text(this.world.centerX, 150, 'Your Brickin High Score: ' + window.game.breakoutHighScore,
+    { fontSize: '20px', fill: 'black', align: 'center' });
+    this.bs.anchor.set(0.5);
+
     this.add.text(75, 200, 'INSTRUCTIONS: \nBreak All Of The Bricks \nTo Advance',
     { fontSize: '20px', fill: 'black' });
     this.add.text(475, 200, 'CONTROLS:\nUse arrow keys.\nLEFT or RIGHT to move the paddle\n<esc> to Return To Map',
@@ -62,6 +66,7 @@ export default class BreakoutMenu extends Phaser.State {
     if (this.escape.isDown) {
       this.goToHome();
     }
+
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
     if (this.cursors.left.isDown) {

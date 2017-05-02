@@ -56,9 +56,13 @@ class NewUser extends React.Component {
     this.props.userStore.newUserCreated = false;
     this.props.userStore.userAlreadyExists = false;
     const bg = require('../img/frontBackground-min.jpg');
-    const parentStyle = {height:"100vh", width:"100vw", background: "url("+bg+") no-repeat center fixed", backgroundSize: "cover"};
-    const wellStyle = {float: "right", top: "0px", bottom: "0px", left: "0px", right: "0px", margin: "auto", opacity: ".95", backgroundBlendMode: "overlay", height: "80px", width: "550px"};
-    const logoStyle = {float: "left", top: "0px", left: "0px", zIndex: "100", height: "100px", width: "400px"};
+    const parentStyle = {height:"100vh", width:"100vw",
+      background: "url("+bg+") no-repeat center fixed", backgroundSize: "cover"};
+    const wellStyle = {float: "right", top: "0px", bottom: "0px", left: "0px", right: "0px",
+      margin: "auto", opacity: ".95", backgroundBlendMode: "overlay",
+      height: "80px", width: "700px"};
+    const logoStyle = {float: "left", top: "0px", left: "0px", zIndex: "100",
+      height: "100px", width: "400px"};
     const loginLinkStyle = {float: "right"};
 
     return (
@@ -69,6 +73,7 @@ class NewUser extends React.Component {
         <div style={parentStyle}>
           <Well style={wellStyle} bsSize="large">
             <Form inline>
+              <ControlLabel>Create new Player...</ControlLabel>
               <FormGroup controlId="formInlineName">
                 <FormControl
                   onChange={this.handleNameChange}

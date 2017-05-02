@@ -31,6 +31,7 @@ export default class Splash extends Phaser.State {
     this.load.image('padlock2', 'assets/splash/padlock2.png');
     this.load.image('padlock3', 'assets/splash/padlock4.png');
     this.load.image('rock', 'assets/splash/rock.png');
+    this.load.image('log', 'assets/splash/log.png');
     this.load.image('map', 'assets/splash/grass.png');
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.audio('music', 'assets/audio/HellsSymphony.mp3');
@@ -87,6 +88,10 @@ export default class Splash extends Phaser.State {
     this.coin = this.add.sprite(740, 280, 'coin');
     this.physics.arcade.enable(this.coin);
     this.coin.body.immovable = true;
+
+    this.log = this.add.sprite(540, 220, 'log');
+    this.physics.arcade.enable(this.log);
+    this.log.body.immovable = true;
 
     this.rock3 = this.add.sprite(740, 280, 'rock');
     this.physics.arcade.enable(this.rock3);
@@ -288,6 +293,9 @@ export default class Splash extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.coin)) {
       this.addText14();
     }
+    if (this.physics.arcade.collide(this.player, this.log)) {
+      this.addText15();
+    }
   }
 
   addText1 () {
@@ -371,6 +379,12 @@ export default class Splash extends Phaser.State {
     this.story.destroy();
     this.story = this.make.text(
       200, 10, 'Hmm...looks like a bitcoin.  Nice.',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
+  }
+  addText15 () {
+    this.story.destroy();
+    this.story = this.make.text(
+      200, 10, 'A log.',
       { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
 

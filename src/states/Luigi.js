@@ -105,7 +105,7 @@ export default class Luigi extends Phaser.State {
 
     if (this.escape.isDown) {
       this.goToHome();
-    } else if (this.score < 10) {
+    } else if (this.score < 120) {
        //  Collide the player and the stars with the platforms
       this.hitPlatform = this.physics.arcade.collide(this.player, this.platforms);
        //  Reset the players velocity (movement)
