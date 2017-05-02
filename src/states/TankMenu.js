@@ -36,7 +36,7 @@ export default class TankMenu extends Phaser.State {
     this.add.existing(this.titleText);
     this.add.text(75, 200, 'INSTRUCTIONS: \nShoot All The Targets\nTo Advance.',
     { fontSize: '20px', fill: 'black' });
-    this.add.text(475, 200, 'CONTROLS:\nUse arrow keys.\nUP or DOWN to adjust turret\nLEFT or RIGHT to adjust power level\nSPACEBAR to fire\n<esc> to Return To Map',
+    this.add.text(475, 200, 'CONTROLS:\nUse Arrow Keys.\nUP or DOWN to adjust turret\nLEFT or RIGHT to adjust power level\nSPACEBAR to fire\n<esc> to Return To Map',
     { fontSize: '20px', fill: 'black' });
 
     this.music = this.add.audio('music');
