@@ -51,10 +51,9 @@ class Welcome extends React.Component {
     const wellStyle = {float: "right", top: "0px",
       bottom: "0px", left: "0px", right: "0px", margin: "auto",
       opacity: ".95", backgroundBlendMode: "overlay",
-      height: "75px", width: "800px"};
+      height: "80px", width: "550px"};
     const logoStyle = {float: "left", top: "0px",
       left: "525px", zIndex: "100", height: "100px", width: "400px"};
-    const newUserLinkStyle = {float: "right"};
 
     return (
       <div>
@@ -69,30 +68,28 @@ class Welcome extends React.Component {
                 <FormControl
                   onChange={this.handleNameChange}
                   type="text"
-                  placeholder="username"
-                />
+                  placeholder="username"/>
                 <FormControl
                   onChange={this.handlePasswordChange}
                   type="password"
-                  placeholder="password"
-                />
-                </FormGroup>
-                <div style={newUserLinkStyle}>
-                  <Link
-                    to ="/NewUser"
-                    style={{color: "red"}}
-                  >New User</Link>
-                </div>
-                <Link
-                  to="/Welcome">
+                  placeholder="password"/>
+              </FormGroup>
+              <Link to="/Welcome">
                 <Button
                   onClick={this.handleLoginUser}
                   type="submit"
-                  className="btn btn-danger"
-                >Begin</Button></Link>
+                  className="btn btn-danger">Begin
+                </Button>
+              </Link>
+              <Link to="/NewUser">
+                <Button
+                  type="submit"
+                  className="btn btn-danger">New User
+                </Button>
+              </Link>
             </Form>
           </Well>
-       </div>
+        </div>
       </div>
     );
   }

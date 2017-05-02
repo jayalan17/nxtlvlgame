@@ -80,6 +80,86 @@ router.route('/changeBreakout')
       });
     });
   });
+router.route('/changeFarming')
+  .put(function(req, res, next){
+    User.findOne({
+      name: req.body.name
+    }, function(err, user) {
+      if (err) next(err);
+      user.farmingCompleted = req.body.farmingCompleted;
+      user.save(function(err){
+        if(err){
+          next(err);
+        } else {
+          res.json({success: "Farming has been completed"});
+        }
+      });
+    });
+  });
+router.route('/changeShovel')
+  .put(function(req, res, next){
+    User.findOne({
+      name: req.body.name
+    }, function(err, user) {
+      if (err) next(err);
+      user.shovelGot = req.body.shovelGot;
+      user.save(function(err){
+        if(err){
+          next(err);
+        } else {
+          res.json({success: "Shovel has been completed"});
+        }
+      });
+    });
+  });
+router.route('/changeSeeds')
+  .put(function(req, res, next){
+    User.findOne({
+      name: req.body.name
+    }, function(err, user) {
+      if (err) next(err);
+      user.seedsGot = req.body.seedsGot;
+      user.save(function(err){
+        if(err){
+          next(err);
+        } else {
+          res.json({success: "Seeds has been completed"});
+        }
+      });
+    });
+  });
+router.route('/changeWater')
+  .put(function(req, res, next){
+    User.findOne({
+      name: req.body.name
+    }, function(err, user) {
+      if (err) next(err);
+      user.waterGot = req.body.waterGot;
+      user.save(function(err){
+        if(err){
+          next(err);
+        } else {
+          res.json({success: "Water has been completed"});
+        }
+      });
+    });
+  });
+router.route('/changeCounter')
+  .put(function(req, res, next){
+    User.findOne({
+      name: req.body.name
+    }, function(err, user) {
+      if (err) next(err);
+      user.counter = req.body.counter;
+      user.save(function(err){
+        if(err){
+          next(err);
+        } else {
+          res.json({success: "Counter has been updated"});
+        }
+      });
+    });
+  });
 
 router.route ('/getUserStatus/:userName')
   .get(function(req, res){

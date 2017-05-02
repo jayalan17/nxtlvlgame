@@ -86,6 +86,10 @@ class Game extends Phaser.Game {
     console.log('Breakout: ' + this.breakoutComplete);
     this.updateBreakout(this.user, true);
   }
+  farmingCompleted () {
+    this.farmingComplete = true;
+    this.updateFarming(this.user, true);
+  }
 
   updateLuigi (name, luigiCompleted){
     fetch('/api/changeLuigi', {
@@ -139,6 +143,20 @@ class Game extends Phaser.Game {
       })
     });
   }
+  updateFarming (name, farmingCompleted){
+    fetch('/api/changeFarming', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        farmingCompleted: farmingCompleted
+      })
+    });
+  }
+
   GetStatus(x){
     fetch('/api/getUserStatus/' + this.user, {
       method:"GET",
@@ -154,30 +172,10 @@ class Game extends Phaser.Game {
       this.tankComplete = data.tankCompleted;
       this.flappyComplete = data.flappyCompleted;
       this.breakoutComplete = data.breakoutCompleted;
+      this.farmingComplete = data.farmingCompleted;
       x();
     });
   }
 }
-
-// .then(data => this.weather = {conditions: data.weather[0].description, temp: data.main.temp, windSpeed: data.wind.speed, windDir: data.wind.deg });
-
-// .then(function(result) {
-    // return result.json();
-    // th
-    // })
-
-// getUserFromDb() {
- //   fetch("/user/userData",{
- //     method:"GET",
- //     headers: {
- //       "Accept": "application/json",
- //       "Content-Type": "application/json",
- //       'Authorization': 'Bearer ' + this.getCookie('token')
- //     },
- //   })
- //   .then(result => result.json())
- //   .then(data => this.pets = data.pets);
- // }
-
 
 export default Game;

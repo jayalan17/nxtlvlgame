@@ -28,6 +28,8 @@ export default class Splash extends Phaser.State {
     this.load.image('brick', 'assets/splash/brick.png');
     this.load.image('luigi', 'assets/splash/mushroom.png');
     this.load.image('padlock', 'assets/splash/padlock.png');
+    this.load.image('padlock2', 'assets/splash/padlock2.png');
+    this.load.image('padlock3', 'assets/splash/padlock4.png');
     this.load.image('rock', 'assets/splash/rock.png');
     this.load.image('map', 'assets/splash/grass.png');
     this.load.image('dude', 'assets/splash/sprite.png');
@@ -78,18 +80,11 @@ export default class Splash extends Phaser.State {
     this.physics.arcade.enable(this.water);
     this.water.body.immovable = true;
 
-    // this.rocks = this.add.group();
-    // this.rocks.enableBody = true;
-    // for (let i = 0; i < 10; i++) {
-    //   this.rock = this.rocks.create(0, i * 40, 'rock');
-    //   this.rock.body.immovable = true;
-    // }
-
     this.rock2 = this.add.sprite(100, 240, 'rock');
     this.physics.arcade.enable(this.rock2);
     this.rock2.body.immovable = true;
 
-    this.coin = this.add.sprite(750, 280, 'coin');
+    this.coin = this.add.sprite(740, 280, 'coin');
     this.physics.arcade.enable(this.coin);
     this.coin.body.immovable = true;
 
@@ -119,20 +114,11 @@ export default class Splash extends Phaser.State {
       this.physics.arcade.enable(this.bird);
       this.bird.body.immovable = true;
     } else {
-      this.padlock2 = this.add.sprite(650, 100, 'padlock');
+      this.padlock2 = this.add.sprite(650, 100, 'padlock2');
       this.physics.arcade.enable(this.padlock2);
       this.padlock2.body.immovable = true;
     }
 
-    // if (window.game.farmingComplete) {
-    //   this.luigi = this.add.sprite(100, 400, 'luigi');
-    //   this.physics.arcade.enable(this.luigi);
-    //   this.luigi.body.immovable = true;
-    // } else {
-    //   this.padlock4 = this.add.sprite(100, 400, 'padlock');
-    //   this.physics.arcade.enable(this.padlock4);
-    //   this.padlock4.body.immovable = true;
-    // }
     this.luigi = this.add.sprite(100, 400, 'luigi');
     this.physics.arcade.enable(this.luigi);
     this.luigi.body.immovable = true;
@@ -143,7 +129,7 @@ export default class Splash extends Phaser.State {
       this.physics.arcade.enable(this.brick);
       this.brick.body.immovable = true;
     } else {
-      this.padlock3 = this.add.sprite(650, 400, 'padlock');
+      this.padlock3 = this.add.sprite(650, 400, 'padlock3');
       this.physics.arcade.enable(this.padlock3);
       this.padlock3.body.immovable = true;
     }
@@ -212,11 +198,19 @@ export default class Splash extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.brick)) {
       this.goToBreakout();
     }
+    if (window.game.farmingComplete){
+      this.shovel.kill();
+      this.seeds.kill();
+      this.water.kill();
+      this.tree = this.add.sprite(430, 20, 'tree');
+      this.physics.arcade.enable(this.tree);
+      this.tree.body.immovable = true;
+    }
     if (this.physics.arcade.collide(this.player, this.shovel)) {
       window.game.shovelGot = true;
       this.shovel.kill();
       this.player.kill();
-      this.player = this.add.sprite(20, 200, 'dude2');
+      this.player = this.add.sprite(40, 180, 'dude2');
       this.physics.arcade.enable(this.player);
       this.player.body.collideWorldBounds = true;
       this.addText6();
@@ -227,7 +221,7 @@ export default class Splash extends Phaser.State {
         window.game.seedsGot = true;
         this.seeds.kill();
         this.player.kill();
-        this.player = this.add.sprite(130, 450, 'dude3');
+        this.player = this.add.sprite(170, 410, 'dude3');
         this.physics.arcade.enable(this.player);
         this.player.body.collideWorldBounds = true;
         this.addText8();
@@ -277,6 +271,7 @@ export default class Splash extends Phaser.State {
       this.addText11();
       if (window.game.shovelGot == true && window.game.seedsGot == true && window.game.waterGot == true) {
         window.game.counter = 3;
+        window.game.farmingCompleted();
         this.dirt3.kill();
         this.tree = this.add.sprite(430, 20, 'tree');
         this.physics.arcade.enable(this.tree);

@@ -27,7 +27,7 @@ export default class Splash extends Phaser.State {
     this.load.image('brick', 'assets/splash/brick.png');
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('dude', 'assets/splash/sprite.png');
-    this.load.image('key', 'assets/Menu/key.png');
+    this.load.image('key', 'assets/Menu/key5.png');
     this.load.image('background', 'assets/breakout/starsBG.png');
     this.load.audio('getKey', 'assets/Menu/getKey.wav')
   }

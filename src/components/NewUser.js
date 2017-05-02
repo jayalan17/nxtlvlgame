@@ -57,41 +57,39 @@ class NewUser extends React.Component {
     this.props.userStore.userAlreadyExists = false;
     const bg = require('../img/frontBackground-min.jpg');
     const parentStyle = {height:"100vh", width:"100vw", background: "url("+bg+") no-repeat center fixed", backgroundSize: "cover"};
-    const wellStyle = {float: "right", top: "0px", bottom: "0px", left: "0px", right: "0px", margin: "auto", opacity: ".95", backgroundBlendMode: "overlay", height: "100px", width: "400px"};
+    const wellStyle = {float: "right", top: "0px", bottom: "0px", left: "0px", right: "0px", margin: "auto", opacity: ".95", backgroundBlendMode: "overlay", height: "80px", width: "550px"};
     const logoStyle = {float: "left", top: "0px", left: "0px", zIndex: "100", height: "100px", width: "400px"};
     const loginLinkStyle = {float: "right"};
 
     return (
       <div>
         <div>
-        <img
-          style={logoStyle}
-          src={require('../img/rp1.png')}/>
+          <img style={logoStyle} src={require('../img/rp1.png')}/>
         </div>
         <div style={parentStyle}>
           <Well style={wellStyle} bsSize="large">
-            <Form>
-                <legend>Create Player1</legend>
-                <FormGroup controlId="formInlineName">
-                  <FormControl
-                    onChange={this.handleNameChange}
-                    type="text" placeholder="username" />
-                </FormGroup>
-                <FormGroup controlId="formInlinePassword">
-                  <FormControl
-                    onChange={this.handlePasswordChange}
-                    type="password" placeholder="password" />
-                </FormGroup>
-
-                <div style={loginLinkStyle}>
-                  <Link to="/Welcome" style={{color: "red"}}>Login</Link>
-                </div>
+            <Form inline>
+              <FormGroup controlId="formInlineName">
+                <FormControl
+                  onChange={this.handleNameChange}
+                  type="text" placeholder="username" />
+                <FormControl
+                  onChange={this.handlePasswordChange}
+                  type="password" placeholder="password"/>
+              </FormGroup>
+              <Button
+                onClick={this.handleNewUser}
+                type="submit" className="btn btn-danger">Enter
+              </Button>
+              <Link to="/Welcome">
                 <Button
-                  onClick={this.handleNewUser}
-                  type="submit" className="btn btn-danger">Enter</Button>
+                  type="submit"
+                  className="btn btn-danger">Login
+                </Button>
+              </Link>
             </Form>
           </Well>
-       </div>
+        </div>
       </div>
     );
   }

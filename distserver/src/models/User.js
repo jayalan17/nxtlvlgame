@@ -31,6 +31,26 @@ var UserSchema = new _mongoose2.default.Schema({
     type: Boolean,
     default: false
   },
+  farmingCompleted: {
+    type: Boolean,
+    default: false
+  },
+  shovelGot: {
+    type: Boolean,
+    default: false
+  },
+  seedsGot: {
+    type: Boolean,
+    default: false
+  },
+  waterGot: {
+    type: Boolean,
+    default: false
+  },
+  counter: {
+    type: Number,
+    default: 0
+  },
   flappyHighScore: {
     type: Number
   },

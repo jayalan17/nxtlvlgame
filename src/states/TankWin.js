@@ -27,7 +27,7 @@ export default class extends Phaser.State {
     this.load.image('tank', 'assets/Menu/tank.png');
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('dude', 'assets/splash/sprite.png');
-    this.load.image('key', 'assets/Menu/key.png');
+    this.load.image('key', 'assets/Menu/key2.png');
     this.load.image('background', 'assets/tank/background2.jpg');
     this.load.audio('getKey', 'assets/Menu/getKey.wav')
 

@@ -23,6 +23,10 @@ let UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  farmingCompleted: {
+    type: Boolean,
+    default: false
+  },
   flappyHighScore: {
     type: Number
   },
