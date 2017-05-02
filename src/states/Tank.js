@@ -28,8 +28,10 @@ export default class Tank extends Phaser.State {
     this.load.image('background1', 'assets/tank/background2.jpg');
     this.load.image('flame', 'assets/tank/flame.png');
     this.load.image('target', 'assets/tank/target.png');
-    this.load.audio('hit', 'assets/audio/nes-05-03.wav');
+    this.load.audio('shoot', 'assets/audio/nes-05-03.wav');
     this.load.audio('win', 'assets/Menu/ta-da.wav');
+    this.load.audio('boom', 'assets/Menu/explosion.wav');
+
 
   //  Note: Graphics from Amiga Tanx Copyright 1991 Gary Roberts
   }
@@ -37,8 +39,10 @@ export default class Tank extends Phaser.State {
   create () {
     //  Simple but pretty background
     this.background = this.add.sprite(0, 0, 'background1');
-    this.hitSound = this.add.audio('hit');
+    this.hitSound = this.add.audio('boom');
     this.winSound = this.add.audio('win');
+    this.shootSound = this.add.audio('shoot')
+
 
     //  Something to shoot at :)
     this.targets = this.add.group(this.game.world, 'targets', false, true, Phaser.Physics.ARCADE);
@@ -79,7 +83,7 @@ export default class Tank extends Phaser.State {
   }
 
   fire () {
-    this.hitSound.play();
+    this.shootSound.play();
     if (this.bullet.exists) {
       return;
     }
@@ -107,6 +111,7 @@ export default class Tank extends Phaser.State {
 
   hitTarget (bullet, target) {
     target.kill();
+    this.hitSound.play();
     this.removeBullet();
     this.targetCount = this.targetCount - 1;
   }

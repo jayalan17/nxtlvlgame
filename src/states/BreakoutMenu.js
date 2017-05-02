@@ -34,10 +34,10 @@ export default class BreakoutMenu extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
-    this.add.text(75, 200, 'INSTRUCTIONS: \nBreak All Of The Bricks\nTo Receive Your Fourth Key',
-    { fontSize: '16px', fill: 'black' });
-    this.add.text(500, 200, 'CONTROLS:\nUse arrow keys.\nLEFT or RIGHT to move the paddle\n<esc> to Return To Map',
-    { fontSize: '16px', fill: 'black' });
+    this.add.text(75, 200, 'INSTRUCTIONS: \nBreak All Of The Bricks \nTo Advance',
+    { fontSize: '20px', fill: 'black' });
+    this.add.text(475, 200, 'CONTROLS:\nUse arrow keys.\nLEFT or RIGHT to move the paddle\n<esc> to Return To Map',
+    { fontSize: '20px', fill: 'black' });
 
     this.music = this.add.audio('music');
     this.music.play();
