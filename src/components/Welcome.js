@@ -52,14 +52,21 @@ class Welcome extends React.Component {
       bottom: "0px", left: "0px", right: "0px", margin: "auto",
       opacity: ".95", backgroundBlendMode: "overlay",
       height: "80px", width: "700px"};
+    const wellStyle2 = {float: "left", top: "0px",
+      bottom: "0px", left: "0px", right: "0px", margin: "auto",
+      opacity: ".95", backgroundBlendMode: "overlay",
+      height: "500px", width: "200px"};
     const logoStyle = {float: "left", top: "0px",
       left: "525px", zIndex: "100", height: "50px", width: "200px"};
 
     return (
       <div>
-        <div>
-          <img style={logoStyle} src={require('../img/NextLVL.png')}/>
-        </div>
+        <Well style={wellStyle2}>
+          <div>
+            <img src={require('../img/NextLVL.png')}/>
+          </div>
+          <div><Leaderboard/></div>
+        </Well>
         <div style={parentStyle}>
         <div>
           <Well style={wellStyle} bsSize="large">
@@ -93,7 +100,6 @@ class Welcome extends React.Component {
           </Well>
           </div>
         </div>
-        <div><Leaderboard/></div>
       </div>
     );
   }

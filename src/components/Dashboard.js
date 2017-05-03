@@ -13,17 +13,17 @@ class Dashboard extends React.Component {
     };
   }
 
-  componentWillMount() {
-    this.setState({
-      activityList: this.props.userStore.getActivityList()
-    });
-  }
+  // componentWillMount() {
+  //   this.setState({
+  //     activityList: this.props.userStore.getActivityList()
+  //   });
+  // }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      activityList: nextProps.userStore.getActivityList()
-    });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({
+  //     activityList: nextProps.userStore.getActivityList()
+  //   });
+  // }
 
   render() {
     return (

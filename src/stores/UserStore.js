@@ -18,35 +18,52 @@ export default class UserStore {
       userAlreadyExists: false,
       id: "",
       token: "",
-      states: [],
-      parks: [],
-      mlbstadiums: [],
-      nflstadiums: [],
-      airports: [],
-      elevations: []
+      hiScores: [],
     });
     this.LoginUser = this.LoginUser.bind(this);
+    // this.getScores = this.getScores.bind(this);
+    // this.sortScores = this.sortScores.bind(this);
   }
 
-  getActivityList(){
-    return [];
+  getScores () {
+    fetch('/api/getUserScores', {
+      method:"GET",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+    })
+    .then(result => result.json())
+    .then(data => {
+      console.log(data);
+      data.sort(function(a, b) {
+        return (parseFloat(a.flappyHighScore) + parseFloat(b.flappyHighScore));
+      })
+      this.hiScores = data;
+    });
   }
 
-  checkForCollections(){
-    return false;
+  displayScores () {
+    return (
+      <div>
+        <h5>1. {this.hiScores[0].flappyHighScore} {this.hiScores[0].name}</h5>
+        <h5>2. {this.hiScores[1].flappyHighScore} {this.hiScores[1].name}</h5>
+        <h5>3. {this.hiScores[2].flappyHighScore} {this.hiScores[2].name}</h5>
+        <h5>4. {this.hiScores[3].flappyHighScore} {this.hiScores[3].name}</h5>
+      </div>
+    );
   }
 
-  getPercentageCompletion(){
-    return 0;
-  }
 
-  getDateCollectableAdded(){
-    return null;
-  }
+  // sortScores () {
+  //   console.log(this.hiScores);
+  //   this.hiScores.sort(function(a, b) {
+  //     return (parseFloat(a.flappyHighScore) - parseFloat(b.flappyHighScore));
+  //   });
+  //   this.hiScores.reverse();
+  // }
 
-  toggleCollectable(){
-    return null;
-  }
+
 
   // removeCollectable(){
   //   let collectable = this[collectionname].find(function(y){

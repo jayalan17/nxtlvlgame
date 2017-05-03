@@ -40,7 +40,7 @@ export default class extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
-    this.fs = this.add.text(this.world.centerX, 275, 'You Rocked Flappin.  High Score: ' + window.game.flappyHighScore +'\nUnlimited Play Unlocked.  Try to make the Leaderboard.',
+    this.fs = this.add.text(this.world.centerX, 275, 'You Rocked Flappin!  High Score: ' + window.game.flappyHighScore +'\nUnlimited Play Unlocked.  Try to make the Leaderboard.',
     { fontSize: '20px', fill: 'black', align: 'center' });
     this.fs.anchor.set(0.5);
 

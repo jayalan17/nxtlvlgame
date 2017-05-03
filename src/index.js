@@ -5,6 +5,7 @@ import Welcome from './components/Welcome';
 import ControlBar from './components/ControlBar';
 import NewUser from './components/NewUser';
 import Dashboard from './components/Dashboard';
+import Leaderboard from './components/Leaderboard';
 import UserStore from './stores/UserStore';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'mobx-react';
@@ -19,6 +20,7 @@ render((
         <Route path="/Welcome" component={Welcome}/>
         <Route path="/NewUser" component={NewUser}/>
         <Route path="/Dashboard" component={Dashboard}/>
+        <Route path="/Leaderboard" component={Leaderboard}/>
       </Route>
     </Router>
   </Provider>
