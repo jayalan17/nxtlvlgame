@@ -400,6 +400,8 @@ export default class Splash extends Phaser.State {
     this.story = this.make.text(
       200, 10, 'Hmm...looks like I saved the day.  Time to dance!',
       { fontSize: '16px', fill: 'orange', font: 'herculanum' });
+    this.state.start('Credits');
+    this.music.stop();
   }
   addText14 () {
     this.story.destroy();

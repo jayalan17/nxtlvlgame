@@ -19,6 +19,7 @@ import TankWin from './states/TankWin';
 import BreakoutWin from './states/BreakoutWin';
 import LuigiWin from './states/LuigiWin';
 import UserStore from './stores/UserStore';
+import CreditsDisplay from './states/Credits';
 
 import config from './gameConfig';
 
@@ -68,6 +69,7 @@ class Game extends Phaser.Game {
     this.state.add('TankWin', TankWin, false);
     this.state.add('BreakoutWin', BreakoutWin, false);
     this.state.add('LuigiWin', LuigiWin, false);
+    this.state.add('Credits', CreditsDisplay, false);
   }
 
   luigiCompleted () {
