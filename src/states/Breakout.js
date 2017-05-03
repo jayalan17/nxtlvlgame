@@ -11,9 +11,10 @@ export default class Breakout extends Phaser.State {
     this.load.image('sky', 'assets/breakout/starsBG.png');
     this.load.image('ball', 'assets/breakout/ball.png');
     this.load.audio('hit', 'assets/audio/nes-05-03.wav');
-    this.load.audio('music', 'assets/audio/StElmo.mp3');
+    this.load.audio('music', 'assets/audio/HellsSymphony.mp3');
     this.load.audio('boom', 'assets/Menu/explosion.wav');
     this.load.audio('win', 'assets/Menu/ta-da.wav');
+    this.load.audio('padhit', 'assets/audio/nes-01-06');
 
   }
 
@@ -24,6 +25,7 @@ export default class Breakout extends Phaser.State {
     this.music = this.add.audio('music');
     this.dieSound = this.add.audio('boom');
     this.winSound = this.add.audio('win');
+    this.padHit = this.add.audio('padhit');
 
     this.music.play();
     this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#999' });
@@ -71,7 +73,9 @@ export default class Breakout extends Phaser.State {
       this.paddle.body.velocity.x = 300;
     } else this.paddle.body.velocity.x = 0;
     // Add collisions between the paddle and the ball
-    this.physics.arcade.collide(this.paddle, this.ball);
+    if (this.physics.arcade.collide(this.paddle, this.ball)) {
+      this.padHit.play();
+    }
     // Call the 'hit' function when the ball hits a brick
     this.physics.arcade.collide(this.ball, this.bricks, this.hit, null, this);
     // Restart the game if the ball is below the paddle

@@ -16,6 +16,8 @@ export default class Luigi extends Phaser.State {
     this.load.audio('win', 'assets/Menu/ta-da.wav');
     this.load.audio('jump', 'assets/audio/jump_07.wav');
     this.load.audio('money', 'assets/luigi/cha-ching.wav');
+    this.load.audio('music', 'assets/audio/sensodyne.mp3');
+
 
   }
 
@@ -25,6 +27,9 @@ export default class Luigi extends Phaser.State {
     this.winSound = this.add.audio('win');
     this.jumpSound = this.add.audio('jump');
     this. moneySound = this.add.audio('money');
+    this.music = this.add.audio('music');
+    this.music.play();
+
 
 
     //  A simple background for our game
@@ -142,6 +147,7 @@ export default class Luigi extends Phaser.State {
       this.goToHome();
       this.winSound.play();
       this.playerUpdate();
+      this.music.stop();
     }
     function collectStar (player, star) {
       star.kill();

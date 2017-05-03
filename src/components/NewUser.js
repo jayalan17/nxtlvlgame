@@ -64,7 +64,7 @@ class NewUser extends React.Component {
     return (
       <div>
         <div>
-          <img style={logoStyle} src={require('../img/rp1.png')}/>
+          <img style={logoStyle} src={require('../img/NextLVL.png')}/>
         </div>
         <div style={parentStyle}>
           <Well style={wellStyle} bsSize="large">

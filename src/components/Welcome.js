@@ -53,12 +53,12 @@ class Welcome extends React.Component {
       opacity: ".95", backgroundBlendMode: "overlay",
       height: "80px", width: "550px"};
     const logoStyle = {float: "left", top: "0px",
-      left: "525px", zIndex: "100", height: "100px", width: "400px"};
+      left: "525px", zIndex: "100", height: "50px", width: "200px"};
 
     return (
       <div>
         <div>
-          <img style={logoStyle} src={require('../img/rp1.png')}/>
+          <img style={logoStyle} src={require('../img/NextLVL.png')}/>
         </div>
         <div style={parentStyle}>
           <Well style={wellStyle} bsSize="large">

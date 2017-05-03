@@ -30,7 +30,8 @@ export default class extends Phaser.State {
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.image('key', 'assets/Menu/key.png');
     this.load.image('background', 'assets/luigi/kqmACO.jpg');
-    this.load.audio('getKey', 'assets/Menu/getKey.wav')
+    this.load.audio('getKey', 'assets/Menu/getKey.wav');
+    this.load.audio('music', 'assets/audio/fragile.mp3');
   }
 
   create () {
@@ -42,7 +43,7 @@ export default class extends Phaser.State {
     this.add.existing(this.titleText);
     this.add.text();
 
-    this.music = this.add.audio('mainTitle');
+    this.music = this.add.audio('music');
     this.music.play();
 
     this.key = this.add.sprite(325, 400, 'key');
@@ -88,6 +89,7 @@ export default class extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.key)) {
       this.goToHome();
       this.getKeySound.play();
+      this.music.stop();
     }
   }
 
