@@ -25,7 +25,7 @@ export default class LuigiMenu extends Phaser.State {
     this.load.image('luigi', 'assets/Menu/mushroom.png');
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('background', 'assets/Menu/paperBG.jpg');
-    this.load.audio('music', 'assets/Menu/AG-HG.mp3');
+    this.load.audio('music', 'assets/Menu/itszacrime.mp3');
     this.load.image('dude', 'assets/splash/sprite.png');
   }
 
@@ -35,9 +35,9 @@ export default class LuigiMenu extends Phaser.State {
 
     this.add.existing(this.titleText);
 
-    this.add.text(75, 200, 'INSTRUCTIONS: \nCollect All Of The Stars \nTo Advance',
+    this.add.text(75, 200, 'INSTRUCTIONS: \nCollect All Of The Coins \nTo Advance',
     { fontSize: '20px', fill: 'black' });
-    this.add.text(475, 200, 'CONTROLS:\nUse arrow keys for movement.\nLEFT and RIGHT to move player \nUP to Jump\n<esc> to Return To Map',
+    this.add.text(475, 200, 'CONTROLS:\nUse arrow keys for movement.\nLEFT and RIGHT to move \nUP to Jump\n<esc> to Return To Map',
     { fontSize: '20px', fill: 'black' });
 
     this.music = this.add.audio('music');

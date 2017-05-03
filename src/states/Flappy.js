@@ -9,7 +9,7 @@ export default class Flappy extends Phaser.State {
     this.load.image('sky', 'assets/flappy/sky.png');
     this.load.audio('jump', 'assets/audio/jump_07.wav');
     this.load.audio('hit', 'assets/audio/nes-05-03.wav');
-    this.load.audio('music', 'assets/audio/SouthPark.mp3');
+    this.load.audio('music', 'assets/audio/LTTF.mp3');
     this.load.audio('boom', 'assets/Menu/explosion.wav');
     this.load.audio('win', 'assets/Menu/ta-da.wav');
   }

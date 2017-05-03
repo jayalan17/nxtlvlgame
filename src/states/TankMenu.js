@@ -23,7 +23,7 @@ export default class TankMenu extends Phaser.State {
 
   preload () {
     this.load.image('background', 'assets/Menu/paperBG.jpg');
-    this.load.audio('music', 'assets/Menu/AG-HG.mp3');
+    this.load.audio('music', 'assets/Menu/itszacrime.mp3');
     this.load.image('tank', 'assets/tank/tank.png');
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('dude', 'assets/splash/sprite.png');

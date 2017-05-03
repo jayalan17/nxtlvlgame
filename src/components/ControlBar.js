@@ -34,12 +34,12 @@ class ControlBar extends React.Component {
               <Navbar .Brand>
                 <Link className= "lgo" to={{pathname: '/Dashboard'}}>
                   <img className="hidden-xs"
-                    src={require('../img/rp1.png')}
+                    src={require('../img/NextLVL.png')}
                     width="200px" height="50px"/>
                 </Link>
                 <Link className= "lgo" to={{pathname: '/Dashboard'}}>
                   <img className="hidden-md hidden-lg hidden-sm"
-                    src={require('../img/rp1.png')}
+                    src={require('../img/NextLVL.png')}
                     width="200px"
                     height="50px"/>
                 </Link>

@@ -29,8 +29,8 @@ export default class extends Phaser.State {
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.image('key', 'assets/Menu/key2.png');
     this.load.image('background', 'assets/tank/background2.jpg');
-    this.load.audio('getKey', 'assets/Menu/getKey.wav')
-
+    this.load.audio('getKey', 'assets/Menu/getKey.wav');
+    this.load.audio('music', 'assets/audio/fragile.mp3');
   }
 
   create () {
@@ -40,7 +40,7 @@ export default class extends Phaser.State {
     this.add.existing(this.titleText);
 
     this.getKeySound = this.add.audio('getKey');
-    this.music = this.add.audio('mainTitle');
+    this.music = this.add.audio('music');
     this.music.play();
 
     this.key = this.add.sprite(320, 450, 'key');

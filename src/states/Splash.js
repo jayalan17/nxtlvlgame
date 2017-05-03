@@ -36,10 +36,12 @@ export default class Splash extends Phaser.State {
     this.load.image('map', 'assets/splash/grass.png');
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.audio('music', 'assets/audio/HellsSymphony.mp3');
-    this.load.audio('helpMe', 'assets/splash/Help-Me.wav');
+    this.load.audio('helpMe', 'assets/audio/saveme.wav');
+    this.load.audio('thanks', 'assets/audio/thanks.wav');
     this.load.audio('shallwe', 'assets/audio/playgames.wav');
     this.load.audio('pickup', 'assets/audio/powerup.wav');
     this.load.audio('farmend', 'assets/Menu/ta-da.wav');
+    this.load.audio('money', 'assets/luigi/cha-ching.wav');
 
     console.log(window.game.luigiComplete);
     console.log(window.game.tankComplete);
@@ -124,6 +126,8 @@ export default class Splash extends Phaser.State {
     this.music = this.add.audio('music');
     this.music.play();
     this.princessSound = this.add.audio('helpMe');
+    this.princessThanks = this.add.audio('thanks');
+    this.moneySound = this.add.audio('money');
     this.playSound = this.add.audio('shallwe');
     this.pickUpSound = this.add.audio('pickup');
     this.farmEnd = this.add.audio('farmend');
@@ -189,6 +193,7 @@ export default class Splash extends Phaser.State {
     }
     if (this.physics.arcade.collide(this.player, this.rock3)) {
       this.addText7();
+      this.moneySound.play();
     }
     if (this.physics.arcade.collide(this.player, this.rock4)) {
       this.addText7();
@@ -305,6 +310,7 @@ export default class Splash extends Phaser.State {
     }
     if (this.physics.arcade.collide(this.player, this.princess)) {
       this.addText13();
+      this.princessThanks.play();
     }
     if (this.physics.arcade.collide(this.player, this.coin)) {
       this.addText14();

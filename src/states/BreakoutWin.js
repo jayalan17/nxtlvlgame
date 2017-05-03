@@ -29,7 +29,8 @@ export default class Splash extends Phaser.State {
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.image('key', 'assets/Menu/key5.png');
     this.load.image('background', 'assets/breakout/starsBG.png');
-    this.load.audio('getKey', 'assets/Menu/getKey.wav')
+    this.load.audio('getKey', 'assets/Menu/getKey.wav');
+    this.load.audio('music', 'assets/audio/fragile.mp3');
   }
 
   create () {
@@ -43,7 +44,7 @@ export default class Splash extends Phaser.State {
 
 
     this.getKeySound = this.add.audio('getKey');
-    this.music = this.add.audio('mainTitle');
+    this.music = this.add.audio('music');
     this.music.play();
 
     this.key = this.add.sprite(375, 200, 'key');
@@ -87,6 +88,7 @@ export default class Splash extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.key)) {
       this.goToHome();
       this.getKeySound.play();
+      this.music.stop();
     }
   }
 
@@ -96,7 +98,6 @@ export default class Splash extends Phaser.State {
   }
   goToHome () {
     this.state.start('Splash');
-    this.music.stop();
     // this.resetGame();
   }
 }
