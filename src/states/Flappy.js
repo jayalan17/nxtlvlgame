@@ -41,6 +41,8 @@ export default class Flappy extends Phaser.State {
     var spaceKey = this.input.keyboard.addKey(
                   Phaser.Keyboard.SPACEBAR);
     spaceKey.onDown.add(this.jump, this);
+    this.world.scale.setTo(1);
+
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
 
     this.timer = this.time.events.loop(1500, this.addRowOfPipes, this);

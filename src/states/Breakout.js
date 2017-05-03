@@ -58,6 +58,8 @@ export default class Breakout extends Phaser.State {
     this.ball.body.velocity.y = 250;
     // Make sure the ball will bounce when hitting something
     this.ball.body.bounce.setTo(1);
+    this.world.scale.setTo(1);
+
     this.ball.body.collideWorldBounds = true;
   }
   update () {

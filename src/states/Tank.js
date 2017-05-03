@@ -70,6 +70,9 @@ export default class Tank extends Phaser.State {
     this.powerText.setShadow(1, 1, 'rgba(0, 0, 0, 0.8)', 1);
     this.powerText.fixedToCamera = true;
 
+    this.world.scale.setTo(1);
+
+
     //  Some basic controls
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);

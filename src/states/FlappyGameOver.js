@@ -27,7 +27,7 @@ export default class extends Phaser.State {
   }
 
   preload () {
-    this.load.image('bird', 'assets/splash/bird.png');
+    this.load.spritesheet('bird', 'assets/splash/bird.png', 32, 32);
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.image('key', 'assets/Menu/key.png');
@@ -56,9 +56,17 @@ export default class extends Phaser.State {
     this.player = this.add.sprite(350, 250, 'dude');
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
-
+    this.world.scale.setTo(1);
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
+
+    this.player.animations.add('up', [104, 105, 106, 107, 108,
+      109, 110, 111, 112], 9, true);
+    this.player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 9, true);
+    this.player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 9, true);
+    this.player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 9, true);
+    this.bird.animations.add('c', [0, 1, 2, 3, 4, 5, 6, 7], 8, true);
+
   }
 
   update () {
@@ -93,6 +101,8 @@ export default class extends Phaser.State {
       this.goToHome();
     }
     this.physics.arcade.collide(this.player, this.key);
+    this.bird.animations.play('c');
+
   }
 
   goToGame () {
