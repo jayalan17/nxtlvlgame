@@ -142,6 +142,18 @@ router.route ('/getUserStatus/:userName')
     });
   });
 
+router.route ('/getUserScores')
+  .get(function(req, res){
+    User.find({ "flappyCompleted": "true"},
+      function(err, user, next){
+        if(err){
+          return next(err);
+        } else {
+          res.json(user);
+        }
+      });
+  });
+
 // router.route('/remove')
 //   .delete(function(req, res, next){
 //     User.findOne({

@@ -55,7 +55,7 @@ class NewUser extends React.Component {
     this.props.userStore.failedLogin = false;
     this.props.userStore.newUserCreated = false;
     this.props.userStore.userAlreadyExists = false;
-    const bg = require('../img/background4.jpg');
+    const bg = require('../img/background4.png');
     const parentStyle = {height:"100vh", width:"100vw",
       background: "url("+bg+") no-repeat center fixed", backgroundSize: "cover"};
     const wellStyle = {float: "right", top: "0px", bottom: "0px", left: "0px", right: "0px",

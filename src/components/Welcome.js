@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router';
 import { Well, Button, Form, FormGroup,
   ControlLabel, FormControl } from 'react-bootstrap';
-
+import Leaderboard from './Leaderboard';
 import './style/Welcome.css';
 
 class Welcome extends React.Component {
@@ -91,6 +91,7 @@ class Welcome extends React.Component {
             </Form>
           </Well>
         </div>
+        <div><Leaderboard/></div>
       </div>
     );
   }
