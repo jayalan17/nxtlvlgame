@@ -10,11 +10,11 @@ export default class Breakout extends Phaser.State {
     this.load.image('brick', 'assets/luigi/star.png');
     this.load.image('sky', 'assets/breakout/starsBG.png');
     this.load.image('ball', 'assets/breakout/ball.png');
-    this.load.audio('hit', 'assets/audio/nes-05-03.wav');
+    this.load.audio('hit', 'assets/audio/nes-01-06.wav');
     this.load.audio('music', 'assets/audio/HellsSymphony.mp3');
     this.load.audio('boom', 'assets/Menu/explosion.wav');
     this.load.audio('win', 'assets/Menu/ta-da.wav');
-    this.load.audio('padhit', 'assets/audio/nes-01-06');
+    this.load.audio('padhit', 'assets/audio/nes-05-03.wav');
   }
 
   create () {
@@ -63,15 +63,13 @@ export default class Breakout extends Phaser.State {
     } else if (this.right.isDown) {
       this.paddle.body.velocity.x = 300;
     } else this.paddle.body.velocity.x = 0;
-<<<<<<< HEAD
+
     // Add collisions between the paddle and the ball
     if (this.physics.arcade.collide(this.paddle, this.ball)) {
       this.padHit.play();
     }
     // Call the 'hit' function when the ball hits a brick
-=======
-    this.physics.arcade.collide(this.paddle, this.ball);
->>>>>>> fe3806f299c918a001f3de3b23155140e064e5f4
+
     this.physics.arcade.collide(this.ball, this.bricks, this.hit, null, this);
 
     if (this.ball.y > this.paddle.y) {
