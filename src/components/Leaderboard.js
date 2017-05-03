@@ -31,23 +31,37 @@ class Leaderboard extends React.Component {
       console.log(this.hiScores);
       this.sortScores();
       console.log(this.hiScores);
+      this.displayScores();
     });
   }
 
   sortScores () {
-    let hs = [];
-    for (let i = 0; i < this.hiScores.length; i++) {
-      hs = hs.push(this.hiScores[i].flappyHighScore);
-      this.hiScores = hs;
-    }
     console.log(this.hiScores);
-    return this.hiScores;
+    console.log(this.hiScores.length);
+    this.hiScores.sort(function(a, b) {
+      return (parseFloat(a.flappyHighScore) - parseFloat(b.flappyHighScore));
+    });
+    this.hiScores.reverse();
+  }
+
+  displayScores () {
+    console.log(this.hiScores);
+    if(this.hiScores[0]){
+    return (
+      <div>
+        <h5>1. </h5>
+      </div>
+    );}
+    else{
+      return (null);
+    }
   }
 
   render() {
     return (
       <div>
         <h3>Leaderboard</h3>
+        {this.displayScores()}
       </div>
     );
   }

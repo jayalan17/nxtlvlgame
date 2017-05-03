@@ -61,6 +61,7 @@ class Welcome extends React.Component {
           <img style={logoStyle} src={require('../img/rp1.png')}/>
         </div>
         <div style={parentStyle}>
+        <div>
           <Well style={wellStyle} bsSize="large">
             <Form inline>
               {this.loginNotice()}
@@ -90,6 +91,7 @@ class Welcome extends React.Component {
               </Link>
             </Form>
           </Well>
+          </div>
         </div>
         <div><Leaderboard/></div>
       </div>
