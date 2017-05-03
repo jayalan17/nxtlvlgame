@@ -38,6 +38,10 @@ export default class Splash extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
+    this.bs = this.add.text(this.world.centerX, 150, 'You Rocked Brickin.  High Score: ' + window.game.breakoutHighScore,
+    { fontSize: '20px', fill: 'gold', align: 'center' });
+    this.bs.anchor.set(0.5);
+
 
     this.getKeySound = this.add.audio('getKey');
     this.music = this.add.audio('music');

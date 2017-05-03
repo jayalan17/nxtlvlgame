@@ -9,6 +9,7 @@ export default class Splash extends Phaser.State {
 
   preload () {
     this.load.image('coin', 'assets/splash/bitcoin.png');
+    this.load.image('deer', 'assets/splash/deer.png');
     this.load.image('shovel', 'assets/splash/shovel.png');
     this.load.image('dude2', 'assets/splash/sprite2.png');
     this.load.image('seeds', 'assets/splash/seeds.png');
@@ -31,6 +32,7 @@ export default class Splash extends Phaser.State {
     this.load.image('padlock2', 'assets/splash/padlock2.png');
     this.load.image('padlock3', 'assets/splash/padlock4.png');
     this.load.image('rock', 'assets/splash/rock.png');
+    this.load.image('log', 'assets/splash/log.png');
     this.load.image('map', 'assets/splash/grass.png');
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.audio('music', 'assets/audio/HellsSymphony.mp3');
@@ -94,6 +96,14 @@ export default class Splash extends Phaser.State {
     this.coin = this.add.sprite(740, 280, 'coin');
     this.physics.arcade.enable(this.coin);
     this.coin.body.immovable = true;
+
+    this.deer = this.add.sprite(540, 200, 'deer');
+    this.physics.arcade.enable(this.deer);
+    this.deer.body.immovable = true;
+
+    this.log = this.add.sprite(540, 220, 'log');
+    this.physics.arcade.enable(this.log);
+    this.log.body.immovable = true;
 
     this.rock3 = this.add.sprite(740, 280, 'rock');
     this.physics.arcade.enable(this.rock3);
@@ -305,6 +315,9 @@ export default class Splash extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.coin)) {
       this.addText14();
     }
+    if (this.physics.arcade.collide(this.player, this.log)) {
+      this.addText15();
+    }
   }
 
   addText1 () {
@@ -392,6 +405,12 @@ export default class Splash extends Phaser.State {
     this.story.destroy();
     this.story = this.make.text(
       200, 10, 'Hmm...looks like a bitcoin.  Nice.',
+      { fontSize: '16px', fill: 'orange', font: 'herculanum' });
+  }
+  addText15 () {
+    this.story.destroy();
+    this.story = this.make.text(
+      200, 10, 'A log.',
       { fontSize: '16px', fill: 'orange', font: 'herculanum' });
   }
 

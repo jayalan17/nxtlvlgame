@@ -33,7 +33,6 @@ export default class Tank extends Phaser.State {
     this.load.audio('boom', 'assets/Menu/explosion.wav');
     this.load.audio('music', 'assets/audio/intensioso.mp3')
 
-
   //  Note: Graphics from Amiga Tanx Copyright 1991 Gary Roberts
   }
 
@@ -45,7 +44,6 @@ export default class Tank extends Phaser.State {
     this.shootSound = this.add.audio('shoot');
     this.music = this.add.audio('music');
     this.music.play();
-
 
     //  Something to shoot at :)
     this.targets = this.add.group(this.game.world, 'targets', false, true, Phaser.Physics.ARCADE);
@@ -157,7 +155,7 @@ export default class Tank extends Phaser.State {
     }
     if (this.escape.isDown) {
       this.goHome();
-    } else if (this.targetCount > 3) {
+    } else if (this.targetCount > 0) {
       if (this.bullet.exists) {
         if (this.bullet.y > 540) {
           //  Simple check to see if it's fallen too low

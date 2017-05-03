@@ -41,10 +41,14 @@ class Game extends Phaser.Game {
     this.tankComplete = false;
     this.flappyComplete = false;
     this.breakoutComplete = false;
+    this.flappyHighScore = 0;
+    this.breakoutHighScore = 0;
     this.shovelGot = false;
     this.seedsGot = false;
     this.waterGot = false;
     this.counter = 0;
+    this.breakoutCounter = 0;
+    this.flappyCounter = 0;
     this.farmingComplete = false;
 
     this.state.add('Splash', Splash, false);
@@ -89,6 +93,12 @@ class Game extends Phaser.Game {
   farmingCompleted () {
     this.farmingComplete = true;
     this.updateFarming(this.user, true);
+  }
+  breakoutScoreUpdate () {
+    this.updateBreakoutScore(this.user, this.breakoutHighScore);
+  }
+  flappyScoreUpdate () {
+    this.updateFlappyScore(this.user, this.flappyHighScore);
   }
 
   updateLuigi (name, luigiCompleted){
@@ -156,6 +166,32 @@ class Game extends Phaser.Game {
       })
     });
   }
+  updateBreakoutScore (name, breakoutHighScore){
+    fetch('/api/changeBreakoutScore', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        breakoutHighScore: breakoutHighScore
+      })
+    });
+  }
+  updateFlappyScore (name, flappyHighScore){
+    fetch('/api/changeFlappyScore', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        flappyHighScore: flappyHighScore
+      })
+    });
+  }
 
   GetStatus(x){
     fetch('/api/getUserStatus/' + this.user, {
@@ -173,6 +209,8 @@ class Game extends Phaser.Game {
       this.flappyComplete = data.flappyCompleted;
       this.breakoutComplete = data.breakoutCompleted;
       this.farmingComplete = data.farmingCompleted;
+      this.flappyHighScore = data.flappyHighScore;
+      this.breakoutHighScore = data.breakoutHighScore;
       x();
     });
   }

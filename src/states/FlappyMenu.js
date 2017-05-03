@@ -34,6 +34,9 @@ export default class FlappyMenu extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
+    this.fs = this.add.text(this.world.centerX, 150, 'Your Flappin High Score: ' + window.game.flappyHighScore,
+    { fontSize: '20px', fill: 'black', align: 'center' });
+    this.fs.anchor.set(0.5);
 
     this.add.text(75, 200, 'INSTRUCTIONS: \nFLY Through 20 Groups\nOf Frogs To Advance',
     { fontSize: '20px', fill: 'black' });
