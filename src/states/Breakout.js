@@ -10,11 +10,11 @@ export default class Breakout extends Phaser.State {
     this.load.image('brick', 'assets/luigi/star.png');
     this.load.image('sky', 'assets/breakout/starsBG.png');
     this.load.image('ball', 'assets/breakout/ball.png');
-    this.load.audio('hit', 'assets/audio/nes-01-06.wav');
-    this.load.audio('music', 'assets/audio/HellsSymphony.mp3');
+    this.load.audio('hit', 'assets/audio/snare.wav');
+    this.load.audio('music', 'assets/audio/hightail.mp3');
     this.load.audio('boom', 'assets/Menu/explosion.wav');
     this.load.audio('win', 'assets/Menu/ta-da.wav');
-    this.load.audio('padhit', 'assets/audio/nes-05-03.wav');
+    this.load.audio('padhit', 'assets/audio/kick.wav');
   }
 
   create () {
