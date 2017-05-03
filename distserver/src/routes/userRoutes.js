@@ -105,70 +105,6 @@ router.route('/changeFarming').put(function (req, res, next) {
     });
   });
 });
-// router.route('/changeShovel')
-//   .put(function(req, res, next){
-//     User.findOne({
-//       name: req.body.name
-//     }, function(err, user) {
-//       if (err) next(err);
-//       user.shovelGot = req.body.shovelGot;
-//       user.save(function(err){
-//         if(err){
-//           next(err);
-//         } else {
-//           res.json({success: "Shovel has been completed"});
-//         }
-//       });
-//     });
-//   });
-// router.route('/changeSeeds')
-//   .put(function(req, res, next){
-//     User.findOne({
-//       name: req.body.name
-//     }, function(err, user) {
-//       if (err) next(err);
-//       user.seedsGot = req.body.seedsGot;
-//       user.save(function(err){
-//         if(err){
-//           next(err);
-//         } else {
-//           res.json({success: "Seeds has been completed"});
-//         }
-//       });
-//     });
-//   });
-// router.route('/changeWater')
-//   .put(function(req, res, next){
-//     User.findOne({
-//       name: req.body.name
-//     }, function(err, user) {
-//       if (err) next(err);
-//       user.waterGot = req.body.waterGot;
-//       user.save(function(err){
-//         if(err){
-//           next(err);
-//         } else {
-//           res.json({success: "Water has been completed"});
-//         }
-//       });
-//     });
-//   });
-// router.route('/changeCounter')
-//   .put(function(req, res, next){
-//     User.findOne({
-//       name: req.body.name
-//     }, function(err, user) {
-//       if (err) next(err);
-//       user.counter = req.body.counter;
-//       user.save(function(err){
-//         if(err){
-//           next(err);
-//         } else {
-//           res.json({success: "Counter has been updated"});
-//         }
-//       });
-//     });
-//   });
 router.route('/changeBreakoutScore').put(function (req, res, next) {
   _User2.default.findOne({
     name: req.body.name
@@ -184,7 +120,6 @@ router.route('/changeBreakoutScore').put(function (req, res, next) {
     });
   });
 });
-
 router.route('/changeFlappyScore').put(function (req, res, next) {
   _User2.default.findOne({
     name: req.body.name
@@ -213,24 +148,35 @@ router.route('/getUserStatus/:userName').get(function (req, res) {
   });
 });
 
-router.route('/remove').delete(function (req, res, next) {
-  _User2.default.findOne({
-    name: req.body.username
-  }, function (err, user) {
-    if (err) next(err);
-    var updatedcollection = user[req.body.collectionname].filter(function (obj) {
-      return obj.name != req.body.collectable.name;
-    });
-    user[req.body.collectionname] = updatedcollection;
-    user.save(function (err) {
-      if (err) {
-        next(err);
-      } else {
-        res.json({ success: "content has been toggled" });
-      }
-    });
+router.route('/getUserScores').get(function (req, res) {
+  _User2.default.find({ "flappyCompleted": "true" }, function (err, user, next) {
+    if (err) {
+      return next(err);
+    } else {
+      res.json(user);
+    }
   });
 });
+
+// router.route('/remove')
+//   .delete(function(req, res, next){
+//     User.findOne({
+//       name: req.body.username
+//     }, function(err, user) {
+//       if (err) next(err);
+//       let updatedcollection = user[req.body.collectionname].filter(function( obj ){
+//         return obj.name != req.body.collectable.name;
+//       });
+//       user[req.body.collectionname] = updatedcollection;
+//       user.save(function(err){
+//         if(err){
+//           next(err);
+//         } else {
+//           res.json({success: "content has been toggled"});
+//         }
+//       });
+//     });
+//   });
 
 router.route('/user').post(function (req, res) {
   var user = new _User2.default();
@@ -241,8 +187,8 @@ router.route('/user').post(function (req, res) {
   user.tankCompleted = false;
   user.flappyCompleted = false;
   user.breakoutCompleted = false;
-  user.flappyHighScore = false;
-  user.breakoutHighScore = false;
+  user.flappyHighScore = 0;
+  user.breakoutHighScore = 0;
 
   user.save(function (err, user, next) {
     if (err) {

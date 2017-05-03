@@ -87,7 +87,7 @@ export default class Luigi extends Phaser.State {
     this.stars.enableBody = true;
 
     //  Here we'll create 12 of them evenly spaced apart
-    for (var i = 0; i < 12; i++) {
+    for (let i = 0; i < 12; i++) {
        //  Create a star inside of the 'stars' group
       this.star = this.stars.create(i * 70, 0, 'star');
 

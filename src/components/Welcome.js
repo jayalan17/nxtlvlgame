@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router';
 import { Well, Button, Form, FormGroup,
   ControlLabel, FormControl } from 'react-bootstrap';
-
+import Leaderboard from './Leaderboard';
 import './style/Welcome.css';
 
 class Welcome extends React.Component {
@@ -61,6 +61,7 @@ class Welcome extends React.Component {
           <img style={logoStyle} src={require('../img/NextLVL.png')}/>
         </div>
         <div style={parentStyle}>
+        <div>
           <Well style={wellStyle} bsSize="large">
             <Form inline>
               {this.loginNotice()}
@@ -90,7 +91,9 @@ class Welcome extends React.Component {
               </Link>
             </Form>
           </Well>
+          </div>
         </div>
+        <div><Leaderboard/></div>
       </div>
     );
   }
