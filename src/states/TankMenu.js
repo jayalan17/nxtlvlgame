@@ -26,7 +26,7 @@ export default class TankMenu extends Phaser.State {
     this.load.audio('music', 'assets/Menu/itszacrime.mp3');
     this.load.image('tank', 'assets/tank/tank.png');
     this.load.image('map', 'assets/Menu/map.png');
-    this.load.image('dude', 'assets/splash/sprite.png');
+    this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
   }
 
   create () {
@@ -36,7 +36,7 @@ export default class TankMenu extends Phaser.State {
     this.add.existing(this.titleText);
     this.add.text(75, 200, 'INSTRUCTIONS: \nShoot All The Targets\nTo Advance.',
     { fontSize: '20px', fill: 'black' });
-    this.add.text(475, 200, 'CONTROLS:\nUse Arrow Keys.\nUP or DOWN to adjust turret\nLEFT or RIGHT to adjust power level\nSPACEBAR to fire\n<esc> to Return To Map',
+    this.add.text(475, 200, 'CONTROLS:\n- Use Arrow Keys.\n- UP or DOWN to adjust turret\n- LEFT or RIGHT to adjust power level\nSPACEBAR to fire\n<esc> to Return To Map',
     { fontSize: '20px', fill: 'black' });
 
     this.music = this.add.audio('music');
@@ -49,11 +49,20 @@ export default class TankMenu extends Phaser.State {
     this.map = this.add.sprite(500, 400, 'map');
     this.physics.arcade.enable(this.map);
     this.map.body.immovable = true;
+    this.world.scale.setTo(1);
+
 
 
     this.player = this.add.sprite(350, 250, 'dude');
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
+
+    this.player.animations.add('up', [104, 105, 106, 107, 108,
+      109, 110, 111, 112], 9, true);
+    this.player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 9, true);
+    this.player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 9, true);
+    this.player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 9, true);
+
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);

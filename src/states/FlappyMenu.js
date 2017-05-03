@@ -22,9 +22,9 @@ export default class FlappyMenu extends Phaser.State {
   }
 
   preload () {
-    this.load.image('bird', 'assets/splash/bird.png');
+    this.load.image('bird', 'assets/splash/star.png');
     this.load.image('map', 'assets/Menu/map.png');
-    this.load.image('dude', 'assets/splash/sprite.png');
+    this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
     this.load.image('background', 'assets/Menu/paperBG.jpg');
     this.load.audio('music', 'assets/Menu/itszacrime.mp3');
   }
@@ -40,7 +40,7 @@ export default class FlappyMenu extends Phaser.State {
 
     this.add.text(75, 200, 'INSTRUCTIONS: \nFLY Through 20 Groups\nOf Frogs To Advance',
     { fontSize: '20px', fill: 'black' });
-    this.add.text(475, 200, 'CONTROLS:\nTap SPACEBAR - Fly\n<esc> - Return To Map',
+    this.add.text(475, 200, 'CONTROLS:\n- Tap SPACEBAR to Fly\n- <esc> - Return To Map',
     { fontSize: '20px', fill: 'black' });
 
 
@@ -58,6 +58,14 @@ export default class FlappyMenu extends Phaser.State {
     this.player = this.add.sprite(350, 250, 'dude');
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
+    this.world.scale.setTo(1);
+
+    this.player.animations.add('up', [104, 105, 106, 107, 108,
+      109, 110, 111, 112], 9, true);
+    this.player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 9, true);
+    this.player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 9, true);
+    this.player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 9, true);
+
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
@@ -91,6 +99,7 @@ export default class FlappyMenu extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.map)) {
       this.goToHome();
     }
+
   }
 
   goToGame () {
