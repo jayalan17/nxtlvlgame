@@ -40,7 +40,7 @@ export default class FlappyMenu extends Phaser.State {
 
     this.add.text(75, 200, 'INSTRUCTIONS: \nFLY Through 20 Groups\nOf Frogs To Advance',
     { fontSize: '20px', fill: 'black' });
-    this.add.text(475, 200, 'CONTROLS:\nTap SPACEBAR - Fly\n<esc> - Return To Map',
+    this.add.text(475, 200, 'CONTROLS:\n- Tap SPACEBAR to Fly\n- <esc> - Return To Map',
     { fontSize: '20px', fill: 'black' });
 
 

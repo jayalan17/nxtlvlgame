@@ -37,7 +37,7 @@ export default class LuigiMenu extends Phaser.State {
 
     this.add.text(75, 200, 'INSTRUCTIONS: \nCollect All Of The Coins \nTo Advance',
     { fontSize: '20px', fill: 'black' });
-    this.add.text(475, 200, 'CONTROLS:\nUse arrow keys for movement.\nLEFT and RIGHT to move \nUP to Jump\n<esc> to Return To Map',
+    this.add.text(475, 200, 'CONTROLS:\n- Use Arrow Keys\n- LEFT and RIGHT to move \n- UP to Jump\n- <esc> to Return To Map',
     { fontSize: '20px', fill: 'black' });
 
     this.music = this.add.audio('music');
