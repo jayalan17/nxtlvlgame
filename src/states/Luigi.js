@@ -11,10 +11,13 @@ export default class Luigi extends Phaser.State {
   preload () {
     this.load.image('sky', 'assets/luigi/kqmACO.jpg');
     this.load.image('ground', 'assets/luigi/platform.png');
-    this.load.image('star', 'assets/luigi/star.png');
+    this.load.image('star', 'assets/splash/bitcoin.png');
     this.load.spritesheet('dude', 'assets/luigi/dude.png', 32, 48);
     this.load.audio('win', 'assets/Menu/ta-da.wav');
     this.load.audio('jump', 'assets/audio/jump_07.wav');
+    this.load.audio('money', 'assets/luigi/cha-ching.wav');
+    this.load.audio('music', 'assets/audio/sensodyne.mp3');
+
 
   }
 
@@ -23,6 +26,10 @@ export default class Luigi extends Phaser.State {
     this.physics.startSystem(Phaser.Physics.ARCADE);
     this.winSound = this.add.audio('win');
     this.jumpSound = this.add.audio('jump');
+    this. moneySound = this.add.audio('money');
+    this.music = this.add.audio('music');
+    this.music.play();
+
 
 
     //  A simple background for our game
@@ -81,7 +88,7 @@ export default class Luigi extends Phaser.State {
 
 
     //  Here we'll create 12 of them evenly spaced apart
-    for (var i = 0; i < 12; i++) {
+    for (let i = 0; i < 12; i++) {
        //  Create a star inside of the 'stars' group
       this.star = this.stars.create(i * 70, 0, 'star');
 
@@ -106,7 +113,7 @@ export default class Luigi extends Phaser.State {
 
     if (this.escape.isDown) {
       this.goToHome();
-    } else if (this.score < 10) {
+    } else if (this.score < 120) {
        //  Collide the player and the stars with the platforms
       this.hitPlatform = this.physics.arcade.collide(this.player, this.platforms);
        //  Reset the players velocity (movement)
@@ -141,9 +148,11 @@ export default class Luigi extends Phaser.State {
       this.goToHome();
       this.winSound.play();
       this.playerUpdate();
+      this.music.stop();
     }
     function collectStar (player, star) {
       star.kill();
+      this.moneySound.play();
       this.score += 10;
       this.scoreText.text = 'Score: ' + this.score;
     }

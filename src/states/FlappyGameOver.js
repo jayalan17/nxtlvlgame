@@ -27,9 +27,9 @@ export default class extends Phaser.State {
   }
 
   preload () {
-    this.load.spritesheet('bird', 'assets/splash/bird.png', 32, 32);
+    this.load.image('bird', 'assets/splash/star.png');
     this.load.image('map', 'assets/Menu/map.png');
-    this.load.image('dude', 'assets/splash/sprite.png');
+    this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
     this.load.image('key', 'assets/Menu/key.png');
     this.load.image('background', 'assets/Menu/gameoverwall.jpg');
   }
@@ -39,8 +39,10 @@ export default class extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
-    this.add.text(275, 325, 'You need 20 points to earn the key!',
-    { fontSize: '16px', fill: 'black' });
+    if (!window.game.flappyComplete) {
+      this.add.text(275, 350, 'You need 20 points to earn the key!',
+      { fontSize: '16px', fill: 'black' });
+    }
     this.music = this.add.audio('mainTitle');
     this.music.play();
 
@@ -60,13 +62,29 @@ export default class extends Phaser.State {
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
 
+
     this.player.animations.add('up', [104, 105, 106, 107, 108,
       109, 110, 111, 112], 9, true);
-    this.player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 9, true);
-    this.player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 9, true);
-    this.player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 9, true);
-    this.bird.animations.add('c', [0, 1, 2, 3, 4, 5, 6, 7], 8, true);
+    this.player.animations.add('down', [130, 131, 132, 133, 134,
+      135, 136, 137, 138], 9, true);
+    this.player.animations.add('left', [117, 118, 119, 120, 121,
+      122, 123, 124, 125], 9, true);
+    this.player.animations.add('right', [143, 144, 145, 146, 147,
+      148, 149, 150, 151], 9, true);
+    // this.bird.animations.add('c', [0, 1, 2, 3, 4, 5, 6, 7], 8, true);
 
+    if (window.game.flappyCounter == 1) {
+      this.fs = this.add.text(this.world.centerX, 335, 'New High Score: ' + window.game.flappyHighScore + "!",
+      { fontSize: '20px', fill: 'black', align: 'center' });
+      this.fs.anchor.set(0.5);
+      window.game.flappyCounter = 0;
+    }
+    else {
+      this.fs = this.add.text(this.world.centerX, 335, 'You did not set a High Score.  Your Best Score: ' + window.game.flappyHighScore + ".",
+      { fontSize: '20px', fill: 'black', align: 'center' });
+      this.fs.anchor.set(0.5);
+      window.game.flappyCounter = 0;
+    }
   }
 
   update () {
@@ -101,7 +119,7 @@ export default class extends Phaser.State {
       this.goToHome();
     }
     this.physics.arcade.collide(this.player, this.key);
-    this.bird.animations.play('c');
+    // this.bird.animations.play('c');
 
   }
 

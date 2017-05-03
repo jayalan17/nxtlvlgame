@@ -1,13 +1,9 @@
-/* importing neccessary extensions for the UserStore page */
 import { extendObservable } from 'mobx';
 import React from 'react';
 import { browserHistory } from 'react-router';
 import { ListGroupItem, Glyphicon } from 'react-bootstrap';
 import Game from '../main.js';
 
-/* Initializing class UserStore then exporting extendObservable
-function with props this, and the {key: partner} values.
-Inside the constructor function. */
 export default class UserStore {
   constructor  () {
     extendObservable(this, {
@@ -92,6 +88,9 @@ export default class UserStore {
   logUserOut(){
     this.name= "";
     this.password= "";
+    this.loggedInUser= false;
+    this.id= "";
+    this.token= "";
     this.luigiCompleted = false;
     this.tankCompleted = false;
     this.flappyCompleted = false;
@@ -99,6 +98,7 @@ export default class UserStore {
     this.flappyHighScore = false;
     this.breakoutHighScore = false;
     browserHistory.push('/Welcome');
+    window.game.destroy();
   }
 
   UpdateUser (name, luigiCompleted){

@@ -28,7 +28,7 @@ export default class extends Phaser.State {
   preload () {
     this.load.image('tank', 'assets/Menu/tank.png');
     this.load.image('map', 'assets/Menu/map.png');
-    this.load.image('dude', 'assets/splash/sprite.png');
+    this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
     this.load.image('key', 'assets/Menu/key.png');
     this.load.image('background', 'assets/Menu/gameoverwall.jpg');
   }

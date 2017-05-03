@@ -6,7 +6,7 @@ export default class Tank extends Phaser.State {
   constructor () {
     super();
     this.power = 300;
-    this.targetCount = 4;
+    this.targetCount = 5;
     this.tankScore = 0;
   }
 
@@ -31,7 +31,7 @@ export default class Tank extends Phaser.State {
     this.load.audio('shoot', 'assets/audio/nes-05-03.wav');
     this.load.audio('win', 'assets/Menu/ta-da.wav');
     this.load.audio('boom', 'assets/Menu/explosion.wav');
-
+    this.load.audio('music', 'assets/audio/intensioso.mp3')
 
   //  Note: Graphics from Amiga Tanx Copyright 1991 Gary Roberts
   }
@@ -41,8 +41,9 @@ export default class Tank extends Phaser.State {
     this.background = this.add.sprite(0, 0, 'background1');
     this.hitSound = this.add.audio('boom');
     this.winSound = this.add.audio('win');
-    this.shootSound = this.add.audio('shoot')
-
+    this.shootSound = this.add.audio('shoot');
+    this.music = this.add.audio('music');
+    this.music.play();
 
     //  Something to shoot at :)
     this.targets = this.add.group(this.game.world, 'targets', false, true, Phaser.Physics.ARCADE);
@@ -137,7 +138,7 @@ export default class Tank extends Phaser.State {
 
   resetGame () {
     this.targets.removeAll(true);
-    this.targetCount = 4;
+    this.targetCount = 5;
     this.targets.create(310, 490, 'target');
     this.targets.create(420, 490, 'target');
     this.targets.create(530, 490, 'target');
@@ -157,7 +158,7 @@ export default class Tank extends Phaser.State {
     }
     if (this.escape.isDown) {
       this.goHome();
-    } else if (this.targetCount > 3) {
+    } else if (this.targetCount > 0) {
       if (this.bullet.exists) {
         if (this.bullet.y > 540) {
           //  Simple check to see if it's fallen too low
@@ -187,6 +188,7 @@ export default class Tank extends Phaser.State {
       this.state.start('TankWin');
       this.playerUpdate();
       this.winSound.play();
+      this.music.stop();
       console.log(this.tankScore);
     }
   }

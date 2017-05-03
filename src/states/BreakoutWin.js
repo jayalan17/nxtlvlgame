@@ -26,10 +26,11 @@ export default class Splash extends Phaser.State {
   preload () {
     this.load.image('brick', 'assets/splash/brick.png');
     this.load.image('map', 'assets/Menu/map.png');
-    this.load.image('dude', 'assets/splash/sprite.png');
-    this.load.image('key', 'assets/Menu/key.png');
+    this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
+    this.load.image('key', 'assets/Menu/key5.png');
     this.load.image('background', 'assets/breakout/starsBG.png');
-    this.load.audio('getKey', 'assets/Menu/getKey.wav')
+    this.load.audio('getKey', 'assets/Menu/getKey.wav');
+    this.load.audio('music', 'assets/audio/fragile.mp3');
   }
 
   create () {
@@ -37,9 +38,13 @@ export default class Splash extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
+    this.bs = this.add.text(this.world.centerX, 150, 'You Rocked Brickin.  High Score: ' + window.game.breakoutHighScore,
+    { fontSize: '20px', fill: 'gold', align: 'center' });
+    this.bs.anchor.set(0.5);
+
 
     this.getKeySound = this.add.audio('getKey');
-    this.music = this.add.audio('mainTitle');
+    this.music = this.add.audio('music');
     this.music.play();
 
     this.key = this.add.sprite(375, 200, 'key');
@@ -90,6 +95,7 @@ export default class Splash extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.key)) {
       this.goToHome();
       this.getKeySound.play();
+      this.music.stop();
     }
   }
 
@@ -99,7 +105,6 @@ export default class Splash extends Phaser.State {
   }
   goToHome () {
     this.state.start('Splash');
-    this.music.stop();
     // this.resetGame();
   }
 }

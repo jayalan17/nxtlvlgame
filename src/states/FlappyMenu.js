@@ -22,11 +22,11 @@ export default class FlappyMenu extends Phaser.State {
   }
 
   preload () {
-    this.load.spritesheet('bird', 'assets/splash/bird.png', 32, 32);
+    this.load.image('bird', 'assets/splash/star.png');
     this.load.image('map', 'assets/Menu/map.png');
     this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
     this.load.image('background', 'assets/Menu/paperBG.jpg');
-    this.load.audio('music', 'assets/Menu/AG-HG.mp3');
+    this.load.audio('music', 'assets/Menu/itszacrime.mp3');
   }
 
   create () {
@@ -34,10 +34,13 @@ export default class FlappyMenu extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
+    this.fs = this.add.text(this.world.centerX, 150, 'Your Flappin High Score: ' + window.game.flappyHighScore,
+    { fontSize: '20px', fill: 'black', align: 'center' });
+    this.fs.anchor.set(0.5);
 
     this.add.text(75, 200, 'INSTRUCTIONS: \nFLY Through 20 Groups\nOf Frogs To Advance',
     { fontSize: '20px', fill: 'black' });
-    this.add.text(475, 200, 'CONTROLS:\nTap SPACEBAR - Fly\n<esc> - Return To Map',
+    this.add.text(475, 200, 'CONTROLS:\n- Tap SPACEBAR to Fly\n- <esc> - Return To Map',
     { fontSize: '20px', fill: 'black' });
 
 
@@ -62,7 +65,6 @@ export default class FlappyMenu extends Phaser.State {
     this.player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 9, true);
     this.player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 9, true);
     this.player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 9, true);
-    this.bird.animations.add('c', [0, 1, 2, 3, 4, 5, 6, 7], 8, true);
 
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -97,7 +99,6 @@ export default class FlappyMenu extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.map)) {
       this.goToHome();
     }
-    this.bird.animations.play('c');
 
   }
 

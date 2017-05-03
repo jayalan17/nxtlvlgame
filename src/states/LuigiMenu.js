@@ -25,8 +25,10 @@ export default class LuigiMenu extends Phaser.State {
     this.load.image('luigi', 'assets/Menu/mushroom.png');
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('background', 'assets/Menu/paperBG.jpg');
-    this.load.audio('music', 'assets/Menu/AG-HG.mp3');
+
     this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
+    this.load.audio('music', 'assets/Menu/itszacrime.mp3');
+
   }
 
   create () {
@@ -35,11 +37,10 @@ export default class LuigiMenu extends Phaser.State {
 
     this.add.existing(this.titleText);
 
-    this.add.text(75, 200, 'INSTRUCTIONS: \nCollect All Of The Stars \nTo Advance',
+    this.add.text(75, 200, 'INSTRUCTIONS: \nCollect All Of The Coins \nTo Advance',
     { fontSize: '20px', fill: 'black' });
-    this.add.text(475, 200, 'CONTROLS:\nUse arrow keys for movement.\nLEFT and RIGHT to move player \nUP to Jump\n<esc> to Return To Map',
+    this.add.text(475, 200, 'CONTROLS:\n- Use Arrow Keys\n- LEFT and RIGHT to move \n- UP to Jump\n- <esc> to Return To Map',
     { fontSize: '20px', fill: 'black' });
-
 
     this.music = this.add.audio('music');
     this.music.play();
@@ -91,8 +92,8 @@ export default class LuigiMenu extends Phaser.State {
       this.player.body.velocity.y = 150;
       this.player.animations.play('down');
     } else {
-      this.player.animations.stop();
-      this.player.frame = 4;
+      this.player.animations.play(this.stopAnimation());
+
     }
     if (this.physics.arcade.collide(this.player, this.luigi)) {
       this.goToGame();

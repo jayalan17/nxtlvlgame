@@ -41,10 +41,14 @@ class Game extends Phaser.Game {
     this.tankComplete = false;
     this.flappyComplete = false;
     this.breakoutComplete = false;
+    this.flappyHighScore = 0;
+    this.breakoutHighScore = 0;
     this.shovelGot = false;
     this.seedsGot = false;
     this.waterGot = false;
     this.counter = 0;
+    this.breakoutCounter = 0;
+    this.flappyCounter = 0;
     this.farmingComplete = false;
 
     this.state.add('Splash', Splash, false);
@@ -64,47 +68,38 @@ class Game extends Phaser.Game {
     this.state.add('TankWin', TankWin, false);
     this.state.add('BreakoutWin', BreakoutWin, false);
     this.state.add('LuigiWin', LuigiWin, false);
-
-
-
   }
 
   luigiCompleted () {
     this.luigiComplete = true;
     console.log('Luigi: ' + this.luigiComplete);
     this.updateLuigi(this.user, true);
-    // this.handleLuigiCompleted();
   }
   tankCompleted () {
     this.tankComplete = true;
     console.log('Tank: ' + this.tankComplete);
     this.updateTank(this.user, true);
-    // this.handleTankCompleted();
   }
   flappyCompleted () {
     this.flappyComplete = true;
     console.log('Flappy: ' + this.flappyComplete);
     this.updateFlappy(this.user, true);
-    // this.handleFlappyCompleted();
   }
   breakoutCompleted () {
     this.breakoutComplete = true;
     console.log('Breakout: ' + this.breakoutComplete);
     this.updateBreakout(this.user, true);
-    // this.handleBreakoutCompleted();
   }
-  // handleLuigiCompleted () {
-  //   this.updateLuigi(this.user, true);
-  // }
-  // handleTankCompleted () {
-  //   this.updateTank(this.user, true);
-  // }
-  // handleFlappyCompleted () {
-  //   this.updateFlappy(this.user, true);
-  // }
-  // handleBreakoutCompleted () {
-  //   this.updateBreakout(this.user, true);
-  // }
+  farmingCompleted () {
+    this.farmingComplete = true;
+    this.updateFarming(this.user, true);
+  }
+  breakoutScoreUpdate () {
+    this.updateBreakoutScore(this.user, this.breakoutHighScore);
+  }
+  flappyScoreUpdate () {
+    this.updateFlappyScore(this.user, this.flappyHighScore);
+  }
 
   updateLuigi (name, luigiCompleted){
     fetch('/api/changeLuigi', {
@@ -158,6 +153,46 @@ class Game extends Phaser.Game {
       })
     });
   }
+  updateFarming (name, farmingCompleted){
+    fetch('/api/changeFarming', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        farmingCompleted: farmingCompleted
+      })
+    });
+  }
+  updateBreakoutScore (name, breakoutHighScore){
+    fetch('/api/changeBreakoutScore', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        breakoutHighScore: breakoutHighScore
+      })
+    });
+  }
+  updateFlappyScore (name, flappyHighScore){
+    fetch('/api/changeFlappyScore', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        flappyHighScore: flappyHighScore
+      })
+    });
+  }
+
   GetStatus(x){
     fetch('/api/getUserStatus/' + this.user, {
       method:"GET",
@@ -173,30 +208,12 @@ class Game extends Phaser.Game {
       this.tankComplete = data.tankCompleted;
       this.flappyComplete = data.flappyCompleted;
       this.breakoutComplete = data.breakoutCompleted;
+      this.farmingComplete = data.farmingCompleted;
+      this.flappyHighScore = data.flappyHighScore;
+      this.breakoutHighScore = data.breakoutHighScore;
       x();
     });
   }
 }
-
-// .then(data => this.weather = {conditions: data.weather[0].description, temp: data.main.temp, windSpeed: data.wind.speed, windDir: data.wind.deg });
-
-// .then(function(result) {
-    // return result.json();
-    // th
-    // })
-
-// getUserFromDb() {
- //   fetch("/user/userData",{
- //     method:"GET",
- //     headers: {
- //       "Accept": "application/json",
- //       "Content-Type": "application/json",
- //       'Authorization': 'Bearer ' + this.getCookie('token')
- //     },
- //   })
- //   .then(result => result.json())
- //   .then(data => this.pets = data.pets);
- // }
-
 
 export default Game;

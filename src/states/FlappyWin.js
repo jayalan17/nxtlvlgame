@@ -26,12 +26,13 @@ export default class extends Phaser.State {
   }
 
   preload () {
-    this.load.spritesheet('bird', 'assets/splash/bird.png', 32, 32);
+    this.load.image('bird', 'assets/splash/star.png');
     this.load.image('map', 'assets/Menu/map.png');
-    this.load.image('dude', 'assets/splash/sprite.png');
-    this.load.image('key', 'assets/Menu/key.png');
+    this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
+    this.load.image('key', 'assets/Menu/key4.png');
     this.load.image('background', 'assets/flappy/sky.png');
     this.load.audio('getKey', 'assets/Menu/getKey.wav');
+    this.load.audio('music', 'assets/audio/fragile.mp3');
 
   }
 
@@ -40,9 +41,13 @@ export default class extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
+    this.fs = this.add.text(this.world.centerX, 275, 'You Rocked Flappin.  High Score: ' + window.game.flappyHighScore +'\nUnlimited Play Unlocked.  Try to make the Leaderboard.',
+    { fontSize: '20px', fill: 'black', align: 'center' });
+    this.fs.anchor.set(0.5);
+
 
     this.getKeySound = this.add.audio('getKey');
-    this.music = this.add.audio('mainTitle');
+    this.music = this.add.audio('music');
     this.music.play();
 
     this.key = this.add.sprite(325, 400, 'key');
@@ -59,7 +64,7 @@ export default class extends Phaser.State {
     this.player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 9, true);
     this.player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 9, true);
     this.player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 9, true);
-    this.bird.animations.add('c', [0, 1, 2, 3, 4, 5, 6, 7], 8, true);
+
 
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -98,8 +103,8 @@ export default class extends Phaser.State {
       this.goToHome();
       this.getKeySound.play();
       this.flappyComplete = true;
+      this.music.stop();
     }
-    this.bird.animations.play('c');
 
   }
 

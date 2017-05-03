@@ -6,7 +6,6 @@ let phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
 let pixi = path.join(phaserModule, 'build/custom/pixi.js');
 let p2 = path.join(phaserModule, 'build/custom/p2.js');
 
-
 export default {
   devtool: 'inline-source-map',
   entry: {
@@ -27,9 +26,6 @@ export default {
     publicPath: '/',
     filename: '[name].js'
   },
-
-
-
   devServer: {
     contentBase: path.resolve(__dirname, 'src'),
     historyApiFallback: {
