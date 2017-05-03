@@ -25,8 +25,10 @@ export default class LuigiMenu extends Phaser.State {
     this.load.image('luigi', 'assets/Menu/mushroom.png');
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('background', 'assets/Menu/paperBG.jpg');
+
+    this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
     this.load.audio('music', 'assets/Menu/itszacrime.mp3');
-    this.load.image('dude', 'assets/splash/sprite.png');
+
   }
 
   create () {
@@ -57,9 +59,19 @@ export default class LuigiMenu extends Phaser.State {
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
 
+    this.player.animations.add('up', [104, 105, 106, 107, 108,
+      109, 110, 111, 112], 9, true);
+    this.player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 9, true);
+    this.player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 9, true);
+    this.player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 9, true);
+
+
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
+    this.world.scale.setTo(1);
+
   }
+
 
   update () {
     if (this.escape.isDown) {
@@ -80,8 +92,8 @@ export default class LuigiMenu extends Phaser.State {
       this.player.body.velocity.y = 150;
       this.player.animations.play('down');
     } else {
-      this.player.animations.stop();
-      this.player.frame = 4;
+      this.player.animations.play(this.stopAnimation());
+
     }
     if (this.physics.arcade.collide(this.player, this.luigi)) {
       this.goToGame();

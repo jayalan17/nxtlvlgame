@@ -26,13 +26,14 @@ export default class extends Phaser.State {
   }
 
   preload () {
-    this.load.image('bird', 'assets/splash/bird.png');
+    this.load.image('bird', 'assets/splash/star.png');
     this.load.image('map', 'assets/Menu/map.png');
-    this.load.image('dude', 'assets/splash/sprite.png');
+    this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
     this.load.image('key', 'assets/Menu/key4.png');
     this.load.image('background', 'assets/flappy/sky.png');
     this.load.audio('getKey', 'assets/Menu/getKey.wav');
     this.load.audio('music', 'assets/audio/fragile.mp3');
+
   }
 
   create () {
@@ -56,6 +57,15 @@ export default class extends Phaser.State {
     this.player = this.add.sprite(350, 250, 'dude');
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
+    this.world.scale.setTo(1);
+
+    this.player.animations.add('up', [104, 105, 106, 107, 108,
+      109, 110, 111, 112], 9, true);
+    this.player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 9, true);
+    this.player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 9, true);
+    this.player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 9, true);
+
+
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
@@ -95,6 +105,7 @@ export default class extends Phaser.State {
       this.flappyComplete = true;
       this.music.stop();
     }
+
   }
 
   goToGame () {
