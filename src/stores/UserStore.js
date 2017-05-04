@@ -21,8 +21,6 @@ export default class UserStore {
       hiScores: [],
     });
     this.LoginUser = this.LoginUser.bind(this);
-    // this.getScores = this.getScores.bind(this);
-    // this.sortScores = this.sortScores.bind(this);
   }
 
   getScores () {
@@ -47,7 +45,11 @@ export default class UserStore {
   displayScores () {
     return (
       <div>
-
+        <h5>1.&nbsp;&nbsp;&nbsp; {this.hiScores[0].flappyHighScore}  ===>  {this.hiScores[0].name}</h5>
+        <h5>2.&nbsp;&nbsp;&nbsp; {this.hiScores[1].flappyHighScore}  ===>  {this.hiScores[1].name}</h5>
+        <h5>3.&nbsp;&nbsp;&nbsp; {this.hiScores[2].flappyHighScore}  ===>  {this.hiScores[2].name}</h5>
+        <h5>4.&nbsp;&nbsp;&nbsp; {this.hiScores[3].flappyHighScore}  ===>  {this.hiScores[3].name}</h5>
+        <h5>5.&nbsp;&nbsp;&nbsp; {this.hiScores[4].flappyHighScore}  ===>  {this.hiScores[4].name}</h5>
       </div>
     );
   }
