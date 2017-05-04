@@ -10,15 +10,31 @@ class Leaderboard extends React.Component {
     };
   }
 
-  // componentWillMount(){
-  //   this.props.userStore.getScores();
-  // }
+  componentWillMount(){
+    this.props.userStore.getScores();
+  }
+
+  displayScores () {
+    let scoreArray = [];
+    this.props.userStore.hiScores.forEach((userScore, i) => {
+      scoreArray.push(
+        <h5>{i + 1}.&nbsp;&nbsp;&nbsp;
+        {userScore.flappyHighScore}  ===>  {userScore.name}</h5>
+      );
+    });
+    return (
+      <div>
+        {scoreArray}
+      </div>
+    );
+  }
 
   render() {
     return (
       <div>
-        <h3 style={{fontWeight: "bold", color: "#ea1828"}}>FLAPPIN HIGH SCORES</h3>
-        {this.props.userStore.displayScores()}
+        <h3 style={{fontWeight: "bold", color: "#ea1828"}}>
+        FLAPPIN HIGH SCORES</h3>
+        {this.displayScores()}
       </div>
     );
   }
