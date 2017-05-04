@@ -48,10 +48,11 @@ export default class Breakout extends Phaser.State {
       }
     }
     this.ball = this.add.sprite(200, 500, 'ball');
-    this.ball.body.velocity.x = 250;
+    this.ball.body.velocity.x = 260;
     this.ball.body.velocity.y = 250;
-    this.ball.body.bounce.setTo(1);
+    this.ball.body.bounce.setTo(1.0);
     this.world.scale.setTo(1);
+
 
     this.ball.body.collideWorldBounds = true;
   }
@@ -64,7 +65,7 @@ export default class Breakout extends Phaser.State {
       this.paddle.body.velocity.x = -300;
     } else if (this.right.isDown) {
       this.paddle.body.velocity.x = 300;
-    } else this.paddle.body.velocity.x = 0;
+    } else this.paddle.body.velocity.x = 1;
 
     // Add collisions between the paddle and the ball
     if (this.physics.arcade.collide(this.paddle, this.ball)) {

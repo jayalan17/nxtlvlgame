@@ -51,11 +51,11 @@ export default class TankMenu extends Phaser.State {
     this.map.body.immovable = true;
     this.world.scale.setTo(1);
 
-
-
     this.player = this.add.sprite(350, 250, 'dude');
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
+    this.player.scale.setTo(2);
+
 
     this.player.animations.add('up', [104, 105, 106, 107, 108,
       109, 110, 111, 112], 9, true);
@@ -88,7 +88,7 @@ export default class TankMenu extends Phaser.State {
       this.player.animations.play('down');
     } else {
       this.player.animations.stop();
-      this.player.frame = 4;
+      this.player.frame = 130;
     }
     if (this.physics.arcade.collide(this.player, this.tank)) {
       this.goToGame();

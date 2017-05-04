@@ -63,6 +63,7 @@ export default class Splash extends Phaser.State {
     this.player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 9, true);
 
     this.world.scale.setTo(1);
+    this.player.scale.setTo(2);
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
@@ -104,7 +105,7 @@ export default class Splash extends Phaser.State {
       this.player.animations.play('down');
     } else {
       this.player.animations.stop();
-      this.player.frame = 4;
+      this.player.frame = 130;
     }
     if (this.physics.arcade.collide(this.player, this.brick)) {
       this.goToGame();

@@ -10,6 +10,7 @@ export default class Splash extends Phaser.State {
   preload () {
     this.load.image('coin', 'assets/splash/bitcoin.png');
     this.load.image('deer', 'assets/splash/deer.png');
+    this.load.image('deer2', 'assets/splash/deer2.png');
     this.load.image('shovel', 'assets/splash/shovel.png');
     this.load.spritesheet('dude2', 'assets/splash/sprite.png', 32, 32);
     this.load.image('seeds', 'assets/splash/seeds.png');
@@ -339,6 +340,10 @@ export default class Splash extends Phaser.State {
     }
     if (this.physics.arcade.collide(this.player, this.log)) {
       this.addText15();
+      this.deer.kill();
+      this.deer2 = this.add.sprite(540, 200, 'deer2');
+      this.physics.arcade.enable(this.deer2);
+      this.deer2.body.velocity.x = 300;
     }
 
     //  this.bird.animations.play('c');

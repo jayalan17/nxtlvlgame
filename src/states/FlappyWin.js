@@ -94,7 +94,7 @@ export default class extends Phaser.State {
       this.player.animations.play('down');
     } else {
       this.player.animations.stop();
-      this.player.frame = 4;
+      this.player.frame = 130;
     }
     if (this.physics.arcade.collide(this.player, this.bird)) {
       this.goToGame();

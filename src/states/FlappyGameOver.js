@@ -59,6 +59,8 @@ export default class extends Phaser.State {
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
     this.world.scale.setTo(1);
+    this.player.scale.setTo(2);
+
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
 
@@ -110,7 +112,7 @@ export default class extends Phaser.State {
       this.player.animations.play('down');
     } else {
       this.player.animations.stop();
-      this.player.frame = 4;
+      this.player.frame = 130;
     }
     if (this.physics.arcade.collide(this.player, this.bird)) {
       this.goToGame();

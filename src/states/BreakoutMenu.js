@@ -58,6 +58,7 @@ export default class BreakoutMenu extends Phaser.State {
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
     this.world.scale.setTo(1);
+    this.player.scale.setTo(2);
 
     this.player.animations.add('up', [104, 105, 106, 107, 108,
       109, 110, 111, 112], 9, true);
@@ -90,7 +91,7 @@ export default class BreakoutMenu extends Phaser.State {
       this.player.animations.play('down');
     } else {
       this.player.animations.stop();
-      this.player.frame = 4;
+      this.player.frame = 130;
     }
     if (this.physics.arcade.collide(this.player, this.brick)) {
       this.goToGame();

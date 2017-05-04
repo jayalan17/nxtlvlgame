@@ -26,7 +26,7 @@ export default class extends Phaser.State {
   preload () {
     this.load.image('tank', 'assets/Menu/tank.png');
     this.load.image('map', 'assets/Menu/map.png');
-    this.load.image('dude', 'assets/splash/sprite.png');
+    this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
     this.load.image('key', 'assets/Menu/key2.png');
     this.load.image('background', 'assets/tank/background2.jpg');
     this.load.audio('getKey', 'assets/Menu/getKey.wav');
@@ -51,6 +51,7 @@ export default class extends Phaser.State {
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
     this.world.scale.setTo(1);
+    this.player.scale.setTo(2);
 
     this.player.animations.add('up', [104, 105, 106, 107, 108,
       109, 110, 111, 112], 9, true);
@@ -87,7 +88,7 @@ export default class extends Phaser.State {
       this.player.animations.play('down');
     } else {
       this.player.animations.stop();
-      this.player.frame = 4;
+      this.player.frame = 130;
     }
 
     if (this.physics.arcade.collide(this.player, this.key)) {

@@ -27,7 +27,7 @@ export default class extends Phaser.State {
   preload () {
     this.load.image('luigi', 'assets/splash/mushroom.png');
     this.load.image('map', 'assets/Menu/map.png');
-    this.load.image('dude', 'assets/splash/sprite.png');
+    this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
     this.load.image('key', 'assets/Menu/key.png');
     this.load.image('background', 'assets/luigi/kqmACO.jpg');
     this.load.audio('getKey', 'assets/Menu/getKey.wav');
@@ -50,7 +50,7 @@ export default class extends Phaser.State {
     this.physics.arcade.enable(this.key);
     this.key.body.immovable = true;
 
-    this.player = this.add.sprite(350, 250, 'dude');
+    this.player = this.add.sprite(335, 300, 'dude');
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
 
@@ -64,6 +64,7 @@ export default class extends Phaser.State {
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
     this.world.scale.setTo(1);
+    this.player.scale.setTo(2);
 
   }
 
@@ -88,7 +89,8 @@ export default class extends Phaser.State {
       this.player.body.velocity.y = 150;
       this.player.animations.play('down');
     } else {
-      this.player.animations.play(this.stopAnimation());
+      this.player.animations.stop();
+      this.player.frame = 130;
 
     }
     if (this.physics.arcade.collide(this.player, this.luigi)) {
@@ -107,6 +109,6 @@ export default class extends Phaser.State {
   }
   goToHome () {
     this.state.start('Splash');
-    // this.resetGame();
+    //this.resetGame();
   }
 }
