@@ -12,7 +12,7 @@ export default class Luigi extends Phaser.State {
     this.load.image('sky', 'assets/luigi/kqmACO.jpg');
     this.load.image('ground', 'assets/luigi/platform.png');
     this.load.image('star', 'assets/splash/bitcoin.png');
-    this.load.spritesheet('dude', 'assets/luigi/dude.png', 32, 48);
+    this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
     this.load.audio('win', 'assets/Menu/ta-da.wav');
     this.load.audio('jump', 'assets/audio/jump_07.wav');
     this.load.audio('money', 'assets/luigi/cha-ching.wav');
@@ -48,6 +48,7 @@ export default class Luigi extends Phaser.State {
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
     this.ground.scale.setTo(2, 2);
 
+
     //  This stops it from falling away when you jump on it
     this.ground.body.immovable = true;
 
@@ -70,10 +71,11 @@ export default class Luigi extends Phaser.State {
     this.player.body.bounce.y = 0.1;
     this.player.body.gravity.y = 200;
     this.player.body.collideWorldBounds = true;
+    this.player.scale.setTo(2);
 
     //  Our two animations, walking left and right.
-    this.player.animations.add('left', [0, 1, 2, 3], 10, true);
-    this.player.animations.add('right', [5, 6, 7, 8], 10, true);
+    this.player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 9, true);
+    this.player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 9, true);
     this.stage.disableVisibilityChange = true;
 
     //  Our controls.
@@ -130,7 +132,7 @@ export default class Luigi extends Phaser.State {
       } else {
             //  Stand still
         this.player.animations.stop();
-        this.player.frame = 4;
+        this.player.frame = 130;
       }
 
          //  Allow the player to jump if they are touching the ground.

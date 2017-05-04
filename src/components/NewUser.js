@@ -59,10 +59,10 @@ class NewUser extends React.Component {
     const parentStyle = {height:"100vh", width:"100vw",
       background: "url("+bg+") no-repeat center fixed", backgroundSize: "cover"};
     const wellStyle = {float: "right", margin: "20px", opacity: ".95",
-      backgroundBlendMode: "overlay", height: "80px", width: "720px"};
+      backgroundBlendMode: "overlay", height: "80px", width: "720px", border: "1px solid #ea1828"};
     const wellStyle2 = {float: "left", margin: "20px",
       opacity: ".95", backgroundBlendMode: "overlay",
-      height: "125px", width: "300px", textAlign: "center"};
+      height: "125px", width: "300px", textAlign: "center", border: "1px solid #ea1828"};
 
     return (
       <div>

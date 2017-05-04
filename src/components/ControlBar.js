@@ -35,13 +35,15 @@ class ControlBar extends React.Component {
                 <Link className= "lgo" to={{pathname: '/Dashboard'}}>
                   <img className="hidden-xs"
                     src={require('../img/NextLVL.png')}
-                    width="200px" height="50px"/>
+                    width="200px" height="50px"
+                    style={{border: "2px solid #ea1828"}}/>
                 </Link>
                 <Link className= "lgo" to={{pathname: '/Dashboard'}}>
                   <img className="hidden-md hidden-lg hidden-sm"
                     src={require('../img/NextLVL.png')}
                     width="200px"
-                    height="50px"/>
+                    height="50px"
+                    style={{border: "2px solid #ea1828"}}/>
                 </Link>
               </Navbar .Brand>
             </Navbar .Header>
@@ -49,7 +51,7 @@ class ControlBar extends React.Component {
               <Nav pullRight>
                 <LinkContainer to={{pathname: '/Dashboard'}}>
                   <NavItem>
-                    <Glyphicon glyph="user"/> {this.props.userStore.name}
+                    <Glyphicon glyph="user" style={{color: "#ea1828"}}/> {this.props.userStore.name}
                   </NavItem>
                 </LinkContainer>
                 <NavItem

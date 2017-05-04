@@ -85,8 +85,8 @@ export default class LuigiMenu extends Phaser.State {
       this.player.body.velocity.y = 150;
       this.player.animations.play('down');
     } else {
-      this.player.animations.play(this.stopAnimation());
-
+      this.player.animations.stop();
+      this.player.frame = 130;
     }
     if (this.physics.arcade.collide(this.player, this.luigi)) {
       this.goToGame();
