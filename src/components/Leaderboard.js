@@ -17,10 +17,12 @@ class Leaderboard extends React.Component {
   displayScores () {
     let scoreArray = [];
     this.props.userStore.hiScores.forEach((userScore, i) => {
-      scoreArray.push(
-        <h5>{i + 1}.&nbsp;&nbsp;&nbsp;
-        {userScore.flappyHighScore}  ===>  {userScore.name}</h5>
-      );
+      if (i < 10){
+        scoreArray.push(
+          <h5>{i + 1}.&nbsp;&nbsp;&nbsp;
+          {userScore.name}  ===>  {userScore.flappyHighScore}</h5>
+        );
+      }
     });
     return (
       <div>

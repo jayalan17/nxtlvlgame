@@ -53,7 +53,7 @@ class Welcome extends React.Component {
       height: "80px", width: "720px", border: "1px solid #ea1828"};
     const wellStyle2 = {float: "left", margin: "20px",
       opacity: ".95", backgroundBlendMode: "overlay",
-      height: "525px", width: "300px", textAlign: "center", border: "1px solid #ea1828"};
+      height: "410px", width: "300px", textAlign: "center", border: "1px solid #ea1828"};
 
     return (
       <div>
