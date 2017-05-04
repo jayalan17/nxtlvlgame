@@ -10,9 +10,9 @@ class Leaderboard extends React.Component {
     };
   }
 
-  componentWillMount(){
-    this.props.userStore.getScores();
-  }
+  // componentWillMount(){
+  //   this.props.userStore.getScores();
+  // }
 
   render() {
     return (
