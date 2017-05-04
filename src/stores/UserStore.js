@@ -21,9 +21,12 @@ export default class UserStore {
       hiScores: [],
     });
     this.LoginUser = this.LoginUser.bind(this);
+    this.getScores(() => {
+      this.displayScores();
+    });
   }
 
-  getScores () {
+  getScores (x) {
     fetch('/api/getUserScores', {
       method:"GET",
       headers: {
@@ -39,6 +42,7 @@ export default class UserStore {
       })
       data.reverse();
       this.hiScores = data;
+      x();
     });
   }
 
@@ -50,6 +54,15 @@ export default class UserStore {
         <h5>3.&nbsp;&nbsp;&nbsp; {this.hiScores[2].flappyHighScore}  ===>  {this.hiScores[2].name}</h5>
         <h5>4.&nbsp;&nbsp;&nbsp; {this.hiScores[3].flappyHighScore}  ===>  {this.hiScores[3].name}</h5>
         <h5>5.&nbsp;&nbsp;&nbsp; {this.hiScores[4].flappyHighScore}  ===>  {this.hiScores[4].name}</h5>
+        <h5>6.&nbsp;&nbsp;&nbsp; {this.hiScores[5].flappyHighScore}  ===>  {this.hiScores[5].name}</h5>
+        <h5>7.&nbsp;&nbsp;&nbsp; {this.hiScores[6].flappyHighScore}  ===>  {this.hiScores[6].name}</h5>
+        <h5>8.&nbsp;&nbsp;&nbsp; {this.hiScores[7].flappyHighScore}  ===>  {this.hiScores[7].name}</h5>
+        <h5>9.&nbsp;&nbsp;&nbsp; {this.hiScores[8].flappyHighScore}  ===>  {this.hiScores[8].name}</h5>
+        <h5>10.&nbsp;&nbsp;&nbsp; {this.hiScores[9].flappyHighScore}  ===>  {this.hiScores[9].name}</h5>
+        <h5>11.&nbsp;&nbsp;&nbsp; {this.hiScores[10].flappyHighScore}  ===>  {this.hiScores[10].name}</h5>
+        <h5>12.&nbsp;&nbsp;&nbsp; {this.hiScores[11].flappyHighScore}  ===>  {this.hiScores[11].name}</h5>
+        <h5>13.&nbsp;&nbsp;&nbsp; {this.hiScores[12].flappyHighScore}  ===>  {this.hiScores[12].name}</h5>
+        <h5>14.&nbsp;&nbsp;&nbsp; {this.hiScores[13].flappyHighScore}  ===>  {this.hiScores[13].name}</h5>
       </div>
     );
   }
