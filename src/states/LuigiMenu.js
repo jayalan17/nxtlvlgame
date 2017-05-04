@@ -15,7 +15,6 @@ export default class LuigiMenu extends Phaser.State {
       fill: 'darkgreen',
       align: 'center'
     });
-
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     this.titleText.anchor.set(0.5);
     this.optionCount = 1;
@@ -25,10 +24,8 @@ export default class LuigiMenu extends Phaser.State {
     this.load.image('luigi', 'assets/Menu/mushroom.png');
     this.load.image('map', 'assets/Menu/map.png');
     this.load.image('background', 'assets/Menu/paperBG.jpg');
-
     this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
     this.load.audio('music', 'assets/Menu/itszacrime.mp3');
-
   }
 
   create () {
@@ -36,7 +33,6 @@ export default class LuigiMenu extends Phaser.State {
     this.add.sprite(0, 0, 'background');
 
     this.add.existing(this.titleText);
-
     this.add.text(75, 200, 'INSTRUCTIONS: \nCollect All Of The Coins \nTo Advance',
     { fontSize: '20px', fill: 'black' });
     this.add.text(475, 200, 'CONTROLS:\n- Use Arrow Keys\n- LEFT and RIGHT to move \n- UP to Jump\n- <esc> to Return To Map',
@@ -65,13 +61,10 @@ export default class LuigiMenu extends Phaser.State {
     this.player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 9, true);
     this.player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 9, true);
 
-
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
     this.world.scale.setTo(1);
-
   }
-
 
   update () {
     if (this.escape.isDown) {
@@ -102,7 +95,9 @@ export default class LuigiMenu extends Phaser.State {
       this.goToHome();
     }
   }
-
+  stopAnimation() {
+    this.player.animations.stop(null, true);
+  }
   goToGame () {
     this.state.start('Luigi');
     this.music.stop();
@@ -110,6 +105,5 @@ export default class LuigiMenu extends Phaser.State {
   goToHome () {
     this.state.start('Splash');
     this.music.stop();
-    // this.resetGame();
   }
 }

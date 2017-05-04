@@ -97,7 +97,9 @@ export default class TankMenu extends Phaser.State {
       this.goToHome();
     }
   }
-
+  stopAnimation() {
+    this.player.animations.stop(null, true);
+  }
   goToGame () {
     this.state.start('Tank');
     this.music.stop();

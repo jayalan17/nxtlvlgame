@@ -46,10 +46,9 @@ export default class UserStore {
   displayScores () {
     return (
       <div>
-        <h5>1. {this.hiScores[0].flappyHighScore} {this.hiScores[0].name}</h5>
-        <h5>2. {this.hiScores[1].flappyHighScore} {this.hiScores[1].name}</h5>
-        <h5>3. {this.hiScores[2].flappyHighScore} {this.hiScores[2].name}</h5>
-        <h5>4. {this.hiScores[3].flappyHighScore} {this.hiScores[3].name}</h5>
+        <h5>1. {this.hiScores[0].flappyHighScore}  ===>  {this.hiScores[0].name}</h5>
+        <h5>2. {this.hiScores[1].flappyHighScore}  ===>  {this.hiScores[1].name}</h5>
+        <h5>3. {this.hiScores[2].flappyHighScore}  ===>  {this.hiScores[2].name}</h5>
       </div>
     );
   }

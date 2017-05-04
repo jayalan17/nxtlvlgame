@@ -122,6 +122,9 @@ export default class extends Phaser.State {
     // this.bird.animations.play('c');
 
   }
+  stopAnimation() {
+    this.player.animations.stop(null, true);
+  }
 
   goToGame () {
     this.state.start('Flappy');

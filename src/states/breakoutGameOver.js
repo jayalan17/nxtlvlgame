@@ -114,7 +114,9 @@ export default class Splash extends Phaser.State {
     }
     this.physics.arcade.collide(this.player, this.key);
   }
-
+  stopAnimation() {
+    this.player.animations.stop(null, true);
+  }
   goToGame () {
     this.state.start('Breakout');
     this.music.stop();

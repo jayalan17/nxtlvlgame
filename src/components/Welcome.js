@@ -48,22 +48,18 @@ class Welcome extends React.Component {
     const parentStyle = {height:"100vh", width:"100vw",
       background: "url("+bg+") no-repeat center fixed",
       backgroundSize: "cover"};
-    const wellStyle = {float: "right", top: "0px",
-      bottom: "0px", left: "0px", right: "0px", margin: "auto",
+    const wellStyle = {float: "right", margin: "20px",
       opacity: ".95", backgroundBlendMode: "overlay",
-      height: "80px", width: "700px"};
-    const wellStyle2 = {float: "left", top: "0px",
-      bottom: "0px", left: "0px", right: "0px", margin: "auto",
+      height: "80px", width: "720px"};
+    const wellStyle2 = {float: "left", margin: "20px",
       opacity: ".95", backgroundBlendMode: "overlay",
-      height: "500px", width: "200px"};
-    const logoStyle = {float: "left", top: "0px",
-      left: "525px", zIndex: "100", height: "50px", width: "200px"};
+      height: "500px", width: "300px", textAlign: "center"};
 
     return (
       <div>
         <Well style={wellStyle2}>
           <div>
-            <img src={require('../img/NextLVL.png')}/>
+            <img style={{height: "80px", width: "225px"}} src={require('../img/NextLVL.png')}/>
           </div>
           <div><Leaderboard/></div>
         </Well>
@@ -73,7 +69,7 @@ class Welcome extends React.Component {
             <Form inline>
               {this.loginNotice()}
               <FormGroup controlId="formInlineName">
-                <ControlLabel>Advance to NxtLvl...&nbsp;&nbsp;</ControlLabel>
+                <ControlLabel style={{fontSize: "17px"}}>Advance to NxtLvl...&nbsp;&nbsp;</ControlLabel>
                 <FormControl
                   onChange={this.handleNameChange}
                   type="text"

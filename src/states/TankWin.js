@@ -96,7 +96,9 @@ export default class extends Phaser.State {
     }
 
   }
-
+  stopAnimation() {
+    this.player.animations.stop(null, true);
+  }
   goToGame () {
     this.state.start('Tank');
     this.music.stop();

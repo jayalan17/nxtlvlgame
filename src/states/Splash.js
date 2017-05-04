@@ -28,7 +28,7 @@ export default class Splash extends Phaser.State {
     this.load.spritesheet('bird', 'assets/splash/bird.png', 32, 32);
     this.load.image('brick', 'assets/splash/brick.png');
     this.load.image('luigi', 'assets/splash/mushroom.png');
-    this.load.image('padlock', 'assets/splash/padlock.png');
+    this.load.image('padlock', 'assets/splash/padlock3.png');
     this.load.image('padlock2', 'assets/splash/padlock2.png');
     this.load.image('padlock3', 'assets/splash/padlock4.png');
     this.load.image('rock', 'assets/splash/rock.png');
@@ -54,8 +54,10 @@ export default class Splash extends Phaser.State {
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true;
     this.background = this.add.sprite(0, 0, 'map');
-    this.story = this.make.text(200, 10, 'What a vibrant valley...so much to explore!',
-    { fontSize: '24px', fill: 'orange', font: 'herculanum', textAlign: 'center' });
+
+    this.story = this.make.text(this.world.centerX, 20, 'What a vibrant valley...so much to explore!',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack', textAlign: 'center' });
+    this.story.anchor.set(0.5);
 
     this.princess = this.add.sprite(650, 96, 'princess');
     this.physics.arcade.enable(this.princess);
@@ -71,15 +73,15 @@ export default class Splash extends Phaser.State {
       this.prison.body.immovable = true;
     }
 
-    this.dirt = this.add.sprite(30, 165, 'dirt');
+    this.dirt = this.add.sprite(470, 100, 'dirt');
     this.physics.arcade.enable(this.dirt);
     this.dirt.body.immovable = true;
 
-    this.shovel = this.add.sprite(320, 96, 'shovel');
+    this.shovel = this.add.sprite(70, 200, 'shovel');
     this.physics.arcade.enable(this.shovel);
     this.shovel.body.immovable = true;
 
-    this.seeds = this.add.sprite(400, 400, 'seeds');
+    this.seeds = this.add.sprite(350, 400, 'seeds');
     this.physics.arcade.enable(this.seeds);
     this.seeds.body.immovable = true;
 
@@ -87,7 +89,7 @@ export default class Splash extends Phaser.State {
     this.physics.arcade.enable(this.water);
     this.water.body.immovable = true;
 
-    this.rock2 = this.add.sprite(100, 240, 'rock');
+    this.rock2 = this.add.sprite(80, 260, 'rock');
     this.physics.arcade.enable(this.rock2);
     this.rock2.body.immovable = true;
 
@@ -99,24 +101,30 @@ export default class Splash extends Phaser.State {
     this.physics.arcade.enable(this.deer);
     this.deer.body.immovable = true;
 
-    this.log = this.add.sprite(540, 220, 'log');
+    this.log = this.add.sprite(540, 230, 'log');
     this.physics.arcade.enable(this.log);
     this.log.body.immovable = true;
 
-    this.rock3 = this.add.sprite(440, 280, 'rock');
+    this.log2 = this.add.sprite(340, 440, 'log');
+    this.physics.arcade.enable(this.log2);
+    this.log2.body.immovable = true;
+
+    this.log3 = this.add.sprite(280, 500, 'log');
+    this.physics.arcade.enable(this.log3);
+    this.log3.body.immovable = true;
+
+    this.rock3 = this.add.sprite(740, 280, 'rock');
     this.physics.arcade.enable(this.rock3);
     this.rock3.enableBody = true;
-
 
     this.rock4 = this.add.sprite(250, 320, 'rock');
     this.physics.arcade.enable(this.rock4);
     this.rock4.body.immovable = true;
 
     if (window.game.luigiComplete) {
-      this.tank = this.add.sprite(321, 500, 'tank');
+      this.tank = this.add.sprite(534, 537, 'tank');
       this.physics.arcade.enable(this.tank);
       this.tank.body.immovable = true;
-
     } else {
       this.padlock1 = this.add.sprite(534, 537, 'padlock');
       this.physics.arcade.enable(this.padlock1);
@@ -133,34 +141,31 @@ export default class Splash extends Phaser.State {
     this.farmEnd = this.add.audio('farmend');
 
     if (window.game.tankComplete) {
-      this.bird = this.add.sprite(33, 300, 'bird');
+      this.bird = this.add.sprite(33, 420, 'bird');
       this.physics.arcade.enable(this.bird);
       this.bird.body.immovable = true;
-
     } else {
-
-      this.padlock2 = this.add.sprite(33, 300, 'padlock2');
+      this.padlock2 = this.add.sprite(33, 420, 'padlock2');
       this.physics.arcade.enable(this.padlock2);
       this.padlock2.body.immovable = true;
     }
 
-    this.luigi = this.add.sprite(321, 864, 'luigi');
+    this.luigi = this.add.sprite(240, 480, 'luigi');
     this.physics.arcade.enable(this.luigi);
     this.luigi.body.immovable = true;
     this.luigi.body.collideWorldBounds = true;
 
     if (window.game.flappyComplete) {
-      this.brick = this.add.sprite(500, 388, 'brick');
+      this.brick = this.add.sprite(750, 388, 'brick');
       this.physics.arcade.enable(this.brick);
       this.brick.body.immovable = true;
-
     } else {
-      this.padlock3 = this.add.sprite(500, 388, 'padlock3');
+      this.padlock3 = this.add.sprite(750, 388, 'padlock3');
       this.physics.arcade.enable(this.padlock3);
       this.padlock3.body.immovable = true;
     }
 
-    this.player = this.add.sprite(400, 300, 'dude');
+    this.player = this.add.sprite(300, 285, 'dude');
     this.physics.arcade.enable(this.player);
   //   this.player.body.collideWorldBounds = true;
     this.player.animations.add('up', [104, 105, 106, 107, 108,
@@ -179,7 +184,7 @@ export default class Splash extends Phaser.State {
     this.cursors = this.input.keyboard.createCursorKeys();
     // this.window.game.camera.scale.setTo(2);
 
-    this.world.scale.setTo(1.2);
+    this.world.scale.setTo(1);
 
   }
 
@@ -203,9 +208,7 @@ export default class Splash extends Phaser.State {
       this.player.animations.play('down');
     } else {
       this.player.animations.play(this.stopAnimation());
-
     }
-
 
     if (this.physics.arcade.collide(this.player, this.tree)) {
       this.addText12();
@@ -250,17 +253,13 @@ export default class Splash extends Phaser.State {
       this.shovel.kill();
       this.seeds.kill();
       this.water.kill();
-      this.tree = this.add.sprite(430, 20, 'tree');
+      this.tree = this.add.sprite(470, 40, 'tree');
       this.physics.arcade.enable(this.tree);
       this.tree.body.immovable = true;
     }
     if (this.physics.arcade.collide(this.player, this.shovel)) {
       window.game.shovelGot = true;
       this.shovel.kill();
-      this.player.kill();
-      this.player = this.add.sprite(40, 180, 'dude2');
-      this.physics.arcade.enable(this.player);
-      //this.player.body.collideWorldBounds = true;
       this.addText6();
     }
     if (this.physics.arcade.collide(this.player, this.seeds)) {
@@ -268,10 +267,6 @@ export default class Splash extends Phaser.State {
       if (window.game.shovelGot == true && window.game.counter == 1) {
         window.game.seedsGot = true;
         this.seeds.kill();
-        this.player.kill();
-        this.player = this.add.sprite(170, 410, 'dude3');
-        this.physics.arcade.enable(this.player);
-        //this.player.body.collideWorldBounds = true;
         this.addText8();
       }
     }
@@ -280,10 +275,6 @@ export default class Splash extends Phaser.State {
       if (window.game.shovelGot == true && window.game.seedsGot == true && window.game.counter == 2) {
         window.game.waterGot = true;
         this.water.kill();
-        this.player.kill();
-        this.player = this.add.sprite(520, 380, 'dude4');
-        this.physics.arcade.enable(this.player);
-        //this.player.body.collideWorldBounds = true;
         this.addText9();
       }
     }
@@ -292,13 +283,9 @@ export default class Splash extends Phaser.State {
       if (window.game.shovelGot) {
         window.game.counter = 1;
         this.dirt.kill();
-        this.dirt2 = this.add.sprite(520, 80, 'dirt2');
+        this.dirt2 = this.add.sprite(470, 100, 'dirt2');
         this.physics.arcade.enable(this.dirt2);
         this.dirt2.body.immovable = true;
-        this.player.kill();
-        this.player = this.add.sprite(520, 80, 'dude');
-        this.physics.arcade.enable(this.player);
-        //this.player.body.collideWorldBounds = true;
       }
     }
     if (this.physics.arcade.collide(this.player, this.dirt2)) {
@@ -306,27 +293,20 @@ export default class Splash extends Phaser.State {
       if (window.game.shovelGot == true && window.game.seedsGot == true) {
         window.game.counter = 2;
         this.dirt2.kill();
-        this.dirt3 = this.add.sprite(520, 80, 'dirt3');
+        this.dirt3 = this.add.sprite(470, 70, 'dirt3');
         this.physics.arcade.enable(this.dirt3);
         this.dirt3.body.immovable = true;
-        this.player.kill();
-        this.player = this.add.sprite(520, 80, 'dude');
-        this.physics.arcade.enable(this.player);
-        //this.player.body.collideWorldBounds = true;
       }
     }
     if (this.physics.arcade.collide(this.player, this.dirt3)) {
+      this.addText11();
       if (window.game.shovelGot == true && window.game.seedsGot == true && window.game.waterGot == true) {
         window.game.counter = 3;
         window.game.farmingCompleted();
         this.dirt3.kill();
-        this.tree = this.add.sprite(430, 20, 'tree');
+        this.tree = this.add.sprite(470, 40, 'tree');
         this.physics.arcade.enable(this.tree);
         this.tree.body.immovable = true;
-        this.player.kill();
-        this.player = this.add.sprite(520, 80, 'dude');
-        this.physics.arcade.enable(this.player);
-        //this.player.body.collideWorldBounds = true;
         this.farmEnd.play();
       }
     }
@@ -340,11 +320,15 @@ export default class Splash extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.log)) {
       this.addText15();
     }
-
+    if (this.physics.arcade.collide(this.player, this.log2)) {
+      this.addText15();
+    }
+    if (this.physics.arcade.collide(this.player, this.log3)) {
+      this.addText15();
+    }
     //  this.bird.animations.play('c');
     // this.tank.animations.play('a');
     // this.brick.animations.play('b');
-
   }
 
   stopAnimation() {
@@ -352,99 +336,112 @@ export default class Splash extends Phaser.State {
     this.player.animations.stop(null, true);
   }
 
-
   addText1 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'Hmm...looks like I could plant something here.',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Hmm...looks like I could plant something here.',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
   }
   addText2 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'Hmm...looks like the princess has been captured!',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Hmm...looks like the princess has been captured!',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
   }
   addText3 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'Hmm...looks like I need to find a key?!',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Hmm...looks like I need to find a key?!',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
   }
   addText4 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'Hmm...looks like a watering can.',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Hmm...looks like a water barrel.',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
   }
   addText5 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'Hmm...is this a magic seed?!',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Hmm...are these magic seeds?!',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
   }
   addText6 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'Hmm...looks like I found a shovel.',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Hmm...looks like I found a shovel.',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
     this.pickUpSound.play();
 
   }
   addText7 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'A simple rock.',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Some baskets.',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
   }
   addText8 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'Hmm...looks like I found a magic seed!',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Hmm...looks like I found magic seeds!',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
     this.pickUpSound.play();
   }
   addText9 () {
     this.story.destroy();
-    this.story = this.make.text(200, 10, 'Hmm...looks like I found a watering can.',
-    { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+    this.story = this.make.text(this.world.centerX, 20, 'Hmm...looks like I found water.',
+    { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
     this.pickUpSound.play();
   }
   addText10 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'Hmm...looks like the soil is tilled.',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Hmm...looks like the soil is tilled.',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
   }
   addText11 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'Hmm...looks like the sprout could use some water.',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Hmm...looks like the sprout could use some water.',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
   }
   addText12 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'Hmm...looks like my seed has blossomed into an awesome specimen!',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Hmm...looks like my plant is all grown up.',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
   }
   addText13 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'Hmm...looks like I saved the day.  Time to dance!',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Hmm...looks like I saved the day.  Time to dance!',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
   }
   addText14 () {
     this.story.destroy();
     this.story = this.make.text(
-      200, 10, 'Hmm...looks like a bitcoin.  Nice.',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+      this.world.centerX, 20, 'Hmm...looks like a bitcoin.  Nice.',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
   }
   addText15 () {
     this.story.destroy();
-    this.story = this.make.text(
-      200, 10, 'A log.',
-      { fontSize: '24px', fill: 'orange', font: 'herculanum' });
+    this.story = this.make.text(this.world.centerX, 20, 'A log.',
+      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
   }
 
   goToTank () {

@@ -58,22 +58,23 @@ class NewUser extends React.Component {
     const bg = require('../img/background4.png');
     const parentStyle = {height:"100vh", width:"100vw",
       background: "url("+bg+") no-repeat center fixed", backgroundSize: "cover"};
-    const wellStyle = {float: "right", top: "0px", bottom: "0px", left: "0px", right: "0px",
-      margin: "auto", opacity: ".95", backgroundBlendMode: "overlay",
-      height: "80px", width: "700px"};
-    const logoStyle = {float: "left", top: "0px", left: "0px", zIndex: "100",
-      height: "100px", width: "400px"};
-    const loginLinkStyle = {float: "right"};
+    const wellStyle = {float: "right", margin: "20px", opacity: ".95",
+      backgroundBlendMode: "overlay", height: "80px", width: "720px"};
+    const wellStyle2 = {float: "left", margin: "20px",
+      opacity: ".95", backgroundBlendMode: "overlay",
+      height: "125px", width: "300px", textAlign: "center"};
 
     return (
       <div>
-        <div>
-          <img style={logoStyle} src={require('../img/NextLVL.png')}/>
-        </div>
+        <Well style={wellStyle2}>
+          <div>
+            <img style={{height: "80px", width: "225px"}} src={require('../img/NextLVL.png')}/>
+          </div>
+        </Well>
         <div style={parentStyle}>
           <Well style={wellStyle} bsSize="large">
             <Form inline>
-              <ControlLabel>Create new Player...&nbsp;&nbsp;</ControlLabel>
+              <ControlLabel style={{fontSize: "17px"}}>Create new Player...&nbsp;&nbsp;</ControlLabel>
               <FormGroup controlId="formInlineName">
                 <FormControl
                   onChange={this.handleNameChange}

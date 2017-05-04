@@ -101,6 +101,9 @@ export default class FlappyMenu extends Phaser.State {
     }
 
   }
+  stopAnimation() {
+    this.player.animations.stop(null, true);
+  }
 
   goToGame () {
     this.state.start('Flappy');

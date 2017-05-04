@@ -99,6 +99,9 @@ export default class BreakoutMenu extends Phaser.State {
       this.goToHome();
     }
   }
+  stopAnimation() {
+    this.player.animations.stop(null, true);
+  }
 
   goToGame () {
     this.state.start('Breakout');

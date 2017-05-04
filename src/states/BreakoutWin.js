@@ -98,6 +98,9 @@ export default class Splash extends Phaser.State {
       this.music.stop();
     }
   }
+  stopAnimation() {
+    this.player.animations.stop(null, true);
+  }
 
   goToGame () {
     this.state.start('Breakout');
