@@ -26,9 +26,9 @@ export default class Splash extends Phaser.State {
     this.load.image('hearts', 'assets/splash/heart.png');
 
     this.load.image('tank', 'assets/splash/tank.png');
-    this.load.spritesheet('bird', 'assets/splash/bird.png', 32, 32);
+    this.load.spritesheet('bird', 'assets/splash/scroll0027.png', 32, 32);
     this.load.image('brick', 'assets/splash/brick.png');
-    this.load.image('luigi', 'assets/splash/mushroom.png');
+    this.load.image('luigi', 'assets/splash/scroll0037.png');
     this.load.image('padlock', 'assets/splash/padlock3.png');
     this.load.image('padlock2', 'assets/splash/padlock2.png');
     this.load.image('padlock3', 'assets/splash/padlock4.png');
@@ -56,9 +56,15 @@ export default class Splash extends Phaser.State {
     this.scale.pageAlignVertically = true;
     this.background = this.add.sprite(0, 0, 'map');
 
-    this.story = this.make.text(this.world.centerX, 20, 'What a vibrant valley...so much to explore!',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack', textAlign: 'center' });
-    this.story.anchor.set(0.5);
+    if (window.game.breakoutComplete) {
+      this.story = this.make.text(this.world.centerX, 30, 'The princess has been freed!!',
+        { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
+      this.story.anchor.set(0.5);
+    } else {
+      this.story = this.make.text(this.world.centerX, 30, 'What a vibrant valley...so much to explore!',
+        { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack', textAlign: 'center' });
+      this.story.anchor.set(0.5);
+    }
 
     this.princess = this.add.sprite(650, 96, 'princess');
     this.physics.arcade.enable(this.princess);
@@ -320,16 +326,19 @@ export default class Splash extends Phaser.State {
     }
     if (this.physics.arcade.collide(this.player, this.log)) {
       this.addText15();
-      this.deer.kill();
-      this.deer2 = this.add.sprite(540, 200, 'deer2');
-      this.physics.arcade.enable(this.deer2);
-      this.deer2.body.velocity.x = 300;
     }
     if (this.physics.arcade.collide(this.player, this.log2)) {
       this.addText15();
     }
     if (this.physics.arcade.collide(this.player, this.log3)) {
       this.addText15();
+    }
+    if (this.physics.arcade.collide(this.player, this.deer)) {
+      this.addText16();
+      this.deer.kill();
+      this.deer2 = this.add.sprite(540, 200, 'deer2');
+      this.physics.arcade.enable(this.deer2);
+      this.deer2.body.velocity.x = 300;
     }
     //  this.bird.animations.play('c');
     // this.tank.animations.play('a');
@@ -344,43 +353,43 @@ export default class Splash extends Phaser.State {
   addText1 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Hmm...looks like I could plant something here.',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Hmm...looks like I could plant something here.',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
   }
   addText2 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Hmm...looks like the princess has been captured!',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Hmm...looks like the princess has been captured!',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
   }
   addText3 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Hmm...looks like I need to find a key?!',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Hmm...looks like I need to find a key?!',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
   }
   addText4 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Hmm...looks like a water barrel.',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Hmm...looks like a water barrel.',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
   }
   addText5 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Hmm...are these magic seeds?!',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Hmm...are these magic seeds?!',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
   }
   addText6 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Hmm...looks like I found a shovel.',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Hmm...looks like I found a shovel.',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
     this.pickUpSound.play();
 
@@ -388,51 +397,51 @@ export default class Splash extends Phaser.State {
   addText7 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Some baskets.',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Some baskets.',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
   }
   addText8 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Hmm...looks like I found magic seeds!',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Hmm...looks like I found magic seeds!',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
     this.pickUpSound.play();
   }
   addText9 () {
     this.story.destroy();
-    this.story = this.make.text(this.world.centerX, 20, 'Hmm...looks like I found water.',
-    { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story = this.make.text(this.world.centerX, 30, 'Hmm...looks like I found water.',
+    { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
     this.pickUpSound.play();
   }
   addText10 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Hmm...looks like the soil is tilled.',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Hmm...looks like the soil is tilled.',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
   }
   addText11 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Hmm...looks like the sprout could use some water.',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Hmm...looks like the sprout could use some water.',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
   }
   addText12 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Hmm...looks like my plant is all grown up.',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Hmm...looks like my plant is all grown up.',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
   }
   addText13 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Hmm...looks like I saved the day.  Time to dance!',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Hmm...looks like I saved the day.  Time to dance!',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
     this.state.start('Credits');
     this.music.stop();
@@ -440,14 +449,20 @@ export default class Splash extends Phaser.State {
   addText14 () {
     this.story.destroy();
     this.story = this.make.text(
-      this.world.centerX, 20, 'Hmm...looks like a bitcoin.  Nice.',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+      this.world.centerX, 30, 'Hmm...looks like a bitcoin.  Nice.',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
   }
   addText15 () {
     this.story.destroy();
-    this.story = this.make.text(this.world.centerX, 20, 'A log.',
-      { fontSize: '24px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story = this.make.text(this.world.centerX, 30, 'A log.',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
+    this.story.anchor.set(0.5);
+  }
+  addText16 () {
+    this.story.destroy();
+    this.story = this.make.text(this.world.centerX, 30, 'Aaahhh....',
+      { fontSize: '32px', fill: '#f8ff42', font: 'arialBlack' });
     this.story.anchor.set(0.5);
   }
 

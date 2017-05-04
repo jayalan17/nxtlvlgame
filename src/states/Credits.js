@@ -11,7 +11,6 @@ export default class Credits extends Phaser.State {
     this.creditCount = 0;
     this.load.image('end', 'assets/Menu/blackback.jpg');
     this.load.audio('music', 'assets/audio/binding-track.mp3');
-
   }
 
   addCredit (task, author) {
@@ -40,25 +39,22 @@ export default class Credits extends Phaser.State {
     this.creditCount ++;
   }
 
-
-
   create () {
     this.stage.disableVisibilityChange = true;
     this.music = this.add.audio('music');
     this.music.play();
 
     var bg = this.add.sprite(0, 0, 'end');
-    this.addCredit('\nJeff Pawlak\nCalvin Stiff\nTim Walsh', 'Developers');
-    this.addCredit('\nCalvin Stiff\nJeff Pawlak\nTim Walsh', 'Programmers');
+    this.addCredit('\nJeffrey Pawlak\nCalvin Stiff\nTim Walsh', 'Developers');
+    this.addCredit('\nCalvin Stiff\nJeffrey Pawlak\nTim Walsh', 'Programmers');
     this.addCredit('Calvin Stiff', 'Map Design');
-    this.addCredit('Jeff Pawlak', 'Leaderboards');
+    this.addCredit('Jeffrey Pawlak', 'Leaderboards');
     this.addCredit('3x0pandemic', 'Music/Sound Design');
     this.addCredit('The Qtr 1 2017 Montana \nCode School Players', 'Testers');
-    this.addCredit('\n\n\n\nHarold Shinsato\nRachael Harlow\nWoodie Tatz-Morey\nMontana Code School\nCoffee', 'Special Thanks');
+    this.addCredit('\n\n\n\nHarold Shinsato\nRachael Harlow\nWoodie Tatz-Morey\nMontana Code School\nCoffee\n\n\n', 'Special Thanks');
     this.addCredit('Thank You For Playing!');
     this.addCredit('THE END?');
     this.add.tween(bg).to({alpha: 0}, 20000, Phaser.Easing.Cubic.Out, true, 40000);
-
+    this.start.state('Splash');
   }
-
 }

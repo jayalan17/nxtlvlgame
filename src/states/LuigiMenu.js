@@ -37,6 +37,10 @@ export default class LuigiMenu extends Phaser.State {
     { fontSize: '20px', fill: 'black' });
     this.add.text(475, 200, 'CONTROLS:\n- Use Arrow Keys\n- LEFT and RIGHT to move \n- UP to Jump\n- <esc> to Return To Map',
     { fontSize: '20px', fill: 'black' });
+    this.add.text(165, 450, 'Enter Game',
+    { fontSize: '20px', fill: 'black' });
+    this.add.text(460, 450, 'Return to Map',
+    { fontSize: '20px', fill: 'black' });
 
     this.music = this.add.audio('music');
     this.music.play();
@@ -64,6 +68,7 @@ export default class LuigiMenu extends Phaser.State {
     this.cursors = this.input.keyboard.createCursorKeys();
     this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
     this.world.scale.setTo(1);
+    this.player.scale.setTo(2);
   }
 
   update () {

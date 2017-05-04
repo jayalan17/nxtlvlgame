@@ -26,7 +26,7 @@ export default class extends Phaser.State {
   }
 
   preload () {
-    this.load.image('bird', 'assets/splash/star.png');
+    this.load.image('bird', 'assets/Menu/flappy.png');
     this.load.image('map', 'assets/Menu/map.png');
     this.load.spritesheet('dude', 'assets/splash/sprite.png', 32, 32);
     this.load.image('key', 'assets/Menu/key4.png');
@@ -58,6 +58,7 @@ export default class extends Phaser.State {
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
     this.world.scale.setTo(1);
+    this.player.scale.setTo(2);
 
     this.player.animations.add('up', [104, 105, 106, 107, 108,
       109, 110, 111, 112], 9, true);
