@@ -55,6 +55,5 @@ export default class Credits extends Phaser.State {
     this.addCredit('Thank You For Playing!');
     this.addCredit('THE END?');
     this.add.tween(bg).to({alpha: 0}, 20000, Phaser.Easing.Cubic.Out, true, 40000);
-    this.start.state('Splash');
   }
 }
