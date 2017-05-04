@@ -17,7 +17,7 @@ class Leaderboard extends React.Component {
   render() {
     return (
       <div>
-        <h3>FLAPPIN HIGH SCORES</h3>
+        <h3 style={{fontWeight: "bold", color: "#ea1828"}}>FLAPPIN HIGH SCORES</h3>
         {this.props.userStore.displayScores()}
       </div>
     );

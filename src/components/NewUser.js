@@ -68,7 +68,7 @@ class NewUser extends React.Component {
       <div>
         <Well style={wellStyle2}>
           <div>
-            <img style={{height: "80px", width: "225px"}} src={require('../img/NextLVL.png')}/>
+            <img style={{height: "80px", width: "225px", border: "2px solid #ea1828"}} src={require('../img/NextLVL.png')}/>
           </div>
         </Well>
         <div style={parentStyle}>
