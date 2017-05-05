@@ -59,10 +59,11 @@ class NewUser extends React.Component {
     const parentStyle = {height:"100vh", width:"100vw",
       background: "url("+bg+") no-repeat center fixed", backgroundSize: "cover"};
     const wellStyle = {float: "right", margin: "20px", opacity: ".95",
-      backgroundBlendMode: "overlay", height: "105px", width: "720px", border: "1px solid #ea1828"};
+      backgroundBlendMode: "overlay", height: "105px", width: "825px", border: "1px solid #ea1828"};
     const wellStyle2 = {float: "left", margin: "20px",
       opacity: ".95", backgroundBlendMode: "overlay",
       height: "125px", width: "300px", textAlign: "center", border: "1px solid #ea1828"};
+    const button = {width: "125px"}
 
     return (
       <div>
@@ -85,12 +86,12 @@ class NewUser extends React.Component {
               </FormGroup>
               <Button
                 onClick={this.handleNewUser}
-                type="submit" className="btn btn-danger">Enter
+                type="submit" className="btn btn-danger" style={button}>Create User
               </Button>
               <Link to="/Welcome">
                 <Button
                   type="submit"
-                  className="btn btn-danger">Login
+                  className="btn btn-danger" style={button}>Return to Login
                 </Button>
               </Link>
             </Form>

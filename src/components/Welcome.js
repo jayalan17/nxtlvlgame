@@ -50,10 +50,11 @@ class Welcome extends React.Component {
       backgroundSize: "cover"};
     const wellStyle = {float: "right", margin: "20px",
       opacity: ".95", backgroundBlendMode: "overlay",
-      height: "105px", width: "720px", border: "1px solid #ea1828"};
+      height: "105px", width: "825px", border: "1px solid #ea1828"};
     const wellStyle2 = {float: "left", margin: "20px",
       opacity: ".95", backgroundBlendMode: "overlay",
       height: "410px", width: "300px", textAlign: "center", border: "1px solid #ea1828"};
+    const button = {width: "125px"};
 
     return (
       <div>
@@ -83,13 +84,13 @@ class Welcome extends React.Component {
                 <Button
                   onClick={this.handleLoginUser}
                   type="submit"
-                  className="btn btn-danger">Begin
+                  className="btn btn-danger" style={button}>Begin Game
                 </Button>
               </Link>
               <Link to="/NewUser">
                 <Button
                   type="submit"
-                  className="btn btn-danger">New User
+                  className="btn btn-danger" style={button}>Create New User
                 </Button>
               </Link>
             </Form>

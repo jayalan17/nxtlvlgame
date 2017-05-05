@@ -339,6 +339,7 @@ export default class Splash extends Phaser.State {
       this.deer2 = this.add.sprite(540, 200, 'deer2');
       this.physics.arcade.enable(this.deer2);
       this.deer2.body.velocity.x = 300;
+      this.deer = this.add.sprite(340, 410, 'deer');
     }
     //  this.bird.animations.play('c');
     // this.tank.animations.play('a');
