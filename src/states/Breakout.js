@@ -50,7 +50,7 @@ export default class Breakout extends Phaser.State {
     this.ball = this.add.sprite(200, 500, 'ball');
     this.ball.body.velocity.x = 260;
     this.ball.body.velocity.y = 250;
-    this.ball.body.bounce.setTo(1.0);
+    this.ball.body.bounce.setTo(1);
     this.world.scale.setTo(1);
 
 
@@ -86,7 +86,7 @@ export default class Breakout extends Phaser.State {
       this.dieSound.play();
       this.score = 0;
     }
-    if (this.score === 300) {
+    if (this.score === 40) {
       window.game.breakoutHighScore = this.score;
       this.state.start('BreakoutWin');
       window.game.breakoutScoreUpdate();

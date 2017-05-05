@@ -34,7 +34,7 @@ export default class Credits extends Phaser.State {
     taskText.anchor.setTo(0.5);
     taskText.stroke = "rgba(0,0,0,0)";
     taskText.strokeThickness = 4;
-    this.add.tween(authorText).to( { y: -300 }, 20000, Phaser.Easing.Cubic.Out, true, this.creditCount * 10000);
+    this.add.tween(authorText).to( { y: -350 }, 20000, Phaser.Easing.Cubic.Out, true, this.creditCount * 10000);
     this.add.tween(taskText).to( { y: -200 }, 20000, Phaser.Easing.Cubic.Out, true, this.creditCount * 10000);
     this.creditCount ++;
   }
@@ -51,7 +51,7 @@ export default class Credits extends Phaser.State {
     this.addCredit('Jeffrey Pawlak', 'Leaderboards');
     this.addCredit('3x0pandemic', 'Music/Sound Design');
     this.addCredit('The Qtr 1 2017 Montana \nCode School Players', 'Testers');
-    this.addCredit('\n\n\n\nHarold Shinsato\nRachael Harlow\nWoodie Tatz-Morey\nMontana Code School\nCoffee\n\n\n', 'Special Thanks');
+    this.addCredit('\n\n\n\n\n\n\nHarold Shinsato\nRachael Harlow\nWoodie Tatz-Morey\nMontana Code School\nCoffee\n\n\n', 'Special Thanks');
     this.addCredit('Thank You For Playing!');
     this.addCredit('THE END?');
     this.add.tween(bg).to({alpha: 0}, 20000, Phaser.Easing.Cubic.Out, true, 40000);
